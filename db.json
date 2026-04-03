@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "title": "iPhone 13",
       "price": 60000,
       "image": "https://via.placeholder.com/150",
@@ -9,20 +9,46 @@
     }
   ],
   "users": [
-    
-  ],
-  "cart": [
-    { 
-    "id": 1, 
-    "userId": 2, 
-    "productId": 5, 
-    "name": "iPhone 15",
-    "price": 999,
-    "quantity": 2,
-    "image": "iphone.jpg"
+    {
+      "name": "jaseem",
+      "email": "jaseemsidheeqk@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "h9IpJ9ar4HM"
+    },
+    {
+      "name": "jaseem",
+      "email": "jaseemsidheeq5@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "NqpFMVIl83s"
+    },
+    {
+      "name": "jaseem sidheeq k",
+      "email": "jaseemsidheeq@gmail.com",
+      "password": "884806",
+      "role": "user",
+      "id": "5lm5FWG-OA8"
+    },
+    {
+      "name": "jaseem",
+      "email": "123@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "5GoP4Pu8HAk"
     }
   ],
-  "orders": [
-
-  ]
+  "cart": [
+    {
+      "id": "1",
+      "userId": 2,
+      "productId": 5,
+      "name": "iPhone 15",
+      "price": 999,
+      "quantity": 2,
+      "image": "iphone.jpg"
+    }
+  ],
+  "orders": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }

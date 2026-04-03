@@ -1,14 +1,19 @@
 import React from 'react'
-import { Link, Route,Routes } from 'react-router-dom'
+import { Route,Routes } from 'react-router-dom'
+import ProtectedRoute from '../components/common/ProtectedRoute'
+
+
+import Register from '../pages/Register'
+import Login from '../pages/Login'
 import Home from '../pages/Home'
 
 function AppRoutes() {
   return (
-    <div>
       <Routes>
         <Route path='/' element={<Home/>} />
+        <Route path='/register' element={<Register/>} />
+        <Route path='/login' element={<Login/>} />
       </Routes>
-    </div>
   )
 }
 
