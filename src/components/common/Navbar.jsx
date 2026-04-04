@@ -12,12 +12,12 @@ const Navbar = () => {
     <nav className="bg-blue-700 text-white shadow-md sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
 
-        {/* ── Logo ───────────────────────────────────────── */}
+       
         <Link to="/" className="text-xl font-bold tracking-wide">
           ⚡ Sparkifyer
         </Link>
 
-        {/* ── Desktop Menu ───────────────────────────────── */}
+        
         <div className="hidden md:flex items-center gap-6 text-sm font-medium">
 
           <Link to="/products" className="hover:text-blue-200 transition">
