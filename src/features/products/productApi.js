@@ -27,7 +27,7 @@ export const useGetProducts = () =>{
 export const useGetProductById = (id) =>{
     return useQuery({
         queryKey:['product',id],
-        queryFn:fetchProductById,
+        queryFn:()=>fetchProductById(id),
         enabled: !!id,               // only fetch if id exists
         staleTime:1000 * 60 * 5,
         retry:2

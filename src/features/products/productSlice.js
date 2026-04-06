@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createSelector } from "@reduxjs/toolkit";
 
 const productSlice=createSlice({
     name:'products',
@@ -40,7 +41,7 @@ export const {setProducts,setSearchQuery,setSelectedCategory,setSortBy,resetFilt
 
 
 
-export const selectAllProducts= (state)=>state.Products?.items ?? []
+export const selectAllProducts= (state)=>state.products?.items ?? []
 export const selectSearchQuery= (state)=>state.products?.searchQuery ?? "";
 export const selectSelectedCategory= (state)=>state.products?.selectedCategory ?? "All"
 export const selectSortBy= (state)=>state.products?.sortBy ?? "default"
@@ -49,61 +50,70 @@ export const selectSortBy= (state)=>state.products?.sortBy ?? "default"
 
 //Filtering
 
-export const selectFilteredProducts = (state) => {
-  // ✅ safe fallback if state.products is undefined
-  if (!state.products) return [];
+export const selectFilteredProducts = createSelector(
+  [
+    (state) => state.products?.items ?? [],
+    (state) => state.products?.selectedCategory ?? "All",
+    (state) => state.products?.searchQuery ?? "",
+    (state) => state.products?.sortBy ?? "default",
+  ],
+  (items, selectedCategory, searchQuery, sortBy) => {
+    let filtered = [...items];
 
-  const items = state.products.items ?? [];
-  const selectedCategory = state.products.selectedCategory ?? "All";
-  const searchQuery = state.products.searchQuery ?? "";
-  const sortBy = state.products.sortBy ?? "default";
+    if (selectedCategory !== "All") {
+      filtered = filtered.filter(
+        (p) => p.category === selectedCategory
+      );
+    }
 
-  let filtered = [...items];
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (p) =>
+          p.name.toLowerCase().includes(query) ||
+          p.brand.toLowerCase().includes(query) ||
+          p.category.toLowerCase().includes(query) ||
+          p.tags.some((tag) => tag.toLowerCase().includes(query))
+      );
+    }
 
-  if (selectedCategory !== "All") {
-    filtered = filtered.filter(
-      (p) => p.category === selectedCategory
-    );
+    switch (sortBy) {
+      case "price-asc":
+        filtered = [...filtered].sort((a, b) => a.price - b.price);
+        break;
+      case "price-desc":
+        filtered = [...filtered].sort((a, b) => b.price - a.price);
+        break;
+      case "rating":
+        filtered = [...filtered].sort((a, b) => b.rating - a.rating);
+        break;
+      case "name-asc":
+        filtered = [...filtered].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        break;
+      case "name-desc":
+        filtered = [...filtered].sort((a, b) =>
+          b.name.localeCompare(a.name)
+        );
+        break;
+      default:
+        break;
+    }
+
+    return filtered;
   }
+);
 
-  if (searchQuery.trim() !== "") {
-    const query = searchQuery.toLowerCase();
-    filtered = filtered.filter(
-      (p) =>
-        p.name.toLowerCase().includes(query) ||
-        p.brand.toLowerCase().includes(query) ||
-        p.category.toLowerCase().includes(query) ||
-        p.tags.some((tag) => tag.toLowerCase().includes(query))
-    );
+
+
+
+export const selectCategories = createSelector(
+  [(state) => state.products?.items ?? []],
+  (items) => {
+    const categories = items.map((p) => p.category);
+    return ["All", ...new Set(categories)];
   }
-
-  switch (sortBy) {
-    case "price-asc":
-      filtered.sort((a, b) => a.price - b.price);
-      break;
-    case "price-desc":
-      filtered.sort((a, b) => b.price - a.price);
-      break;
-    case "rating":
-      filtered.sort((a, b) => b.rating - a.rating);
-      break;
-    case "name-asc":
-      filtered.sort((a, b) => a.name.localeCompare(b.name));
-      break;
-    case "name-desc":
-      filtered.sort((a, b) => b.name.localeCompare(a.name));
-      break;
-    default:
-      break;
-  }
-
-  return filtered;
-};
-
-export const selectCategories = (state) => {
-  if (!state.products) return ["All"];
-  const categories = state.products.items?.map((p) => p.category) ?? [];
-  return ["All", ...new Set(categories)];
-};
+);
 
 export default productSlice.reducer;

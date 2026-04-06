@@ -32,7 +32,7 @@ const ProductList = () => {
   // ─── Reset filters on page mount ──────────────────────
   useEffect(() => {
     dispatch(resetFilters());
-  }, []);
+  }, [dispatch]);
 
   // ─── Loading State ────────────────────────────────────
   if (isLoading) {
