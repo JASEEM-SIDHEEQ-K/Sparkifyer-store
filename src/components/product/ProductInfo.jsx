@@ -1,8 +1,47 @@
 import { useState } from "react";
 import QuantitySelector from "./QuantitySelector";
 
+
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addToCartWithQuantity } from "../../features/cart/cartApi";
+import useAuth from "../../hooks/useAuth";
+
+import { toast } from "react-toastify";
+
+
 const ProductInfo = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+
+
+
+  //for cart
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth();
+
+  const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+    dispatch(addToCartWithQuantity(product, user.id, quantity));
+    toast.success("Item added to cart 🛒");
+  };
+
+  const handleBuyNow = () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+    dispatch(addToCartWithQuantity(product, user.id, quantity));
+    navigate("/checkout");
+  };
+
+
+
+
 
   // ─── Discount Calculation ──────────────────────────────
   const discount = Math.round(
@@ -119,25 +158,36 @@ const ProductInfo = ({ product }) => {
         />
       )}
 
-      {/* ── Action Buttons ────────────────────────────────── */}
-      <div className="flex gap-3 pt-2">
+      {/* ── Action Buttons ────────────────────────────────────── */}
+    <div className="flex flex-col gap-3 pt-2">
 
-        {/* Add to Cart */}
+        {/* Row 1 → Buy Now + Wishlist */}
+        <div className="flex gap-3">
+            <button
+            onClick={handleBuyNow}
+            disabled={product.stock === 0}
+            className="flex-1 bg-slate-800 hover:bg-slate-900 text-white font-semibold py-3 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+            ⚡ Buy Now
+            </button>
+
+            {/* Wishlist */}
+            <button
+            className="w-12 h-12 flex items-center justify-center border border-slate-300 rounded-xl hover:border-blue-400 hover:text-blue-500 transition text-slate-400 text-xl">
+            ♡
+            </button>
+        </div>
+
+        {/* Row 2 → Add to Cart */}
         <button
-          disabled={product.stock === 0}
-          className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={handleAddToCart}
+            disabled={product.stock === 0}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {product.stock === 0 ? "Out of Stock" : "🛒 Add to Cart"}
+            {product.stock === 0 ? "Out of Stock" : "🛒 Add to Cart"}
         </button>
 
-        {/* Wishlist */}
-        <button
-          className="w-12 h-12 flex items-center justify-center border border-slate-300 rounded-xl hover:border-blue-400 hover:text-blue-500 transition text-slate-400 text-xl"
-        >
-          ♡
-        </button>
-
-      </div>
+    </div>
 
       {/* ── Delivery Info ─────────────────────────────────── */}
       <div className="border border-slate-200 rounded-xl p-4 flex flex-col gap-2">

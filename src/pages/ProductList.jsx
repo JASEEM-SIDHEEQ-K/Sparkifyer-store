@@ -11,6 +11,8 @@ import { useGetProducts } from "../features/products/productApi";
 import ProductCard from "../components/product/ProductCard";
 import ProductFilter from "../components/product/ProductFilter";
 
+
+
 const ProductList = () => {
   const dispatch = useDispatch();
   const filteredProducts = useSelector(selectFilteredProducts);
@@ -19,9 +21,12 @@ const ProductList = () => {
 
   const [showFilter, setShowFilter] = useState(false);
 
+
   // ─── Fetch Products via TanStack Query ────────────────
   const { data, isLoading, isError } = useGetProducts();
 
+
+  
   // ─── Load into Redux when data arrives ────────────────
   useEffect(() => {
     if (data) {

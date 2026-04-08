@@ -1,8 +1,21 @@
-// src/components/product/ProductCard.jsx
-
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addToCart } from "../../features/cart/cartApi";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ product }) => {
+
+
+//for cart
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth();
+
+  
+
+
 
   // ─── Discount Percentage ────────────────────────────────
   const discount = Math.round(
@@ -19,6 +32,18 @@ const ProductCard = ({ product }) => {
         ★
       </span>
     ));
+  };
+
+
+
+
+  const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+    dispatch(addToCart(product, user.id));
+    toast.success("Item added to cart 🛒");
   };
 
   return (
@@ -38,6 +63,12 @@ const ProductCard = ({ product }) => {
             -{discount}%
           </span>
         )}
+
+
+        <button className="absolute bottom-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:text-red-500 transition text-slate-400">
+          ♡
+        </button>
+
 
         {/* Out of Stock Badge */}
         {product.stock === 0 && (
@@ -117,6 +148,7 @@ const ProductCard = ({ product }) => {
 
           {/* Add to Cart */}
           <button
+            onClick={handleAddToCart}
             disabled={product.stock === 0}
             className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
           >

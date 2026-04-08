@@ -1,24 +1,51 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Admin User",
       "email": "admin@sparkifyer.com",
       "password": "admin123",
       "role": "admin"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "John Doe",
       "email": "john@gmail.com",
       "password": "john123",
       "role": "user"
+    },
+    {
+      "name": "jaseem",
+      "email": "jaseemsidheeqk@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "XznwBRisK-U"
+    },
+    {
+      "name": "fadil",
+      "email": "123@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "T4cb8_DaMIg"
+    },
+    {
+      "name": "online-shop",
+      "email": "345@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "TOCcbC8wlZQ"
+    },
+    {
+      "name": "fadil",
+      "email": "1234@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "95m-JR1nyQA"
     }
   ],
-
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "iPhone 15 Pro",
       "category": "Smartphones",
       "price": 999,
@@ -27,18 +54,23 @@
       "reviews": 120,
       "stock": 15,
       "brand": "Apple",
-      "image": "https://images.unsplash.com/photo-1695048133142-1a20484428d6?w=400",
+      "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
       "images": [
-        "https://images.unsplash.com/photo-1695048133142-1a20484428d6?w=600",
-        "https://images.unsplash.com/photo-1696446702183-8faba0572acc?w=600",
+        "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
+        "https://images.pexels.com/photos/29020349/pexels-photo-29020349.jpeg",
         "https://images.unsplash.com/photo-1697565578769-9c9defbfa009?w=600",
         "https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=600"
       ],
       "description": "Latest Apple iPhone with A17 Pro chip, titanium design, and advanced camera system.",
-      "tags": ["apple", "iphone", "smartphone", "5g"]
+      "tags": [
+        "apple",
+        "iphone",
+        "smartphone",
+        "5g"
+      ]
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Samsung Galaxy S24",
       "category": "Smartphones",
       "price": 849,
@@ -47,18 +79,23 @@
       "reviews": 98,
       "stock": 20,
       "brand": "Samsung",
-      "image": "https://images.unsplash.com/photo-1706439135749-4d8f96f3e136?w=400",
+      "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
       "images": [
-        "https://images.unsplash.com/photo-1706439135749-4d8f96f3e136?w=600",
         "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600",
+        "https://images.unsplash.com/photo-1706439135749-4d8f96f3e136?w=600",
         "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=600",
         "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=600"
       ],
       "description": "Samsung flagship with AI features, 200MP camera, and Snapdragon 8 Gen 3.",
-      "tags": ["samsung", "galaxy", "smartphone", "android"]
+      "tags": [
+        "samsung",
+        "galaxy",
+        "smartphone",
+        "android"
+      ]
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "MacBook Pro 14",
       "category": "Laptops",
       "price": 1999,
@@ -75,10 +112,15 @@
         "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
       ],
       "description": "Powerful MacBook Pro with M3 Pro chip, Liquid Retina XDR display.",
-      "tags": ["apple", "macbook", "laptop", "m3"]
+      "tags": [
+        "apple",
+        "macbook",
+        "laptop",
+        "m3"
+      ]
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Dell XPS 15",
       "category": "Laptops",
       "price": 1599,
@@ -95,10 +137,15 @@
         "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600"
       ],
       "description": "Premium Dell laptop with Intel Core i9, OLED display, and RTX 4070.",
-      "tags": ["dell", "xps", "laptop", "windows"]
+      "tags": [
+        "dell",
+        "xps",
+        "laptop",
+        "windows"
+      ]
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Sony WH-1000XM5",
       "category": "Audio",
       "price": 349,
@@ -115,10 +162,15 @@
         "https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?w=600"
       ],
       "description": "Industry-leading noise cancelling headphones with 30-hour battery life.",
-      "tags": ["sony", "headphones", "audio", "noise-cancelling"]
+      "tags": [
+        "sony",
+        "headphones",
+        "audio",
+        "noise-cancelling"
+      ]
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "AirPods Pro 2",
       "category": "Audio",
       "price": 249,
@@ -135,10 +187,15 @@
         "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
       ],
       "description": "Apple AirPods Pro with Active Noise Cancellation and Adaptive Audio.",
-      "tags": ["apple", "airpods", "earbuds", "audio"]
+      "tags": [
+        "apple",
+        "airpods",
+        "earbuds",
+        "audio"
+      ]
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Sony Alpha A7 IV",
       "category": "Cameras",
       "price": 2499,
@@ -155,10 +212,15 @@
         "https://images.unsplash.com/photo-1581591524425-c7e0978865fc?w=600"
       ],
       "description": "Full-frame mirrorless camera with 33MP sensor and 4K video recording.",
-      "tags": ["sony", "camera", "mirrorless", "photography"]
+      "tags": [
+        "sony",
+        "camera",
+        "mirrorless",
+        "photography"
+      ]
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "GoPro Hero 12",
       "category": "Cameras",
       "price": 399,
@@ -175,10 +237,15 @@
         "https://images.unsplash.com/photo-1510127034890-ba27843e008f?w=600"
       ],
       "description": "Waterproof action camera with 5.3K video and HyperSmooth stabilization.",
-      "tags": ["gopro", "action camera", "waterproof", "4k"]
+      "tags": [
+        "gopro",
+        "action camera",
+        "waterproof",
+        "4k"
+      ]
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Apple Watch Series 9",
       "category": "Wearables",
       "price": 399,
@@ -195,10 +262,15 @@
         "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
       ],
       "description": "Advanced smartwatch with Double Tap gesture and Always-On Retina display.",
-      "tags": ["apple", "watch", "smartwatch", "wearable"]
+      "tags": [
+        "apple",
+        "watch",
+        "smartwatch",
+        "wearable"
+      ]
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Samsung Galaxy Watch 6",
       "category": "Wearables",
       "price": 299,
@@ -215,10 +287,15 @@
         "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=600"
       ],
       "description": "Samsung smartwatch with advanced health monitoring and BioActive sensor.",
-      "tags": ["samsung", "watch", "smartwatch", "android"]
+      "tags": [
+        "samsung",
+        "watch",
+        "smartwatch",
+        "android"
+      ]
     },
     {
-      "id": 11,
+      "id": "11",
       "name": "Anker 65W Charger",
       "category": "Accessories",
       "price": 35,
@@ -235,10 +312,15 @@
         "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600"
       ],
       "description": "Compact 65W GaN charger with 3 ports supporting fast charging.",
-      "tags": ["anker", "charger", "accessories", "usb-c"]
+      "tags": [
+        "anker",
+        "charger",
+        "accessories",
+        "usb-c"
+      ]
     },
     {
-      "id": 12,
+      "id": "12",
       "name": "Logitech MX Master 3",
       "category": "Accessories",
       "price": 99,
@@ -255,10 +337,15 @@
         "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600"
       ],
       "description": "Advanced wireless mouse with MagSpeed scrolling and ergonomic design.",
-      "tags": ["logitech", "mouse", "accessories", "wireless"]
+      "tags": [
+        "logitech",
+        "mouse",
+        "accessories",
+        "wireless"
+      ]
     },
     {
-      "id": 13,
+      "id": "13",
       "name": "PlayStation 5",
       "category": "Gaming",
       "price": 499,
@@ -275,10 +362,15 @@
         "https://images.unsplash.com/photo-1619778347933-bde1d98c8b8d?w=600"
       ],
       "description": "Next-gen gaming console with ultra-high speed SSD and 4K gaming.",
-      "tags": ["sony", "playstation", "gaming", "console"]
+      "tags": [
+        "sony",
+        "playstation",
+        "gaming",
+        "console"
+      ]
     },
     {
-      "id": 14,
+      "id": "14",
       "name": "Xbox Series X",
       "category": "Gaming",
       "price": 499,
@@ -295,10 +387,15 @@
         "https://images.unsplash.com/photo-1619778347933-bde1d98c8b8d?w=600"
       ],
       "description": "Microsoft's most powerful console with 12 teraflops and Game Pass.",
-      "tags": ["microsoft", "xbox", "gaming", "console"]
+      "tags": [
+        "microsoft",
+        "xbox",
+        "gaming",
+        "console"
+      ]
     },
     {
-      "id": 15,
+      "id": "15",
       "name": "iPad Pro 12.9",
       "category": "Smartphones",
       "price": 1099,
@@ -315,11 +412,160 @@
         "https://images.unsplash.com/photo-1542751110-97427bbecf20?w=600"
       ],
       "description": "Apple iPad Pro with M2 chip, Liquid Retina XDR display and Apple Pencil support.",
-      "tags": ["apple", "ipad", "tablet", "m2"]
+      "tags": [
+        "apple",
+        "ipad",
+        "tablet",
+        "m2"
+      ]
     }
   ],
-
-  "cart": [],
+  "cart": [
+    {
+      "userId": "XznwBRisK-U",
+      "productId": "6",
+      "name": "AirPods Pro 2",
+      "price": 249,
+      "originalPrice": 279,
+      "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400",
+      "quantity": 1,
+      "stock": 25,
+      "id": "omBk-M0v_Mw"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "productId": "5",
+      "name": "Sony WH-1000XM5",
+      "price": 349,
+      "originalPrice": 399,
+      "image": "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400",
+      "quantity": 6,
+      "stock": 30,
+      "id": "8o2AkIF4i5o"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "productId": "7",
+      "name": "Sony Alpha A7 IV",
+      "price": 2499,
+      "originalPrice": 2699,
+      "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400",
+      "quantity": 1,
+      "stock": 5,
+      "id": "1K-Jgk2XcNA"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "productId": "8",
+      "name": "GoPro Hero 12",
+      "price": 399,
+      "originalPrice": 449,
+      "image": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400",
+      "quantity": 2,
+      "stock": 18,
+      "id": "Tstk4Dtnuzs"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "productId": "9",
+      "name": "Apple Watch Series 9",
+      "price": 399,
+      "originalPrice": 429,
+      "image": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400",
+      "quantity": 1,
+      "stock": 22,
+      "id": "QOQ5hE4MU4Y"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "productId": "10",
+      "name": "Samsung Galaxy Watch 6",
+      "price": 299,
+      "originalPrice": 349,
+      "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400",
+      "quantity": 1,
+      "stock": 16,
+      "id": "PLnRJWpAkJc"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "productId": "11",
+      "name": "Anker 65W Charger",
+      "price": 35,
+      "originalPrice": 45,
+      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
+      "quantity": 1,
+      "stock": 50,
+      "id": "kva5Ye3Qubo"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "productId": "12",
+      "name": "Logitech MX Master 3",
+      "price": 99,
+      "originalPrice": 119,
+      "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400",
+      "quantity": 1,
+      "stock": 35,
+      "id": "VRVKN8g9bvY"
+    },
+    {
+      "userId": "T4cb8_DaMIg",
+      "productId": "13",
+      "name": "PlayStation 5",
+      "price": 499,
+      "originalPrice": 549,
+      "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400",
+      "quantity": 1,
+      "stock": 7,
+      "id": "jLPCe_SJIkg"
+    },
+    {
+      "userId": "T4cb8_DaMIg",
+      "productId": "11",
+      "name": "Anker 65W Charger",
+      "price": 35,
+      "originalPrice": 45,
+      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
+      "quantity": 1,
+      "stock": 50,
+      "id": "gBZq-NmYPcY"
+    },
+    {
+      "userId": "T4cb8_DaMIg",
+      "productId": "4",
+      "name": "Dell XPS 15",
+      "price": 1599,
+      "originalPrice": 1799,
+      "image": "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400",
+      "quantity": 2,
+      "stock": 8,
+      "id": "VZWEHTMJ-aA"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "productId": "1",
+      "name": "iPhone 15 Pro",
+      "price": 999,
+      "originalPrice": 1099,
+      "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
+      "quantity": 2,
+      "stock": 15,
+      "id": "LQ5U6qbkSsc"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "productId": "3",
+      "name": "MacBook Pro 14",
+      "price": 1999,
+      "originalPrice": 2199,
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400",
+      "quantity": 3,
+      "stock": 10,
+      "id": "bAbOjU1VIJc"
+    }
+  ],
   "wishlist": [],
-  "orders": []
+  "orders": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }

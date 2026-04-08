@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { fetchCart } from "../features/cart/cartApi";
 import { loginUser } from "../features/auth/authApi";
 import {
   loginStart,
@@ -71,6 +72,7 @@ const Login = () => {
       const sessionData = await loginUser(formData);
 
       dispatch(loginSuccess(sessionData));
+      dispatch(fetchCart(sessionData.user.id));       // ✅ fetch cart on login
 
       // role-based redirect
       if (sessionData.role === "admin") {

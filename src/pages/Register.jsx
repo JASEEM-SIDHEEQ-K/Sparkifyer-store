@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../features/auth/authApi";
 import {
-  loginStart,
-  loginSuccess,
   loginFail,
   clearError,
   selectIsLoading,
@@ -70,25 +68,15 @@ const Register = () => {
     if (Object.values(submitErrors).some((err) => err !== "")) return;
 
     try {
-      dispatch(loginStart());
+      
 
-      const newUser = await registerUser({
+      await registerUser({
         name: formData.name,
         email: formData.email,
         password: formData.password,
       });
 
-      dispatch(loginSuccess({
-        user: {
-          id: newUser.id,
-          name: newUser.name,
-          email: newUser.email,
-        },
-        token: `token_${newUser.id}_${Date.now()}`,
-        role: newUser.role,
-      }));
-
-      navigate("/");
+      navigate("/login");
 
     } catch (err) {
       dispatch(loginFail(err.toString()));

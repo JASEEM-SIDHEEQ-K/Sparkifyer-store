@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify'
 import api from '../../services/api'
 
 
@@ -16,6 +17,7 @@ export const registerUser = async (userData)=>{
             role: 'user',
         })
 
+        toast('registration successfull')
         return response.data
 
     }catch(error){
@@ -51,8 +53,9 @@ export const loginUser = async (credentials)=>{
             token: `token_${user.id}_${Date.now()}`,
             role: user.role,
         }
-
+        toast('login successfull')
         return sessionData
+        
     }
 
     catch(error){
@@ -87,7 +90,7 @@ export const adminLogin = async(credentials)=>{
             token:`admin_token_${admin.id}_${Date.now()}`,
             role:admin.role,
         }
-
+        toast('login successfull')
         return sessionData
 
     }catch(error){

@@ -1,9 +1,24 @@
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { logout } from "../features/auth/authSlice";
+import { clearCart } from "../features/cart/cartSlice";
+
+
 
 
 const useAuth = () => {
 
+    const dispatch=useDispatch()
+    const navigate=useNavigate()
+
     const { user,token,role,isLoading,error}=useSelector(state=>state.auth)
+
+    const handleLogout = () =>{
+      dispatch(logout())
+      dispatch(clearCart())
+      navigate("/login")
+    }
 
   return {
     user,
@@ -13,6 +28,7 @@ const useAuth = () => {
     error,
     isAuthenticated: !!token,
     isAdmin: role === 'admin',
+    logout:handleLogout,              //  expose function
   }
 }
 
