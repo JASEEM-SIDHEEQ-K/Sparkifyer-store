@@ -85,12 +85,19 @@ export const selectCartItems = (state) => state.cart?.items ?? [];
 export const selectCartLoading = (state) => state.cart?.isLoading ?? false;
 export const selectCartError = (state) => state.cart?.error ?? null;
 
+
 // ─── Memoized Selectors ───────────────────────────────────────
 
-// Total items count (for navbar badge)
-export const selectCartCount = createSelector(
+// Total items quantity (for cart page)
+export const selectCartTotalQuantity = createSelector(
   [selectCartItems],
   (items) => items.reduce((total, item) => total + item.quantity, 0)
+);
+
+// ✅ Total products (for navbar badge)
+export const selectCartCount = createSelector(
+  [selectCartItems],
+  (items) => items.length
 );
 
 // Total price

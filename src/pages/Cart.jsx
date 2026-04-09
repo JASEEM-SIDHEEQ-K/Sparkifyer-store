@@ -9,6 +9,7 @@ import {
   selectCartLoading,
   selectCartError,
   selectCartCount,
+  selectCartTotalQuantity
 } from "../features/cart/cartSlice";
 import CartItem from "../components/cart/CartItem";
 import CartSummary from "../components/cart/CartSummary";
@@ -22,6 +23,7 @@ const Cart = () => {
   const isLoading = useSelector(selectCartLoading);
   const error = useSelector(selectCartError);
   const count = useSelector(selectCartCount);
+  const quantity = useSelector(selectCartTotalQuantity);
 
   // ─── Fetch cart on mount ───────────────────────────────
   useEffect(() => {
@@ -70,7 +72,7 @@ const Cart = () => {
           </h1>
           <p className="text-slate-500 text-sm mt-1">
             {count > 0
-              ? `${count} item${count > 1 ? "s" : ""} in your cart`
+              ? `${count} item${count > 1 ? "s" : ""} • ${quantity} quantity${quantity > 1 ? "ies" : ""}`
               : "Your cart is empty"}
           </p>
         </div>
@@ -100,12 +102,6 @@ const Cart = () => {
             {/* ── Left → Cart Items ────────────────────── */}
             <div className="flex-1 flex flex-col gap-3">
 
-              {/* Items Header */}
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="text-sm font-semibold text-slate-600">
-                  {count} Item{count > 1 ? "s" : ""}
-                </h2>
-              </div>
 
               {/* Cart Items List */}
               {items.map((item) => (

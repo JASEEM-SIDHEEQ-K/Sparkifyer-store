@@ -1,12 +1,15 @@
-// src/components/common/Navbar.jsx
+
 
 import { useState } from "react";
 import { Link,  } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useSelector } from "react-redux";
+import { selectCartCount } from "../../features/cart/cartSlice";
 
 const Navbar = () => {
-  const { user, isAuthenticated, isAdmin, handleLogout } = useAuth();
+  const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const cartCount = useSelector(selectCartCount);
 
   return (
     <nav className="bg-blue-700 text-white shadow-md sticky top-0 z-50">
@@ -26,9 +29,19 @@ const Navbar = () => {
 
           {isAuthenticated && (
             <>
-              <Link to="/cart" className="hover:text-blue-200 transition">
+              {/* ✅ Cart with badge */}
+              <Link
+                to="/cart"
+                className="relative hover:text-blue-200 transition"
+              >
                 🛒 Cart
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-3 px-2 h-[18px] bg-blue-600 text-white text-[10px] font-semibold rounded-full flex items-center justify-center shadow">
+                    {cartCount > 99 ? "99+" : cartCount}
+                  </span>
+                )}
               </Link>
+
               <Link to="/wishlist" className="hover:text-blue-200 transition">
                 ❤️ Wishlist
               </Link>
@@ -52,7 +65,7 @@ const Navbar = () => {
               </span>
               {/* Logout */}
               <button
-                onClick={handleLogout}
+                onClick={logout}
                 className="bg-white text-blue-700 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-xs font-semibold transition"
               >
                 Logout
@@ -87,6 +100,9 @@ const Navbar = () => {
 
       </div>
 
+
+
+
       {/* ── Mobile Menu ────────────────────────────────────── */}
       {menuOpen && (
         <div className="md:hidden bg-blue-800 px-4 py-4 flex flex-col gap-3 text-sm font-medium">
@@ -101,13 +117,20 @@ const Navbar = () => {
 
           {isAuthenticated && (
             <>
+              {/*  Mobile Cart with badge */}
               <Link
                 to="/cart"
                 onClick={() => setMenuOpen(false)}
-                className="hover:text-blue-200 transition"
+                className="relative hover:text-blue-200 transition w-fit"
               >
                 🛒 Cart
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-3 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                    {cartCount > 9 ? "9+" : cartCount}
+                  </span>
+                )}
               </Link>
+
               <Link
                 to="/wishlist"
                 onClick={() => setMenuOpen(false)}
@@ -135,7 +158,7 @@ const Navbar = () => {
               </span>
               <button
                 onClick={() => {
-                  handleLogout();
+                  logout();
                   setMenuOpen(false);
                 }}
                 className="bg-white text-blue-700 px-3 py-1.5 rounded-lg text-xs font-semibold w-fit"

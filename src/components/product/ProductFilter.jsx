@@ -1,6 +1,7 @@
 // src/components/product/ProductFilter.jsx
 
 import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 import {
   selectCategories,
   selectSelectedCategory,
@@ -23,6 +24,18 @@ const sortOptions = [
 
 const ProductFilter = () => {
   const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(setSearchQuery(inputValue));
+      
+    }, 500); // ⏱ 500ms delay
+
+    return () => clearTimeout(timer); // cleanup
+  }, [inputValue, dispatch]);
+
+
 
   const categories = useSelector(selectCategories);
   const selectedCategory = useSelector(selectSelectedCategory);
@@ -45,7 +58,10 @@ const ProductFilter = () => {
         </h2>
         {isFilterActive && (
           <button
-            onClick={() => dispatch(resetFilters())}
+            onClick={() => {
+              setInputValue("");                 // clear input
+              dispatch(resetFilters());          // reset filters
+            }}
             className="text-xs text-blue-600 hover:underline font-medium"
           >
             Reset All
@@ -60,8 +76,8 @@ const ProductFilter = () => {
         </label>
         <input
           type="text"
-          value={searchQuery}
-          onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
           placeholder="Search products..."
           className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
         />

@@ -124,11 +124,10 @@ export const addToCartWithQuantity =
 export const updateCartQuantity =
   (cartItemId, quantity) => async (dispatch) => {
     try {
-      dispatch(cartLoading());
-
-      await api.patch(`/cart/${cartItemId}`, { quantity });
+      await api.patch(`/cart/${cartItemId}`, {  // ✅ no Number()
+        quantity,
+      });
       dispatch(updateCartItem({ id: cartItemId, quantity }));
-
     } catch (error) {
       dispatch(cartError(error.message || "Failed to update quantity!"));
     }
@@ -137,8 +136,7 @@ export const updateCartQuantity =
 // ─── Remove Cart Item ─────────────────────────────────────────
 export const removeFromCart = (cartItemId) => async (dispatch) => {
   try {
-    dispatch(cartLoading());
-    await api.delete(`/cart/${cartItemId}`);
+    await api.delete(`/cart/${cartItemId}`);    // ✅ no Number()
     dispatch(removeCartItem(cartItemId));
   } catch (error) {
     dispatch(cartError(error.message || "Failed to remove item!"));

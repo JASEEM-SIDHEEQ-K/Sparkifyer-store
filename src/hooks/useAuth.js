@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { logout } from "../features/auth/authSlice";
 import { clearCart } from "../features/cart/cartSlice";
+import { clearOrders } from "../features/checkout/orderSlice";
 
 
 
@@ -17,6 +18,7 @@ const useAuth = () => {
     const handleLogout = () =>{
       dispatch(logout())
       dispatch(clearCart())
+      dispatch(clearOrders())
       navigate("/login")
     }
 

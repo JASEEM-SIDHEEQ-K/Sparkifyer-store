@@ -15,7 +15,7 @@ import ProductFilter from "../components/product/ProductFilter";
 
 const ProductList = () => {
   const dispatch = useDispatch();
-  const filteredProducts = useSelector(selectFilteredProducts);
+  const filteredProducts = useSelector(selectFilteredProducts);  //when component renders, it will get the latest filtered products from the store. component will re-render when searchQuery or selectedCategory changes,
   const searchQuery = useSelector(selectSearchQuery);
   const selectedCategory = useSelector(selectSelectedCategory);
 
@@ -34,10 +34,15 @@ const ProductList = () => {
     }
   }, [data, dispatch]);
 
+
+
   // ─── Reset filters on page mount ──────────────────────
   useEffect(() => {
     dispatch(resetFilters());
   }, [dispatch]);
+
+
+
 
   // ─── Loading State ────────────────────────────────────
   if (isLoading) {

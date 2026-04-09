@@ -41,6 +41,13 @@
       "password": "123456",
       "role": "user",
       "id": "95m-JR1nyQA"
+    },
+    {
+      "name": "abc",
+      "email": "abc@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "bxzQeNEXCGI"
     }
   ],
   "products": [
@@ -422,94 +429,6 @@
   ],
   "cart": [
     {
-      "userId": "XznwBRisK-U",
-      "productId": "6",
-      "name": "AirPods Pro 2",
-      "price": 249,
-      "originalPrice": 279,
-      "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400",
-      "quantity": 1,
-      "stock": 25,
-      "id": "omBk-M0v_Mw"
-    },
-    {
-      "userId": "XznwBRisK-U",
-      "productId": "5",
-      "name": "Sony WH-1000XM5",
-      "price": 349,
-      "originalPrice": 399,
-      "image": "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400",
-      "quantity": 6,
-      "stock": 30,
-      "id": "8o2AkIF4i5o"
-    },
-    {
-      "userId": "XznwBRisK-U",
-      "productId": "7",
-      "name": "Sony Alpha A7 IV",
-      "price": 2499,
-      "originalPrice": 2699,
-      "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400",
-      "quantity": 1,
-      "stock": 5,
-      "id": "1K-Jgk2XcNA"
-    },
-    {
-      "userId": "XznwBRisK-U",
-      "productId": "8",
-      "name": "GoPro Hero 12",
-      "price": 399,
-      "originalPrice": 449,
-      "image": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400",
-      "quantity": 2,
-      "stock": 18,
-      "id": "Tstk4Dtnuzs"
-    },
-    {
-      "userId": "XznwBRisK-U",
-      "productId": "9",
-      "name": "Apple Watch Series 9",
-      "price": 399,
-      "originalPrice": 429,
-      "image": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400",
-      "quantity": 1,
-      "stock": 22,
-      "id": "QOQ5hE4MU4Y"
-    },
-    {
-      "userId": "XznwBRisK-U",
-      "productId": "10",
-      "name": "Samsung Galaxy Watch 6",
-      "price": 299,
-      "originalPrice": 349,
-      "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400",
-      "quantity": 1,
-      "stock": 16,
-      "id": "PLnRJWpAkJc"
-    },
-    {
-      "userId": "XznwBRisK-U",
-      "productId": "11",
-      "name": "Anker 65W Charger",
-      "price": 35,
-      "originalPrice": 45,
-      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
-      "quantity": 1,
-      "stock": 50,
-      "id": "kva5Ye3Qubo"
-    },
-    {
-      "userId": "XznwBRisK-U",
-      "productId": "12",
-      "name": "Logitech MX Master 3",
-      "price": 99,
-      "originalPrice": 119,
-      "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400",
-      "quantity": 1,
-      "stock": 35,
-      "id": "VRVKN8g9bvY"
-    },
-    {
       "userId": "T4cb8_DaMIg",
       "productId": "13",
       "name": "PlayStation 5",
@@ -543,29 +462,843 @@
       "id": "VZWEHTMJ-aA"
     },
     {
+      "userId": "bxzQeNEXCGI",
+      "productId": "2",
+      "name": "Samsung Galaxy S24",
+      "price": 849,
+      "originalPrice": 949,
+      "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
+      "quantity": 1,
+      "stock": 20,
+      "id": "Rhv0T4uJz_I"
+    },
+    {
       "userId": "XznwBRisK-U",
       "productId": "1",
       "name": "iPhone 15 Pro",
       "price": 999,
       "originalPrice": 1099,
       "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
-      "quantity": 2,
+      "quantity": 1,
       "stock": 15,
-      "id": "LQ5U6qbkSsc"
+      "id": "mMniwweRj4Y"
     },
     {
       "userId": "XznwBRisK-U",
-      "productId": "3",
-      "name": "MacBook Pro 14",
-      "price": 1999,
-      "originalPrice": 2199,
-      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400",
-      "quantity": 3,
-      "stock": 10,
-      "id": "bAbOjU1VIJc"
+      "productId": "2",
+      "name": "Samsung Galaxy S24",
+      "price": 849,
+      "originalPrice": 949,
+      "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
+      "quantity": 1,
+      "stock": 20,
+      "id": "jJFl8plygBI"
     }
   ],
   "wishlist": [],
-  "orders": [],
+  "orders": [
+    {
+      "id": "1",
+      "userId": 2,
+      "items": [
+        {
+          "productId": 1,
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 1,
+          "image": "https://picsum.photos/seed/iphone15/600/400"
+        }
+      ],
+      "subtotal": 999,
+      "deliveryCharge": 0,
+      "total": 999,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "John Doe",
+        "phone": "1234567890",
+        "address": "123 Main Street",
+        "city": "New York",
+        "zip": "10001"
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "2",
+          "name": "Samsung Galaxy S24",
+          "price": 849,
+          "quantity": 14,
+          "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+        },
+        {
+          "productId": "11",
+          "name": "Anker 65W Charger",
+          "price": 35,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 8,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        }
+      ],
+      "subtotal": 20212,
+      "deliveryCharge": 0,
+      "total": 20212,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T05:47:00.557Z",
+      "id": "ibepdQjU6Js"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "11",
+          "name": "Anker 65W Charger",
+          "price": 35,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400"
+        },
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 4,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 6862,
+      "deliveryCharge": 0,
+      "total": 6862,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T06:22:08.134Z",
+      "id": "lShO8WmMiNk"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "11",
+          "name": "Anker 65W Charger",
+          "price": 35,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400"
+        },
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 4,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 6862,
+      "deliveryCharge": 0,
+      "total": 6862,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T06:32:36.971Z",
+      "id": "mfYlgUjOQaU"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 5,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 7791,
+      "deliveryCharge": 0,
+      "total": 7791,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T06:43:53.453Z",
+      "id": "9Nf3TyyqC38"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 5,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 7791,
+      "deliveryCharge": 0,
+      "total": 7791,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T06:58:27.277Z",
+      "id": "N-zCNsPv598"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 5,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 7791,
+      "deliveryCharge": 0,
+      "total": 7791,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "122134"
+      },
+      "createdAt": "2026-04-09T10:31:41.988Z",
+      "id": "Uy_aKw-zOZo"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 5,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 7791,
+      "deliveryCharge": 0,
+      "total": 7791,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "122134"
+      },
+      "createdAt": "2026-04-09T10:31:44.107Z",
+      "id": "OiuYCksaALM"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 5,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 7791,
+      "deliveryCharge": 0,
+      "total": 7791,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T10:33:11.531Z",
+      "id": "_n5EzAfwe_M"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 5,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 7791,
+      "deliveryCharge": 0,
+      "total": 7791,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T10:33:12.300Z",
+      "id": "mcp0TjuaXL4"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 5,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 7791,
+      "deliveryCharge": 0,
+      "total": 7791,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T10:33:12.500Z",
+      "id": "m0Pj3MwAEqU"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 5,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 7791,
+      "deliveryCharge": 0,
+      "total": 7791,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T10:34:23.012Z",
+      "id": "YSmqySWKsrE"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 5,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 7791,
+      "deliveryCharge": 0,
+      "total": 7791,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T10:34:23.999Z",
+      "id": "g6eM_4J6u9c"
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 5,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 7791,
+      "deliveryCharge": 0,
+      "total": 7791,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T10:36:46.888Z",
+      "id": "nYjw0o4oh_c"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "items": [
+        {
+          "productId": "10",
+          "name": "Samsung Galaxy Watch 6",
+          "price": 299,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 5,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 7791,
+      "deliveryCharge": 0,
+      "total": 7791,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T10:41:50.681Z",
+      "id": "TCMA5gDQKo0"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "items": [
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 2,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        }
+      ],
+      "subtotal": 1998,
+      "deliveryCharge": 0,
+      "total": 1998,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "1234567890",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T10:43:03.196Z",
+      "id": "9Z-YfS8YDfM"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "items": [
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 2,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        }
+      ],
+      "subtotal": 1998,
+      "deliveryCharge": 0,
+      "total": 1998,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T10:47:49.579Z",
+      "id": "vVNAyM_dU60"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "items": [
+        {
+          "productId": "4",
+          "name": "Dell XPS 15",
+          "price": 1599,
+          "quantity": 3,
+          "image": "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400"
+        }
+      ],
+      "subtotal": 4797,
+      "deliveryCharge": 0,
+      "total": 4797,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T10:51:46.830Z",
+      "id": "HUAwFCxt3ag"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "items": [
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 4,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        }
+      ],
+      "subtotal": 3996,
+      "deliveryCharge": 0,
+      "total": 3996,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T11:35:44.941Z",
+      "id": "ayqX8mkW07s"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

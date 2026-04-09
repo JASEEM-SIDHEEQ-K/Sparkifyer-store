@@ -7,6 +7,7 @@ import {
   selectCartTotal,
   selectCartSavings,
   selectCartCount,
+  selectCartTotalQuantity
 } from "../../features/cart/cartSlice";
 
 const CartSummary = () => {
@@ -15,6 +16,7 @@ const CartSummary = () => {
   const total = useSelector(selectCartTotal);
   const savings = useSelector(selectCartSavings);
   const count = useSelector(selectCartCount);
+  const quantity = useSelector(selectCartTotalQuantity)
 
   // ─── Free delivery threshold ──────────────────────────
   const FREE_DELIVERY = 50;
@@ -55,7 +57,7 @@ const CartSummary = () => {
 
         {/* Items count */}
         <div className="flex justify-between text-slate-500">
-          <span>Items ({count})</span>
+          <span>Items ({count}) • Quantity ({quantity})</span>
           <span>${total.toFixed(2)}</span>
         </div>
 
