@@ -39,7 +39,7 @@ export const addToCart = (product, userId) => async (dispatch, getState) => {
 
       // Don't exceed stock
       if (newQuantity > product.stock) {
-        dispatch(cartError("Cannot add more than available stock!"));
+        dispatch(cartError(`Only ${product.stock} items available!`));
         return;
       }
 

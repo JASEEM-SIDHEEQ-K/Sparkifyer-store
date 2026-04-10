@@ -48,6 +48,13 @@
       "password": "123456",
       "role": "user",
       "id": "bxzQeNEXCGI"
+    },
+    {
+      "name": "sajitha",
+      "email": "12345@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "9BhQ29ZJi10"
     }
   ],
   "products": [
@@ -473,26 +480,37 @@
       "id": "Rhv0T4uJz_I"
     },
     {
-      "userId": "XznwBRisK-U",
-      "productId": "1",
-      "name": "iPhone 15 Pro",
-      "price": 999,
-      "originalPrice": 1099,
-      "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
+      "userId": "9BhQ29ZJi10",
+      "productId": "9",
+      "name": "Apple Watch Series 9",
+      "price": 399,
+      "originalPrice": 429,
+      "image": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400",
       "quantity": 1,
-      "stock": 15,
-      "id": "mMniwweRj4Y"
+      "stock": 22,
+      "id": "u6JsPYNmXXo"
     },
     {
-      "userId": "XznwBRisK-U",
-      "productId": "2",
-      "name": "Samsung Galaxy S24",
-      "price": 849,
-      "originalPrice": 949,
-      "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
+      "userId": "9BhQ29ZJi10",
+      "productId": "7",
+      "name": "Sony Alpha A7 IV",
+      "price": 2499,
+      "originalPrice": 2699,
+      "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400",
       "quantity": 1,
-      "stock": 20,
-      "id": "jJFl8plygBI"
+      "stock": 5,
+      "id": "eCsmh0HYkGc"
+    },
+    {
+      "userId": "9BhQ29ZJi10",
+      "productId": "6",
+      "name": "AirPods Pro 2",
+      "price": 249,
+      "originalPrice": 279,
+      "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400",
+      "quantity": 3,
+      "stock": 25,
+      "id": "VLGrNARo3QI"
     }
   ],
   "wishlist": [],
@@ -1298,6 +1316,117 @@
       },
       "createdAt": "2026-04-09T11:35:44.941Z",
       "id": "ayqX8mkW07s"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "items": [
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 8,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        }
+      ],
+      "subtotal": 7992,
+      "deliveryCharge": 0,
+      "total": 7992,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T11:58:52.079Z",
+      "id": "jMVhWRt6NgI"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "items": [
+        {
+          "productId": "13",
+          "name": "PlayStation 5",
+          "price": 499,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400"
+        }
+      ],
+      "subtotal": 499,
+      "deliveryCharge": 0,
+      "total": 499,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "sajitha",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T12:01:24.894Z",
+      "id": "A3YzaCQLJeY"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "items": [
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 2,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        }
+      ],
+      "subtotal": 1998,
+      "deliveryCharge": 0,
+      "total": 1998,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-09T12:36:33.126Z",
+      "id": "ygXHHQ5o6EE"
+    },
+    {
+      "userId": "XznwBRisK-U",
+      "items": [
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 2,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "2",
+          "name": "Samsung Galaxy S24",
+          "price": 849,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+        }
+      ],
+      "subtotal": 2847,
+      "deliveryCharge": 0,
+      "total": 2847,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-10T04:06:51.522Z",
+      "id": "_JJECTpRo8s"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

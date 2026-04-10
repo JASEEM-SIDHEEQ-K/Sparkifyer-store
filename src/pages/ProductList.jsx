@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 import {
   setProducts,
   selectFilteredProducts,
@@ -11,15 +12,21 @@ import { useGetProducts } from "../features/products/productApi";
 import ProductCard from "../components/product/ProductCard";
 import ProductFilter from "../components/product/ProductFilter";
 
+import { useLocation } from "react-router-dom";
+
+
 
 
 const ProductList = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const filteredProducts = useSelector(selectFilteredProducts);  //when component renders, it will get the latest filtered products from the store. component will re-render when searchQuery or selectedCategory changes,
   const searchQuery = useSelector(selectSearchQuery);
   const selectedCategory = useSelector(selectSelectedCategory);
 
   const [showFilter, setShowFilter] = useState(false);
+
+  const location = useLocation();
 
 
   // ─── Fetch Products via TanStack Query ────────────────
@@ -38,7 +45,9 @@ const ProductList = () => {
 
   // ─── Reset filters on page mount ──────────────────────
   useEffect(() => {
-    dispatch(resetFilters());
+    if (!location.state?.fromCategory) {
+      dispatch(resetFilters());
+    }
   }, [dispatch]);
 
 
@@ -94,6 +103,14 @@ const ProductList = () => {
               </span>
             )}
           </p>
+
+          <button
+              onClick={() => navigate('/')}
+              className="flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition mb-6 font-medium"
+            >
+            <br/>
+            ← Home
+          </button>
         </div>
 
         <div className="flex gap-6">
@@ -102,6 +119,8 @@ const ProductList = () => {
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <ProductFilter />
           </aside>
+
+
 
           {/* ── Main Content ──────────────────────────── */}
           <div className="flex-1">
