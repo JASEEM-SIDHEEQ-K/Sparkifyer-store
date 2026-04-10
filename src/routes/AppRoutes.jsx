@@ -15,6 +15,7 @@ import Cart from '../pages/Cart'
 import Wishlist from '../pages/Wishlist'
 import Checkout from '../pages/Checkout'
 import OrderSuccess from '../pages/OrderSuccess'
+import Profile from "../pages/Profile";
 
 
 import AdminDashboard from '../pages/AdminDashboard'
@@ -54,6 +55,13 @@ function AppRoutes() {
         <Route path='/order-success' element={
           <ProtectedRoute>
             <OrderSuccess/>
+          </ProtectedRoute>
+        } />
+
+
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <Profile />
           </ProtectedRoute>
         } />
 

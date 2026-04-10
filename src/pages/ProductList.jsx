@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   setProducts,
   selectFilteredProducts,
@@ -29,7 +29,9 @@ const ProductList = () => {
   const location = useLocation();
 
 
-  // ─── Fetch Products via TanStack Query ────────────────
+
+  
+  // ─── Fetch all Products via TanStack Query ────────────────
   const { data, isLoading, isError } = useGetProducts();
 
 

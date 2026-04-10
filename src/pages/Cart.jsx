@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchCart } from "../features/cart/cartApi";
 import {
   selectCartItems,
@@ -18,6 +18,7 @@ import useAuth from "../hooks/useAuth";
 const Cart = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
+  const navigate = useNavigate()
 
   const items = useSelector(selectCartItems);
   const isLoading = useSelector(selectCartLoading);
@@ -75,6 +76,13 @@ const Cart = () => {
               ? `${count} item${count > 1 ? "s" : ""} • ${quantity} quantity${quantity > 1 ? "ies" : ""}`
               : "Your cart is empty"}
           </p>
+          <button
+              onClick={() => navigate('/')}
+              className="flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition mb-6 font-medium"
+            >
+            <br/>
+            ← Home
+          </button>
         </div>
 
         {/* ── Empty Cart ────────────────────────────────── */}

@@ -60,9 +60,12 @@ const Navbar = () => {
           {isAuthenticated ? (
             <div className="flex items-center gap-3">
               {/* User Info */}
-              <span className="bg-blue-600 px-3 py-1 rounded-full text-xs">
+              <Link
+                to="/profile"
+                className="bg-blue-600 hover:bg-blue-500 px-3 py-1 rounded-full text-xs transition"
+              >
                 👤 {user?.name}
-              </span>
+              </Link>
               {/* Logout */}
               <button
                 onClick={logout}
@@ -153,9 +156,13 @@ const Navbar = () => {
 
           {isAuthenticated ? (
             <>
-              <span className="text-blue-300 text-xs">
+              <Link
+                to="/profile"
+                onClick={() => setMenuOpen(false)}
+                className="hover:text-blue-200 transition"
+              >
                 👤 {user?.name}
-              </span>
+              </Link>
               <button
                 onClick={() => {
                   logout();

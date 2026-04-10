@@ -14,12 +14,12 @@ export const useGetOrders = (userId) => {
   return useQuery({
     queryKey: ["orders", userId],
     queryFn: async () => {
-      const response = await api.get(`/orders?userId=${Number(userId)}`);
+      const response = await api.get(`/orders?userId=${userId}`);
       dispatch(setOrders(response.data));
       return response.data;
     },
     enabled: !!userId,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 0,
     retry: 1,
   });
 };
@@ -35,7 +35,7 @@ export const usePlaceOrder = () => {
 
   // ── Step 1 → POST order ──────────────────────────────
   const orderResponse = await api.post("/orders", {
-    userId,
+    userId:userId,
     items: cartItems.map((item) => ({
       productId: item.productId,
       name: item.name,
@@ -53,10 +53,10 @@ export const usePlaceOrder = () => {
   });
 
   // ── Step 2 → DELETE cart items ───────────────────────
-  // ✅ use item.id directly — no Number() conversion
+  
   if (cartItems.length > 0) {
     const deletePromises = cartItems.map((item) =>
-      api.delete(`/cart/${item.id}`)   // ✅ use as-is
+      api.delete(`/cart/${item.id}`)   
     );
     await Promise.all(deletePromises);
   }

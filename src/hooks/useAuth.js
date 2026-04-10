@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../features/auth/authSlice";
 import { clearCart } from "../features/cart/cartSlice";
 import { clearOrders } from "../features/checkout/orderSlice";
-
+import { clearProfile } from "../features/auth/profileSlice";
 
 
 
@@ -19,6 +19,7 @@ const useAuth = () => {
       dispatch(logout())
       dispatch(clearCart())
       dispatch(clearOrders())
+      dispatch(clearProfile())
       navigate("/login")
     }
 

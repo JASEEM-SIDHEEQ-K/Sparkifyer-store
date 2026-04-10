@@ -18,7 +18,7 @@ export const useGetProducts = () =>{
     return useQuery({
         queryKey:['products'],
         queryFn:fetchAllProducts,
-        staleTime:1000 * 60 * 5,
+        staleTime:1000 * 60 * 5,        //5 min
         retry:2                         // retry twice on failure
     })
 }
