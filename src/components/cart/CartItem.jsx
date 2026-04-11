@@ -1,5 +1,3 @@
-// src/components/cart/CartItem.jsx
-
 import { useDispatch } from "react-redux";
 import { updateCartQuantity, removeFromCart } from "../../features/cart/cartApi";
 

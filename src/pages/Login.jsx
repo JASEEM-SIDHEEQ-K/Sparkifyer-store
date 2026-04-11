@@ -5,6 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchCart } from "../features/cart/cartApi";
 import { loginUser } from "../features/auth/authApi";
+
+import { useQueryClient } from "@tanstack/react-query";
+import { setWishlistItems } from "../features/wishlist/wishlistSlice";
+import api from "../services/api";
+
+
 import {
   loginStart,
   loginSuccess,
@@ -19,6 +25,8 @@ const Login = () => {
   const navigate = useNavigate();
   const isLoading = useSelector(selectIsLoading);
   const serverError = useSelector(selectError);
+
+  const queryClient = useQueryClient();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -72,7 +80,20 @@ const Login = () => {
       const sessionData = await loginUser(formData);
 
       dispatch(loginSuccess(sessionData));
-      dispatch(fetchCart(sessionData.user.id));       // ✅ fetch cart on login
+      dispatch(fetchCart(sessionData.user.id));       //fetch cart on login
+      
+
+      //wishlist
+      queryClient.prefetchQuery({
+        queryKey: ["wishlist", sessionData.user.id],
+        queryFn: async () => {
+          const response = await api.get(
+            `/wishlist?userId=${sessionData.user.id}`
+          );
+          dispatch(setWishlistItems(response.data));
+          return response.data;
+        },
+      });
 
       // role-based redirect
       if (sessionData.role === "admin") {

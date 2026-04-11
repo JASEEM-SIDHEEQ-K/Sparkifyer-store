@@ -1,5 +1,3 @@
-// src/pages/Register.jsx
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -26,7 +24,7 @@ const Register = () => {
 
   const [errors, setErrors] = useState({});
 
-  // ─── Real-time validation ──────────────────────────────────
+
   const validateField = (name, value) => {
     switch (name) {
       case "name":
@@ -42,7 +40,7 @@ const Register = () => {
     }
   };
 
-  // ─── Handle Change ─────────────────────────────────────────
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -53,7 +51,7 @@ const Register = () => {
     dispatch(clearError());
   };
 
-  // ─── Handle Submit ─────────────────────────────────────────
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

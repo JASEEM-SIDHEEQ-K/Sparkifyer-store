@@ -5,6 +5,7 @@ import { logout } from "../features/auth/authSlice";
 import { clearCart } from "../features/cart/cartSlice";
 import { clearOrders } from "../features/checkout/orderSlice";
 import { clearProfile } from "../features/auth/profileSlice";
+import { clearWishlist } from '../features/wishlist/wishlistSlice'
 
 
 
@@ -20,6 +21,7 @@ const useAuth = () => {
       dispatch(clearCart())
       dispatch(clearOrders())
       dispatch(clearProfile())
+      dispatch(clearWishlist())
       navigate("/login")
     }
 

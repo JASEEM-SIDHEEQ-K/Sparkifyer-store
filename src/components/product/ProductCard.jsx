@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../features/cart/cartApi";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+
+
+import { useToggleWishlist } from "../../features/wishlist/wishlistApi";
+import {
+  selectWishlistItems,
+  selectIsInWishlist,
+} from "../../features/wishlist/wishlistSlice";
 
 const ProductCard = ({ product }) => {
 
@@ -13,8 +20,26 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
 
-  
+//for wishlist
+  const wishlistItems = useSelector(selectWishlistItems);
+  const isWishlisted = useSelector(selectIsInWishlist(product.id));
+  const { mutate: toggleWishlist } = useToggleWishlist();
 
+  const handleToggleWishlist = (e) => {
+  e.stopPropagation();          // ✅ prevent card click
+  e.preventDefault();           // ✅ prevent link navigation
+
+  if (!isAuthenticated) {
+    navigate("/login");
+    return;
+  }
+
+  toggleWishlist({
+    product,
+    userId: user.id,
+    wishlistItems,
+  });
+};
 
 
   // ─── Discount Percentage ────────────────────────────────
@@ -65,8 +90,15 @@ const ProductCard = ({ product }) => {
         )}
 
 
-        <button className="absolute bottom-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:text-red-500 transition text-slate-400">
-          ♡
+        <button
+          onClick={handleToggleWishlist}
+          className={`absolute bottom-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md transition text-lg
+            ${isWishlisted
+              ? "text-red-600 hover:text-red-600"
+              : "text-slate-400 hover:text-red-500"
+            }`}
+        >
+          {isWishlisted ? "♥" : "♡"}
         </button>
 
 

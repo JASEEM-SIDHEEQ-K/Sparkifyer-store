@@ -30,7 +30,7 @@ const ProductFilter = () => {
     const timer = setTimeout(() => {
       dispatch(setSearchQuery(inputValue));
       
-    }, 500); // ⏱ 500ms delay
+    }, 500);
 
     return () => clearTimeout(timer); // cleanup
   }, [inputValue, dispatch]);

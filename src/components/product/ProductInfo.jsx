@@ -7,6 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { addToCartWithQuantity } from "../../features/cart/cartApi";
 import useAuth from "../../hooks/useAuth";
 
+
+import { useSelector } from "react-redux";
+import { useToggleWishlist } from "../../features/wishlist/wishlistApi";
+import {
+  selectWishlistItems,
+  selectIsInWishlist,
+} from "../../features/wishlist/wishlistSlice";
+
 import { toast } from "react-toastify";
 
 
@@ -37,6 +45,26 @@ const ProductInfo = ({ product }) => {
     }
     dispatch(addToCartWithQuantity(product, user.id, quantity));
     navigate("/checkout");
+  };
+
+
+
+  //wishlist
+
+  const wishlistItems = useSelector(selectWishlistItems);
+  const isWishlisted = useSelector(selectIsInWishlist(product.id));
+  const { mutate: toggleWishlist } = useToggleWishlist();
+
+  const handleToggleWishlist = () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+    toggleWishlist({
+      product,
+      userId: user.id,
+      wishlistItems,
+    });
   };
 
 
@@ -173,8 +201,14 @@ const ProductInfo = ({ product }) => {
 
             {/* Wishlist */}
             <button
-            className="w-12 h-12 flex items-center justify-center border border-slate-300 rounded-xl hover:border-blue-400 hover:text-blue-500 transition text-slate-400 text-xl">
-            ♡
+              onClick={handleToggleWishlist}
+              className={`w-12 h-12 flex items-center justify-center border rounded-xl transition text-xl
+                ${isWishlisted
+                  ? "border-red-400 text-red-600 hover:bg-red-50"
+                  : "border-slate-300 text-slate-400 hover:border-red-400 hover:text-red-500"
+                }`}
+            >
+              {isWishlisted ? "♥" : "♡"}
             </button>
         </div>
 

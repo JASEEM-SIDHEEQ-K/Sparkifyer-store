@@ -13,6 +13,7 @@ import ProductCard from "../components/product/ProductCard";
 import ProductFilter from "../components/product/ProductFilter";
 
 import { useLocation } from "react-router-dom";
+import Navbar from "../components/common/Navbar";
 
 
 
@@ -85,6 +86,7 @@ const ProductList = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      <Navbar/>
       <div className="max-w-7xl mx-auto px-4 py-8">
 
         {/* ── Page Header ───────────────────────────────── */}

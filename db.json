@@ -14,6 +14,13 @@
       "role": "user",
       "id": "wZAPlUJ7bN0",
       "phone": "8848064544"
+    },
+    {
+      "name": "online-shop",
+      "email": "abc@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "N8RXyCHlr7U"
     }
   ],
   "products": [
@@ -472,15 +479,48 @@
       "id": "VLGrNARo3QI"
     },
     {
+      "userId": "N8RXyCHlr7U",
+      "productId": "11",
+      "name": "Anker 65W Charger",
+      "price": 35,
+      "originalPrice": 45,
+      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
+      "quantity": 1,
+      "stock": 50,
+      "id": "uixP06Td_4U"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "productId": "1",
+      "name": "iPhone 15 Pro",
+      "price": 999,
+      "originalPrice": 1099,
+      "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
+      "quantity": 2,
+      "stock": 15,
+      "id": "NTSVeuuZnJE"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "productId": "3",
+      "name": "MacBook Pro 14",
+      "price": 1999,
+      "originalPrice": 2199,
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400",
+      "quantity": 1,
+      "stock": 10,
+      "id": "HgN2PqznN_A"
+    },
+    {
       "userId": "wZAPlUJ7bN0",
       "productId": "13",
       "name": "PlayStation 5",
       "price": 499,
       "originalPrice": 549,
       "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400",
-      "quantity": 4,
+      "quantity": 3,
       "stock": 7,
-      "id": "lX7RIlkWcBU"
+      "id": "vIu1Ws-Ng2Y"
     },
     {
       "userId": "wZAPlUJ7bN0",
@@ -491,10 +531,76 @@
       "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
       "quantity": 1,
       "stock": 20,
-      "id": "4vV0DSc-qkA"
+      "id": "s0BO6LnSN6U"
     }
   ],
-  "wishlist": [],
+  "wishlist": [
+    {
+      "userId": "N8RXyCHlr7U",
+      "productId": "12",
+      "name": "Logitech MX Master 3",
+      "price": 99,
+      "originalPrice": 119,
+      "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400",
+      "stock": 35,
+      "category": "Accessories",
+      "brand": "Logitech",
+      "rating": 4.8,
+      "id": "AukCrZA76Es"
+    },
+    {
+      "userId": "N8RXyCHlr7U",
+      "productId": "11",
+      "name": "Anker 65W Charger",
+      "price": 35,
+      "originalPrice": 45,
+      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
+      "stock": 50,
+      "category": "Accessories",
+      "brand": "Anker",
+      "rating": 4.5,
+      "id": "Vz3rzIEHIPM"
+    },
+    {
+      "userId": "N8RXyCHlr7U",
+      "productId": "1",
+      "name": "iPhone 15 Pro",
+      "price": 999,
+      "originalPrice": 1099,
+      "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
+      "stock": 15,
+      "category": "Smartphones",
+      "brand": "Apple",
+      "rating": 4.8,
+      "id": "50kvbq1zMi8"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "productId": "3",
+      "name": "MacBook Pro 14",
+      "price": 1999,
+      "originalPrice": 2199,
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400",
+      "stock": 10,
+      "category": "Laptops",
+      "brand": "Apple",
+      "rating": 4.9,
+      "id": "l8A57ffI890"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "productId": "6",
+      "name": "AirPods Pro 2",
+      "price": 249,
+      "originalPrice": 279,
+      "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400",
+      "stock": 25,
+      "category": "Audio",
+      "brand": "Apple",
+      "rating": 4.6,
+      "id": "8jzQl-azAi0"
+    }
+  ],
   "orders": [
     {
       "userId": "XznwBRisK-U",
@@ -554,6 +660,46 @@
       },
       "createdAt": "2026-04-10T06:26:58.003Z",
       "id": "tHiyiOvlPso"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "6",
+          "name": "AirPods Pro 2",
+          "price": 249,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400"
+        },
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 1,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "2",
+          "name": "Samsung Galaxy S24",
+          "price": 849,
+          "quantity": 4,
+          "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+        }
+      ],
+      "subtotal": 4644,
+      "deliveryCharge": 0,
+      "total": 4644,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-11T04:42:16.981Z",
+      "id": "5Ci-6teUTks"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
