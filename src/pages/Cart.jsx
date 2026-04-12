@@ -14,7 +14,6 @@ import {
 import CartItem from "../components/cart/CartItem";
 import CartSummary from "../components/cart/CartSummary";
 import useAuth from "../hooks/useAuth";
-import Navbar from "../components/common/Navbar";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -65,7 +64,7 @@ const Cart = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Navbar/>
+      
       <div className="max-w-6xl mx-auto px-4 py-8">
 
         {/* ── Page Header ───────────────────────────────── */}

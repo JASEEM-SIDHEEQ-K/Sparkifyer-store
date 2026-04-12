@@ -1,112 +1,162 @@
-
+// src/components/common/Navbar.jsx
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import useAuth from "../../hooks/useAuth";
-import { useSelector } from "react-redux";
 import { selectCartCount } from "../../features/cart/cartSlice";
+import { selectWishlistCount } from "../../features/wishlist/wishlistSlice";
+import { resetFilters } from "../../features/products/productSlice";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const cartCount = useSelector(selectCartCount);
+  const wishlistCount = useSelector(selectWishlistCount);
 
   return (
     <nav className="bg-blue-700 text-white shadow-md sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 py-3">
 
-       
-        <Link to="/" className="text-xl font-bold tracking-wide">
-          ⚡ Sparkifyer
-        </Link>
+        {/* ── Main Row ──────────────────────────────────── */}
+        <div className="flex items-center justify-between gap-4">
 
-        
-        <div className="hidden md:flex items-center gap-6 text-sm font-medium">
-
-          <Link to="/products" className="hover:text-blue-200 transition">
-            Products
+          {/* ── Logo ──────────────────────────────────── */}
+          <Link
+            to="/"
+            onClick={() => dispatch(resetFilters())}
+            className="text-xl font-bold tracking-wide flex-shrink-0"
+          >
+            ⚡ Sparkifyer
           </Link>
 
-          {isAuthenticated && (
-            <>
-              {/* ✅ Cart with badge */}
-              <Link
-                to="/cart"
-                className="relative hover:text-blue-200 transition"
-              >
-                🛒 Cart
+          {/* ── Desktop Search ────────────────────────── */}
+          <div className="hidden md:flex flex-1 max-w-md">
+            <SearchBar />
+          </div>
+
+          {/* ── Desktop Menu ──────────────────────────── */}
+          <div className="hidden md:flex items-center gap-4 text-sm font-medium flex-shrink-0">
+
+            <Link to="/products" className="hover:text-blue-200 transition">
+              Products
+            </Link>
+
+            {isAuthenticated && (
+              <>
+                {/* Cart */}
+                <Link
+                  to="/cart"
+                  className="relative hover:text-blue-200 transition"
+                >
+                  🛒 Cart
+                  {cartCount > 0 && (
+                    <span className="absolute -top-2 -right-3 bg-white text-blue-700 text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                      {cartCount > 9 ? "9+" : cartCount}
+                    </span>
+                  )}
+                </Link>
+
+                {/* Wishlist */}
+                <Link
+                  to="/wishlist"
+                  className="relative hover:text-blue-200 transition"
+                >
+                  ❤️ Wishlist
+                  {wishlistCount > 0 && (
+                    <span className="absolute -top-2 -right-3 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                      {wishlistCount > 9 ? "9+" : wishlistCount}
+                    </span>
+                  )}
+                </Link>
+              </>
+            )}
+
+            {isAdmin && (
+              <Link to="/admin" className="hover:text-blue-200 transition">
+                🛠️ Dashboard
+              </Link>
+            )}
+
+            {isAuthenticated ? (
+              <div className="flex items-center gap-3">
+                <Link
+                  to="/profile"
+                  className="bg-blue-600 hover:bg-blue-500 px-3 py-1 rounded-full text-xs transition"
+                >
+                  👤 {user?.name}
+                </Link>
+                <button
+                  onClick={logout}
+                  className="bg-white text-blue-700 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-xs font-semibold transition"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Link to="/login" className="hover:text-blue-200 transition">
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="bg-white text-blue-700 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-xs font-semibold transition"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
+
+          </div>
+
+          {/* ── Mobile Right Icons ────────────────────── */}
+          <div className="md:hidden flex items-center gap-3">
+
+            {/* Mobile Search Toggle */}
+            <button
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="text-white text-lg"
+            >
+              {searchOpen ? "✕" : "🔍"}
+            </button>
+
+            {/* Mobile Cart Badge */}
+            {isAuthenticated && (
+              <Link to="/cart" className="relative">
+                🛒
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-3 px-2 h-[18px] bg-blue-600 text-white text-[10px] font-semibold rounded-full flex items-center justify-center shadow">
-                    {cartCount > 99 ? "99+" : cartCount}
+                  <span className="absolute -top-2 -right-2 bg-white text-blue-700 text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                    {cartCount > 9 ? "9+" : cartCount}
                   </span>
                 )}
               </Link>
+            )}
 
-              <Link to="/wishlist" className="hover:text-blue-200 transition">
-                ❤️ Wishlist
-              </Link>
-            </>
-          )}
-
-          {isAdmin && (
-            <Link
-              to="/admin"
-              className="hover:text-blue-200 transition"
+            {/* Hamburger */}
+            <button
+              className="text-white text-2xl"
+              onClick={() => setMenuOpen(!menuOpen)}
             >
-              🛠️ Dashboard
-            </Link>
-          )}
+              {menuOpen ? "✕" : "☰"}
+            </button>
 
-          {isAuthenticated ? (
-            <div className="flex items-center gap-3">
-              {/* User Info */}
-              <Link
-                to="/profile"
-                className="bg-blue-600 hover:bg-blue-500 px-3 py-1 rounded-full text-xs transition"
-              >
-                👤 {user?.name}
-              </Link>
-              {/* Logout */}
-              <button
-                onClick={logout}
-                className="bg-white text-blue-700 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-xs font-semibold transition"
-              >
-                Logout
-              </button>
-            </div>
-          ) : (
-            <div className="flex items-center gap-2">
-              <Link
-                to="/login"
-                className="hover:text-blue-200 transition"
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="bg-white text-blue-700 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-xs font-semibold transition"
-              >
-                Register
-              </Link>
-            </div>
-          )}
+          </div>
 
         </div>
 
-        {/* ── Mobile Hamburger ───────────────────────────── */}
-        <button
-          className="md:hidden text-white text-2xl"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
+        {/* ── Mobile Search Bar ─────────────────────────── */}
+        {searchOpen && (
+          <div className="md:hidden mt-3">
+            <SearchBar onClose={() => setSearchOpen(false)} />
+          </div>
+        )}
 
       </div>
 
-
-
-
-      {/* ── Mobile Menu ────────────────────────────────────── */}
+      {/* ── Mobile Menu ──────────────────────────────────── */}
       {menuOpen && (
         <div className="md:hidden bg-blue-800 px-4 py-4 flex flex-col gap-3 text-sm font-medium">
 
@@ -120,7 +170,6 @@ const Navbar = () => {
 
           {isAuthenticated && (
             <>
-              {/*  Mobile Cart with badge */}
               <Link
                 to="/cart"
                 onClick={() => setMenuOpen(false)}
@@ -128,7 +177,7 @@ const Navbar = () => {
               >
                 🛒 Cart
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-3 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  <span className="absolute -top-2 -right-3 bg-white text-blue-700 text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
                     {cartCount > 9 ? "9+" : cartCount}
                   </span>
                 )}
@@ -137,9 +186,14 @@ const Navbar = () => {
               <Link
                 to="/wishlist"
                 onClick={() => setMenuOpen(false)}
-                className="hover:text-blue-200 transition"
+                className="relative hover:text-blue-200 transition w-fit"
               >
                 ❤️ Wishlist
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-2 -right-3 bg-red-500 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                    {wishlistCount > 9 ? "9+" : wishlistCount}
+                  </span>
+                )}
               </Link>
             </>
           )}

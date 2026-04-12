@@ -9,7 +9,7 @@ import {
 import { useGetWishlist } from "../features/wishlist/wishlistApi";
 import WishlistItem from "../components/wishlist/WishlistItem";
 import useAuth from "../hooks/useAuth";
-import Navbar from "../components/common/Navbar";
+
 
 
 const Wishlist = () => {
@@ -36,7 +36,7 @@ const Wishlist = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Navbar/>
+      
       <div className="max-w-4xl mx-auto px-4 py-8">
 
         {/* ── Page Header ───────────────────────────────── */}

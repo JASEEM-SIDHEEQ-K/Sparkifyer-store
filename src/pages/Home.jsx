@@ -9,7 +9,6 @@ import PromoSection from "../components/home/PromoSection";
 const Home = () => {
   return (
     <>
-    <Navbar/>
     <HeroBanner/>
     <CategorySection/>
     <FeaturedProducts/>

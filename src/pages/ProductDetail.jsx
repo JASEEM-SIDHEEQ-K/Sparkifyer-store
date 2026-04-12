@@ -2,7 +2,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useGetProductById } from "../features/products/productApi";
 import ProductImages from "../components/product/ProductImages";
 import ProductInfo from "../components/product/ProductInfo";
-import Navbar from "../components/common/Navbar";
+
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -52,7 +52,7 @@ const ProductDetail = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Navbar/>
+      
       <div className="max-w-6xl mx-auto px-4 py-8">
 
         {/* ── Breadcrumb ──────────────────────────────────── */}

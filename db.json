@@ -496,42 +496,20 @@
       "price": 999,
       "originalPrice": 1099,
       "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
-      "quantity": 2,
+      "quantity": 1,
       "stock": 15,
-      "id": "NTSVeuuZnJE"
+      "id": "9fXZ-0MTNBU"
     },
     {
       "userId": "wZAPlUJ7bN0",
-      "productId": "3",
-      "name": "MacBook Pro 14",
-      "price": 1999,
-      "originalPrice": 2199,
-      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400",
+      "productId": "6",
+      "name": "AirPods Pro 2",
+      "price": 249,
+      "originalPrice": 279,
+      "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400",
       "quantity": 1,
-      "stock": 10,
-      "id": "HgN2PqznN_A"
-    },
-    {
-      "userId": "wZAPlUJ7bN0",
-      "productId": "13",
-      "name": "PlayStation 5",
-      "price": 499,
-      "originalPrice": 549,
-      "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400",
-      "quantity": 3,
-      "stock": 7,
-      "id": "vIu1Ws-Ng2Y"
-    },
-    {
-      "userId": "wZAPlUJ7bN0",
-      "productId": "2",
-      "name": "Samsung Galaxy S24",
-      "price": 849,
-      "originalPrice": 949,
-      "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
-      "quantity": 1,
-      "stock": 20,
-      "id": "s0BO6LnSN6U"
+      "stock": 25,
+      "id": "5JPCTm_ShGM"
     }
   ],
   "wishlist": [
@@ -576,29 +554,29 @@
     },
     {
       "userId": "wZAPlUJ7bN0",
-      "productId": "3",
-      "name": "MacBook Pro 14",
-      "price": 1999,
-      "originalPrice": 2199,
-      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400",
-      "stock": 10,
-      "category": "Laptops",
-      "brand": "Apple",
-      "rating": 4.9,
-      "id": "l8A57ffI890"
+      "productId": "11",
+      "name": "Anker 65W Charger",
+      "price": 35,
+      "originalPrice": 45,
+      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
+      "stock": 50,
+      "category": "Accessories",
+      "brand": "Anker",
+      "rating": 4.5,
+      "id": "twH6PHMpAYg"
     },
     {
       "userId": "wZAPlUJ7bN0",
-      "productId": "6",
-      "name": "AirPods Pro 2",
-      "price": 249,
-      "originalPrice": 279,
-      "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400",
-      "stock": 25,
-      "category": "Audio",
-      "brand": "Apple",
-      "rating": 4.6,
-      "id": "8jzQl-azAi0"
+      "productId": "13",
+      "name": "PlayStation 5",
+      "price": 499,
+      "originalPrice": 549,
+      "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400",
+      "stock": 7,
+      "category": "Gaming",
+      "brand": "Sony",
+      "rating": 4.9,
+      "id": "qYgtVuvKa-o"
     }
   ],
   "orders": [
@@ -700,6 +678,32 @@
       },
       "createdAt": "2026-04-11T04:42:16.981Z",
       "id": "5Ci-6teUTks"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 1,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        }
+      ],
+      "subtotal": 999,
+      "deliveryCharge": 0,
+      "total": 999,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-12T06:21:59.115Z",
+      "id": "U0TVjk2DwMc"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

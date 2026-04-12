@@ -8,7 +8,7 @@ import ProfileInfo from "../components/profile/ProfileInfo";
 import OrderHistory from "../components/profile/OrderHistory";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/common/Navbar";
+
 
 const tabs = [
   { id: "profile", label: "👤 Profile Info" },
@@ -53,7 +53,7 @@ const Profile = () => {
 
   return (
     <>
-    <Navbar/>
+    
     <div className="min-h-screen bg-slate-50 py-8 px-4">
       <div className="max-w-4xl mx-auto flex flex-col gap-6">
 
