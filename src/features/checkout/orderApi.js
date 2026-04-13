@@ -4,10 +4,15 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
-import { setOrders, setCurrentOrder, orderError } from "./orderSlice";
+import {
+  setOrders,
+  setCurrentOrder,
+  orderError,
+  clearBuyNowItem,
+} from "./orderSlice";
 import { clearCart } from "../cart/cartSlice";
 
-// ─── Fetch Orders by UserId ───────────────────────────────────
+// ─── Fetch Orders ─────────────────────────────────────────────
 export const useGetOrders = (userId) => {
   const dispatch = useDispatch();
 
@@ -31,52 +36,58 @@ export const usePlaceOrder = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ orderData, cartItems, userId }) => {
+    mutationFn: async ({ orderData, cartItems, userId, isBuyNow }) => {
 
-  // ── Step 1 → POST order ──────────────────────────────
-  const orderResponse = await api.post("/orders", {
-    userId:userId,
-    items: cartItems.map((item) => ({
-      productId: item.productId,
-      name: item.name,
-      price: item.price,
-      quantity: item.quantity,
-      image: item.image,
-    })),
-    subtotal: orderData.subtotal,
-    deliveryCharge: orderData.deliveryCharge,
-    total: orderData.total,
-    status: "confirmed",
-    paymentMethod: orderData.paymentMethod,
-    shippingAddress: orderData.shippingAddress,
-    createdAt: new Date().toISOString(),
-  });
+      // ── Step 1 → POST order ──────────────────────────
+      const orderResponse = await api.post("/orders", {
+        userId,
+        items: cartItems.map((item) => ({
+          productId: item.productId,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image: item.image,
+        })),
+        subtotal: orderData.subtotal,
+        deliveryCharge: orderData.deliveryCharge,
+        total: orderData.total,
+        status: "confirmed",
+        paymentMethod: orderData.paymentMethod,
+        shippingAddress: orderData.shippingAddress,
+        createdAt: new Date().toISOString(),
+      });
 
-  // ── Step 2 → DELETE cart items ───────────────────────
-  
-  if (cartItems.length > 0) {
-    const deletePromises = cartItems.map((item) =>
-      api.delete(`/cart/${item.id}`)   
-    );
-    await Promise.all(deletePromises);
-  }
+      // ── Step 2 → only clear cart for normal checkout ──
+      if (!isBuyNow && cartItems.length > 0) {
+        const deletePromises = cartItems.map((item) =>
+          api.delete(`/cart/${item.id}`)
+        );
+        await Promise.all(deletePromises);
+      }
 
-  return orderResponse.data;
-},
-
+      return orderResponse.data;
+    },
 
     onSuccess: (placedOrder, variables) => {
-      // ✅ save order to Redux
+      // ✅ save placed order
       dispatch(setCurrentOrder(placedOrder));
 
-      // ✅ clear cart in Redux immediately
-      dispatch(clearCart());
+      if (variables.isBuyNow) {
+        // ✅ Buy Now → clear buyNow item only
+        dispatch(clearBuyNowItem());
+      } else {
+        // ✅ Normal checkout → clear cart
+        dispatch(clearCart());
+        queryClient.invalidateQueries({
+          queryKey: ["cart", variables.userId],
+        });
+      }
 
-      // ✅ invalidate queries
-      queryClient.invalidateQueries({ queryKey: ["orders", variables.userId] });
-      queryClient.invalidateQueries({ queryKey: ["cart", variables.userId] });
+      queryClient.invalidateQueries({
+        queryKey: ["orders", variables.userId],
+      });
 
-      // ✅ redirect to success page
+      // ✅ navigate AFTER everything is done
       navigate("/order-success");
     },
 

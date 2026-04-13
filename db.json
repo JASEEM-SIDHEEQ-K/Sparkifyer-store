@@ -490,37 +490,38 @@
       "id": "uixP06Td_4U"
     },
     {
+      "id": "84lHB6Cf1ps"
+    },
+    {
+      "id": "attWcbAHlTs"
+    },
+    {
+      "id": "LY7L2MC_I4o"
+    },
+    {
+      "id": "sH9Dx6q304E"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "productId": "2",
+      "name": "Samsung Galaxy S24",
+      "price": 849,
+      "originalPrice": 949,
+      "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
+      "quantity": 1,
+      "stock": 20,
+      "id": "F4CpDNypYvE"
+    },
+    {
       "userId": "wZAPlUJ7bN0",
       "productId": "1",
       "name": "iPhone 15 Pro",
       "price": 999,
       "originalPrice": 1099,
       "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
-      "quantity": 3,
+      "quantity": 1,
       "stock": 15,
-      "id": "9fXZ-0MTNBU"
-    },
-    {
-      "userId": "wZAPlUJ7bN0",
-      "productId": "6",
-      "name": "AirPods Pro 2",
-      "price": 249,
-      "originalPrice": 279,
-      "image": "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400",
-      "quantity": 1,
-      "stock": 25,
-      "id": "5JPCTm_ShGM"
-    },
-    {
-      "userId": "wZAPlUJ7bN0",
-      "productId": "11",
-      "name": "Anker 65W Charger",
-      "price": 35,
-      "originalPrice": 45,
-      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
-      "quantity": 1,
-      "stock": 50,
-      "id": "W6UsFAAZbZA"
+      "id": "DLPxj1ZpuwU"
     }
   ],
   "wishlist": [
@@ -562,6 +563,45 @@
       "brand": "Apple",
       "rating": 4.8,
       "id": "50kvbq1zMi8"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "productId": "11",
+      "name": "Anker 65W Charger",
+      "price": 35,
+      "originalPrice": 45,
+      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
+      "stock": 50,
+      "category": "Accessories",
+      "brand": "Anker",
+      "rating": 4.5,
+      "id": "qbhO8mBNR20"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "productId": "1",
+      "name": "iPhone 15 Pro",
+      "price": 999,
+      "originalPrice": 1099,
+      "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
+      "stock": 15,
+      "category": "Smartphones",
+      "brand": "Apple",
+      "rating": 4.8,
+      "id": "q6ysOdkC-bY"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "productId": "10",
+      "name": "Samsung Galaxy Watch 6",
+      "price": 299,
+      "originalPrice": 349,
+      "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400",
+      "stock": 16,
+      "category": "Wearables",
+      "brand": "Samsung",
+      "rating": 4.4,
+      "id": "3HDAh5u2V5I"
     }
   ],
   "orders": [
@@ -689,6 +729,169 @@
       },
       "createdAt": "2026-04-12T06:21:59.115Z",
       "id": "U0TVjk2DwMc"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "2",
+          "name": "Samsung Galaxy S24",
+          "price": 849,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+        }
+      ],
+      "subtotal": 849,
+      "deliveryCharge": 0,
+      "total": 849,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-13T10:40:15.540Z",
+      "id": "ElFx3TEu_I0"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 2,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "7",
+          "name": "Sony Alpha A7 IV",
+          "price": 2499,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400"
+        }
+      ],
+      "subtotal": 4497,
+      "deliveryCharge": 0,
+      "total": 4497,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-13T10:41:14.350Z",
+      "id": "c8UPJo1abTQ"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "13",
+          "name": "PlayStation 5",
+          "price": 499,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400"
+        }
+      ],
+      "subtotal": 499,
+      "deliveryCharge": 0,
+      "total": 499,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "online-shop",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-13T10:41:53.668Z",
+      "id": "g_wPPQgiUFU"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 1,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        }
+      ],
+      "subtotal": 999,
+      "deliveryCharge": 0,
+      "total": 999,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-13T10:45:39.717Z",
+      "id": "5FduXw6emTE"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "4",
+          "name": "Dell XPS 15",
+          "price": 1599,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400"
+        }
+      ],
+      "subtotal": 1599,
+      "deliveryCharge": 0,
+      "total": 1599,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-13T10:57:09.085Z",
+      "id": "MkWB5RZHjCs"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "2",
+          "name": "Samsung Galaxy S24",
+          "price": 849,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+        }
+      ],
+      "subtotal": 849,
+      "deliveryCharge": 0,
+      "total": 849,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "ewqfc",
+        "phone": "9786753432",
+        "address": "efdsa",
+        "city": "dfcs",
+        "zip": "12433"
+      },
+      "createdAt": "2026-04-13T10:58:53.142Z",
+      "id": "O7nfY4iOWeI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

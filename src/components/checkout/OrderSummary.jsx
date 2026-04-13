@@ -1,23 +1,13 @@
-// src/components/checkout/OrderSummary.jsx
+const OrderSummary = ({ items, total, deliveryCharge, finalTotal }) => {
 
-import { useSelector } from "react-redux";
-import {
-  selectCartItems,
-  selectCartTotal,
-  selectCartSavings,
-  selectCartCount,
-} from "../../features/cart/cartSlice";
+  // ✅ calculate from props — no Redux selectors
+  const count = items.reduce((sum, item) => sum + item.quantity, 0);
 
-const OrderSummary = () => {
-  const items = useSelector(selectCartItems);
-  const total = useSelector(selectCartTotal);
-  const savings = useSelector(selectCartSavings);
-  const count = useSelector(selectCartCount);
-
-  // ─── Delivery charge ──────────────────────────────────
-  const FREE_DELIVERY = 50;
-  const deliveryCharge = total >= FREE_DELIVERY ? 0 : 5.99;
-  const finalTotal = total + deliveryCharge;
+  const savings = items.reduce(
+    (sum, item) =>
+      sum + ((item.originalPrice || item.price) - item.price) * item.quantity,
+    0
+  );
 
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex flex-col gap-4">
@@ -29,19 +19,16 @@ const OrderSummary = () => {
 
       {/* ── Items List ───────────────────────────────────── */}
       <div className="flex flex-col gap-3 max-h-64 overflow-y-auto pr-1">
-        {items.map((item) => (
-          <div
-            key={item.id}
-            className="flex items-center gap-3"
-          >
+        {items.map((item, index) => (
+          <div key={index} className="flex items-center gap-3">
+
             {/* Image */}
-            <div className="flex-shrink-0 relative">
+            <div className="relative flex-shrink-0">
               <img
                 src={item.image}
                 alt={item.name}
                 className="w-12 h-12 object-cover rounded-lg"
               />
-              {/* Quantity Badge */}
               <span className="absolute -top-1.5 -right-1.5 bg-blue-600 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center font-bold">
                 {item.quantity}
               </span>
@@ -61,6 +48,7 @@ const OrderSummary = () => {
             <span className="text-sm font-semibold text-slate-800 flex-shrink-0">
               ${(item.price * item.quantity).toFixed(2)}
             </span>
+
           </div>
         ))}
       </div>
@@ -71,7 +59,7 @@ const OrderSummary = () => {
       {/* ── Price Breakdown ──────────────────────────────── */}
       <div className="flex flex-col gap-2 text-sm">
 
-        {/* Items count */}
+        {/* Subtotal */}
         <div className="flex justify-between text-slate-500">
           <span>Subtotal ({count} items)</span>
           <span>${total.toFixed(2)}</span>
@@ -103,12 +91,14 @@ const OrderSummary = () => {
         {/* Total */}
         <div className="flex justify-between font-bold text-slate-800 text-base">
           <span>Total</span>
-          <span className="text-blue-600">${finalTotal.toFixed(2)}</span>
+          <span className="text-blue-600">
+            ${finalTotal.toFixed(2)}
+          </span>
         </div>
 
       </div>
 
-      {/* ── Secure Checkout Note ─────────────────────────── */}
+      {/* ── Secure Note ──────────────────────────────────── */}
       <div className="flex items-center justify-center gap-2 text-xs text-slate-400 border-t border-slate-100 pt-3">
         <span>🔒</span>
         <span>Secure checkout — your data is safe</span>

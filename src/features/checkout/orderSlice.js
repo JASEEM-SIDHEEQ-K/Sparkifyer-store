@@ -5,6 +5,7 @@ import { createSlice, createSelector } from "@reduxjs/toolkit";
 const initialState = {
   orders: [],
   currentOrder: null,      // last placed order → for success page
+  buyNowItem: null,
   isLoading: false,
   error: null,
 };
@@ -40,6 +41,14 @@ const orderSlice = createSlice({
       state.currentOrder = null;
     },
 
+    setBuyNowItem: (state, action) => {
+      state.buyNowItem = action.payload;
+    },
+
+    clearBuyNowItem: (state) => {
+      state.buyNowItem = null;
+    },
+
     // ─── Clear Orders (on logout) ─────────────────────────
     clearOrders: (state) => {
       state.orders = [];
@@ -61,6 +70,8 @@ export const {
   setOrders,
   setCurrentOrder,
   clearCurrentOrder,
+  setBuyNowItem,
+  clearBuyNowItem,
   clearOrders,
   orderError,
 } = orderSlice.actions;
@@ -70,6 +81,7 @@ export const selectOrders = (state) => state.orders?.orders ?? [];
 export const selectCurrentOrder = (state) => state.orders?.currentOrder ?? null;
 export const selectOrderLoading = (state) => state.orders?.isLoading ?? false;
 export const selectOrderError = (state) => state.orders?.error ?? null;
+export const selectBuyNowItem = (state) => state.orders?.buyNowItem ?? null;
 
 // ─── Memoized Selectors ───────────────────────────────────────
 

@@ -1,77 +1,34 @@
+// src/components/product/ProductInfo.jsx
+
 import { useState } from "react";
-import QuantitySelector from "./QuantitySelector";
-
-
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import QuantitySelector from "./QuantitySelector";
 import { addToCartWithQuantity } from "../../features/cart/cartApi";
-import useAuth from "../../hooks/useAuth";
-
-
-import { useSelector } from "react-redux";
-import { useToggleWishlist } from "../../features/wishlist/wishlistApi";
+import { selectCartItems } from "../../features/cart/cartSlice";
 import {
   selectWishlistItems,
   selectIsInWishlist,
 } from "../../features/wishlist/wishlistSlice";
-
-import { toast } from "react-toastify";
-
+import { useToggleWishlist } from "../../features/wishlist/wishlistApi";
+import {
+  setBuyNowItem,                    // ✅
+} from "../../features/checkout/orderSlice";
+import useAuth from "../../hooks/useAuth";
 
 const ProductInfo = ({ product }) => {
-  const [quantity, setQuantity] = useState(1);
-
-
-
-  //for cart
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
 
-  const handleAddToCart = () => {
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    dispatch(addToCartWithQuantity(product, user.id, quantity));
-    toast.success("Item added to cart 🛒");
-  };
+  const [quantity, setQuantity] = useState(1);
 
-  const handleBuyNow = () => {
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    dispatch(addToCartWithQuantity(product, user.id, quantity));
-    navigate(`/checkout?mod=buynow`);
-  };
-
-
-
-  //wishlist
-
+  const cartItems = useSelector(selectCartItems);
   const wishlistItems = useSelector(selectWishlistItems);
   const isWishlisted = useSelector(selectIsInWishlist(product.id));
   const { mutate: toggleWishlist } = useToggleWishlist();
 
-  const handleToggleWishlist = () => {
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    toggleWishlist({
-      product,
-      userId: user.id,
-      wishlistItems,
-    });
-  };
-
-
-
-
-
-  // ─── Discount Calculation ──────────────────────────────
+  // ─── Discount ──────────────────────────────────────────
   const discount = Math.round(
     ((product.originalPrice - product.price) / product.originalPrice) * 100
   );
@@ -90,10 +47,56 @@ const ProductInfo = ({ product }) => {
     ));
   };
 
+  // ─── Add to Cart ───────────────────────────────────────
+  const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+    dispatch(addToCartWithQuantity({
+      product,
+      userId: user.id,
+      quantity,
+      cartItems,
+    }));
+  };
+
+  // ─── Buy Now → save to Redux → navigate checkout ──────
+  const handleBuyNow = () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+
+    // ✅ save only this product to buyNow state
+    dispatch(setBuyNowItem({
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      image: product.image,
+      quantity,
+      stock: product.stock,
+      userId: user.id,
+    }));
+
+    // ✅ navigate with buynow mode flag
+    navigate("/checkout?mode=buynow");
+  };
+
+  // ─── Wishlist ──────────────────────────────────────────
+  const handleToggleWishlist = () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+    toggleWishlist({ product, userId: user.id, wishlistItems });
+  };
+
   return (
     <div className="flex flex-col gap-5">
 
-      {/* ── Category & Brand ──────────────────────────────── */}
+      {/* Category & Brand */}
       <div className="flex items-center gap-2">
         <span className="bg-blue-50 text-blue-600 text-xs font-medium px-3 py-1 rounded-full">
           {product.category}
@@ -104,16 +107,14 @@ const ProductInfo = ({ product }) => {
         </span>
       </div>
 
-      {/* ── Product Name ──────────────────────────────────── */}
+      {/* Product Name */}
       <h1 className="text-2xl font-bold text-slate-800 leading-snug">
         {product.name}
       </h1>
 
-      {/* ── Rating & Reviews ──────────────────────────────── */}
+      {/* Rating */}
       <div className="flex items-center gap-2">
-        <div className="flex text-lg">
-          {renderStars(product.rating)}
-        </div>
+        <div className="flex text-lg">{renderStars(product.rating)}</div>
         <span className="text-sm font-semibold text-slate-700">
           {product.rating}
         </span>
@@ -122,7 +123,7 @@ const ProductInfo = ({ product }) => {
         </span>
       </div>
 
-      {/* ── Price ─────────────────────────────────────────── */}
+      {/* Price */}
       <div className="flex items-center gap-3">
         <span className="text-3xl font-bold text-slate-800">
           ${product.price}
@@ -139,7 +140,7 @@ const ProductInfo = ({ product }) => {
         )}
       </div>
 
-      {/* ── Description ───────────────────────────────────── */}
+      {/* Description */}
       <div>
         <h3 className="text-sm font-semibold text-slate-700 mb-1">
           Description
@@ -149,7 +150,7 @@ const ProductInfo = ({ product }) => {
         </p>
       </div>
 
-      {/* ── Tags ──────────────────────────────────────────── */}
+      {/* Tags */}
       <div className="flex flex-wrap gap-2">
         {product.tags.map((tag) => (
           <span
@@ -161,7 +162,7 @@ const ProductInfo = ({ product }) => {
         ))}
       </div>
 
-      {/* ── Stock Status ──────────────────────────────────── */}
+      {/* Stock Status */}
       <p className={`text-sm font-medium ${
         product.stock > 10
           ? "text-green-500"
@@ -176,7 +177,7 @@ const ProductInfo = ({ product }) => {
           : "✗ Out of Stock"}
       </p>
 
-      {/* ── Quantity Selector ─────────────────────────────── */}
+      {/* Quantity Selector */}
       {product.stock > 0 && (
         <QuantitySelector
           quantity={quantity}
@@ -186,44 +187,42 @@ const ProductInfo = ({ product }) => {
         />
       )}
 
-      {/* ── Action Buttons ────────────────────────────────────── */}
-    <div className="flex flex-col gap-3 pt-2">
+      {/* Action Buttons */}
+      <div className="flex flex-col gap-3 pt-2">
 
         {/* Row 1 → Buy Now + Wishlist */}
         <div className="flex gap-3">
-            <button
+          <button
             onClick={handleBuyNow}
             disabled={product.stock === 0}
             className="flex-1 bg-slate-800 hover:bg-slate-900 text-white font-semibold py-3 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
-            >
+          >
             ⚡ Buy Now
-            </button>
-
-            {/* Wishlist */}
-            <button
-              onClick={handleToggleWishlist}
-              className={`w-12 h-12 flex items-center justify-center border rounded-xl transition text-xl
-                ${isWishlisted
-                  ? "border-red-400 text-red-600 hover:bg-red-50"
-                  : "border-slate-300 text-slate-400 hover:border-red-400 hover:text-red-500"
-                }`}
-            >
-              {isWishlisted ? "♥" : "♡"}
-            </button>
+          </button>
+          <button
+            onClick={handleToggleWishlist}
+            className={`w-12 h-12 flex items-center justify-center border rounded-xl transition text-xl
+              ${isWishlisted
+                ? "border-red-400 text-red-500 hover:bg-red-50"
+                : "border-slate-300 text-slate-400 hover:border-red-400 hover:text-red-500"
+              }`}
+          >
+            {isWishlisted ? "❤️" : "♡"}
+          </button>
         </div>
 
         {/* Row 2 → Add to Cart */}
         <button
-            onClick={handleAddToCart}
-            disabled={product.stock === 0}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+          onClick={handleAddToCart}
+          disabled={product.stock === 0}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
-            {product.stock === 0 ? "Out of Stock" : "🛒 Add to Cart"}
+          {product.stock === 0 ? "Out of Stock" : "🛒 Add to Cart"}
         </button>
 
-    </div>
+      </div>
 
-      {/* ── Delivery Info ─────────────────────────────────── */}
+      {/* Delivery Info */}
       <div className="border border-slate-200 rounded-xl p-4 flex flex-col gap-2">
         <p className="text-xs text-slate-500 flex items-center gap-2">
           🚚 <span><span className="font-medium text-slate-700">Free delivery</span> on orders over $50</span>
