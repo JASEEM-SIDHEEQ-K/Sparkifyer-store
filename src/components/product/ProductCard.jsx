@@ -12,6 +12,8 @@ import {
   selectIsInWishlist,
 } from "../../features/wishlist/wishlistSlice";
 
+import { createSlug } from "../../utils/helpers";
+
 const ProductCard = ({ product }) => {
 
 
@@ -172,7 +174,7 @@ const ProductCard = ({ product }) => {
 
           {/* View Details */}
           <Link
-            to={`/products/${product.id}`}
+            to={`/products/${product.id}/${createSlug(product.name)}`}
             className="flex-1 text-center border border-blue-600 text-blue-600 hover:bg-blue-50 text-xs font-semibold py-2 rounded-lg transition"
           >
             View Details

@@ -18,15 +18,17 @@ const SearchBar = ({ onClose }) => {
   const reduxSearchQuery = useSelector(selectSearchQuery);
   const isOnProductsPage = location.pathname === "/products";
 
-  // ✅ stable refs — never cause effect re-runs
+  //stable refs — never cause effect re-runs
   const dispatchRef = useRef(dispatch);
   const navigateRef = useRef(navigate);
   const isOnProductsPageRef = useRef(isOnProductsPage);
 
-  // ✅ keep refs updated without triggering effects
+  //keep refs updated without triggering effects
+  useEffect(() => {
   dispatchRef.current = dispatch;
   navigateRef.current = navigate;
   isOnProductsPageRef.current = isOnProductsPage;
+}, [dispatch, navigate, isOnProductsPage]);
 
   const [inputValue, setInputValue] = useState(
     isOnProductsPage ? reduxSearchQuery : ""
@@ -37,23 +39,22 @@ const SearchBar = ({ onClose }) => {
     if (isOnProductsPage && inputValue.trim()) {
       inputRef.current?.focus();
     }
-    // ✅ only runs when isOnProductsPage changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOnProductsPage]);
+  }, [isOnProductsPage,inputValue]);
 
   // ─── Clear input when leaving products page ───────────
-  // ✅ use callback ref pattern to avoid setState in effect
   const clearInputRef = useRef(null);
-  clearInputRef.current = () => {
-    setInputValue("");
-    dispatchRef.current(resetFilters());
-  };
+
+  useEffect(() => {
+    clearInputRef.current = () => {
+      setInputValue("");
+      dispatch(resetFilters());
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     if (!isOnProductsPageRef.current) {
       clearInputRef.current();
     }
-    // ✅ only runs when pathname changes
   }, [location.pathname]);
 
   // ─── Debounce ─────────────────────────────────────────
@@ -71,15 +72,14 @@ const SearchBar = ({ onClose }) => {
     }, 400);
 
     return () => clearTimeout(timer);
-    // ✅ only depends on inputValue — refs are stable
   }, [inputValue]);
 
-  // ─── Handle Change ────────────────────────────────────
+
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  // ─── Handle Submit ────────────────────────────────────
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputValue.trim()) {
@@ -91,7 +91,7 @@ const SearchBar = ({ onClose }) => {
     onClose?.();
   };
 
-  // ─── Handle Clear ─────────────────────────────────────
+ 
   const handleClear = useCallback(() => {
     setInputValue("");
     dispatchRef.current(setSearchQuery(""));
@@ -102,12 +102,12 @@ const SearchBar = ({ onClose }) => {
     <form onSubmit={handleSubmit} className="flex items-center gap-2 w-full">
       <div className="relative flex-1">
 
-        {/* Search Icon */}
+        
         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">
           🔍
         </span>
 
-        {/* Input */}
+        
         <input
           ref={inputRef}
           type="text"
@@ -117,7 +117,7 @@ const SearchBar = ({ onClose }) => {
           className="w-full bg-white/10 border border-white/20 text-white placeholder-blue-200 rounded-xl pl-9 pr-8 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/30 focus:bg-white/20 transition"
         />
 
-        {/* Clear Button */}
+        
         {inputValue && (
           <button
             type="button"

@@ -9,6 +9,7 @@ import api from "../../services/api";
 import { addCartItem, updateCartItem } from "../../features/cart/cartSlice";
 
 import { useState } from "react";
+import { createSlug } from "../../utils/helpers";
 
 const WishlistItem = ({ item }) => {
   const { user } = useAuth();
@@ -106,7 +107,7 @@ const WishlistItem = ({ item }) => {
 
   // ─── Handle View Product ──────────────────────────────
   const handleViewProduct = () => {
-    navigate(`/products/${item.productId}`);
+    navigate(`/products/${item.productId}/${createSlug(item.name)}`);
   };
 
   return (

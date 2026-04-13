@@ -44,7 +44,7 @@ const ProductInfo = ({ product }) => {
       return;
     }
     dispatch(addToCartWithQuantity(product, user.id, quantity));
-    navigate("/checkout");
+    navigate(`/checkout?mod=buynow`);
   };
 
 

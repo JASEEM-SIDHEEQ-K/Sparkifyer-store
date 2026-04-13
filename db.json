@@ -496,7 +496,7 @@
       "price": 999,
       "originalPrice": 1099,
       "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
-      "quantity": 1,
+      "quantity": 3,
       "stock": 15,
       "id": "9fXZ-0MTNBU"
     },
@@ -510,6 +510,17 @@
       "quantity": 1,
       "stock": 25,
       "id": "5JPCTm_ShGM"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "productId": "11",
+      "name": "Anker 65W Charger",
+      "price": 35,
+      "originalPrice": 45,
+      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
+      "quantity": 1,
+      "stock": 50,
+      "id": "W6UsFAAZbZA"
     }
   ],
   "wishlist": [
@@ -551,32 +562,6 @@
       "brand": "Apple",
       "rating": 4.8,
       "id": "50kvbq1zMi8"
-    },
-    {
-      "userId": "wZAPlUJ7bN0",
-      "productId": "11",
-      "name": "Anker 65W Charger",
-      "price": 35,
-      "originalPrice": 45,
-      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
-      "stock": 50,
-      "category": "Accessories",
-      "brand": "Anker",
-      "rating": 4.5,
-      "id": "twH6PHMpAYg"
-    },
-    {
-      "userId": "wZAPlUJ7bN0",
-      "productId": "13",
-      "name": "PlayStation 5",
-      "price": 499,
-      "originalPrice": 549,
-      "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400",
-      "stock": 7,
-      "category": "Gaming",
-      "brand": "Sony",
-      "rating": 4.9,
-      "id": "qYgtVuvKa-o"
     }
   ],
   "orders": [

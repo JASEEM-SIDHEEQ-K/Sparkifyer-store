@@ -31,7 +31,7 @@ function AppRoutes() {
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/products' element={<ProductList/>} />
-        <Route path='/products/:id' element={<ProductDetail/>} />
+        <Route path='/products/:id/:slug' element={<ProductDetail/>} />
 
 
         <Route path='/cart' element={

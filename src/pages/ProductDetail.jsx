@@ -4,8 +4,10 @@ import ProductImages from "../components/product/ProductImages";
 import ProductInfo from "../components/product/ProductInfo";
 
 
+
+
 const ProductDetail = () => {
-  const { id } = useParams();
+  const { id, slug } = useParams();
   const navigate = useNavigate();
 
  
@@ -72,8 +74,11 @@ const ProductDetail = () => {
             {product.category}
           </Link>
           <span>›</span>
-          <span className="text-slate-600 font-medium truncate max-w-xs">
-            {product.name}
+          <span className="text-slate-600 font-medium truncate max-w-xs capitalize">
+            {slug
+              ? slug.replace(/-/g, " ")
+              : product.name                   // fallback to product name
+            }
           </span>
         </nav>
 
