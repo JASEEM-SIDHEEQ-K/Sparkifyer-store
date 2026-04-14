@@ -1,5 +1,3 @@
-// src/components/product/ProductImages.jsx
-
 import { useState } from "react";
 
 const ProductImages = ({ images, name }) => {

@@ -1,5 +1,3 @@
-// src/components/common/Navbar.jsx
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,10 +19,10 @@ const Navbar = () => {
     <nav className="bg-blue-700 text-white shadow-md sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-3">
 
-        {/* ── Main Row ──────────────────────────────────── */}
+        
         <div className="flex items-center justify-between gap-4">
 
-          {/* ── Logo ──────────────────────────────────── */}
+          
           <Link
             to="/"
             onClick={() => dispatch(resetFilters())}
@@ -33,12 +31,12 @@ const Navbar = () => {
             ⚡ Sparkifyer
           </Link>
 
-          {/* ── Desktop Search ────────────────────────── */}
+          
           <div className="hidden md:flex flex-1 max-w-md">
             <SearchBar />
           </div>
 
-          {/* ── Desktop Menu ──────────────────────────── */}
+          
           <div className="hidden md:flex items-center gap-4 text-sm font-medium flex-shrink-0">
 
             <Link to="/products" className="hover:text-blue-200 transition">
@@ -47,7 +45,7 @@ const Navbar = () => {
 
             {isAuthenticated && (
               <>
-                {/* Cart */}
+                
                 <Link
                   to="/cart"
                   className="relative hover:text-blue-200 transition"
@@ -60,7 +58,7 @@ const Navbar = () => {
                   )}
                 </Link>
 
-                {/* Wishlist */}
+                
                 <Link
                   to="/wishlist"
                   className="relative hover:text-blue-200 transition"

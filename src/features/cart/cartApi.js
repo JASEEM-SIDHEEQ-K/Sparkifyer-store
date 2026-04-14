@@ -1,5 +1,3 @@
-// src/features/cart/cartApi.js
-
 import api from "../../services/api";
 import {
   cartLoading,

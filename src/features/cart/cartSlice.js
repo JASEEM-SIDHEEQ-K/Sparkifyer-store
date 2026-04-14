@@ -1,5 +1,3 @@
-// src/features/cart/cartSlice.js
-
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -13,27 +11,24 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
 
-    // ─── Loading ──────────────────────────────────────────
     cartLoading: (state) => {
       state.isLoading = true;
       state.error = null;
     },
 
-    // ─── Fetch Cart ───────────────────────────────────────
     setCartItems: (state, action) => {
       state.items = action.payload;
       state.isLoading = false;
       state.error = null;
     },
 
-    // ─── Add Item ─────────────────────────────────────────
     addCartItem: (state, action) => {
     const existingItem = state.items.find(
         (item) => item.id === action.payload.id
     );
 
     if (existingItem) {
-        existingItem.quantity += 1; // ✅ increase quantity
+        existingItem.quantity += 1;
     } else {
         state.items.push({ ...action.payload, quantity: 1 }); // ✅ new item
     }
@@ -62,7 +57,6 @@ const cartSlice = createSlice({
       state.error = null;
     },
 
-    // ─── Error ────────────────────────────────────────────
     cartError: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
@@ -94,7 +88,7 @@ export const selectCartTotalQuantity = createSelector(
   (items) => items.reduce((total, item) => total + item.quantity, 0)
 );
 
-// ✅ Total products (for navbar badge)
+// Total products (for navbar badge)
 export const selectCartCount = createSelector(
   [selectCartItems],
   (items) => items.length

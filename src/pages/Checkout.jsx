@@ -1,5 +1,3 @@
-// src/pages/Checkout.jsx
-
 import { useEffect, useRef } from "react";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -24,7 +22,7 @@ const Checkout = () => {
     error,
   }  = usePlaceOrder()
 
-  // ✅ check mode from URL
+  // check mode from URL
   const [searchParams] = useSearchParams();
   const isBuyNow = searchParams.get("mode") === "buynow";
 
@@ -32,12 +30,12 @@ const Checkout = () => {
   const buyNowItem = useSelector(selectBuyNowItem);
   const cartTotal = useSelector(selectCartTotal);
 
-  // ✅ decide which items to use
+  // decide which items to use
   const checkoutItems = isBuyNow
     ? buyNowItem ? [buyNowItem] : []
     : cartItems;
 
-  // ✅ calculate correct total
+  // calculate correct total
   const checkoutTotal = isBuyNow
     ? buyNowItem
       ? buyNowItem.price * buyNowItem.quantity
@@ -51,10 +49,10 @@ const Checkout = () => {
 
   const isOrderingRef = useRef(false);
 
-  // ✅ redirect if no items
+  // redirect if no items
   useEffect(() => {
   if (isBuyNow && !buyNowItem && !isOrderingRef.current) {
-    navigate("/products");    // ✅ only if NOT ordering
+    navigate("/products");
     return;
   }
   if (!isBuyNow && cartItems.length === 0 && !isOrderingRef.current) {
@@ -62,7 +60,7 @@ const Checkout = () => {
   }
 }, [cartItems, buyNowItem, isBuyNow, navigate]);
 
-// ✅ set flag before placing order
+// set flag before placing order
 const handlePlaceOrder = (formData) => {
   isOrderingRef.current = true;   // ← prevents redirect
 

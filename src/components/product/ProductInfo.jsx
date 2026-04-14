@@ -1,5 +1,3 @@
-// src/components/product/ProductInfo.jsx
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -68,7 +66,7 @@ const ProductInfo = ({ product }) => {
       return;
     }
 
-    // ✅ save only this product to buyNow state
+    // save only this product to buyNow state
     dispatch(setBuyNowItem({
       productId: product.id,
       name: product.name,
@@ -80,7 +78,7 @@ const ProductInfo = ({ product }) => {
       userId: user.id,
     }));
 
-    // ✅ navigate with buynow mode flag
+    // navigate with buynow mode flag
     navigate("/checkout?mode=buynow");
   };
 
@@ -140,7 +138,7 @@ const ProductInfo = ({ product }) => {
         )}
       </div>
 
-      {/* Description */}
+      
       <div>
         <h3 className="text-sm font-semibold text-slate-700 mb-1">
           Description
@@ -187,10 +185,10 @@ const ProductInfo = ({ product }) => {
         />
       )}
 
-      {/* Action Buttons */}
+      
       <div className="flex flex-col gap-3 pt-2">
 
-        {/* Row 1 → Buy Now + Wishlist */}
+        
         <div className="flex gap-3">
           <button
             onClick={handleBuyNow}
@@ -211,7 +209,7 @@ const ProductInfo = ({ product }) => {
           </button>
         </div>
 
-        {/* Row 2 → Add to Cart */}
+        
         <button
           onClick={handleAddToCart}
           disabled={product.stock === 0}
@@ -222,7 +220,7 @@ const ProductInfo = ({ product }) => {
 
       </div>
 
-      {/* Delivery Info */}
+      
       <div className="border border-slate-200 rounded-xl p-4 flex flex-col gap-2">
         <p className="text-xs text-slate-500 flex items-center gap-2">
           🚚 <span><span className="font-medium text-slate-700">Free delivery</span> on orders over $50</span>

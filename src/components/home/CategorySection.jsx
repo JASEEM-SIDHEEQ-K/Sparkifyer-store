@@ -1,5 +1,3 @@
-// src/components/home/CategorySection.jsx
-
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setSelectedCategory } from "../../features/products/productSlice";

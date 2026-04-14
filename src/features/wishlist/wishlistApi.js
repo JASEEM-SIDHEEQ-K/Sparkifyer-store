@@ -1,5 +1,3 @@
-// src/features/wishlist/wishlistApi.js
-
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import api from "../../services/api";

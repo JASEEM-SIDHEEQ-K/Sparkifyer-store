@@ -1,5 +1,3 @@
-// src/components/wishlist/WishlistItem.jsx
-
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useRemoveFromWishlist } from "../../features/wishlist/wishlistApi";
@@ -36,7 +34,7 @@ const WishlistItem = ({ item }) => {
       )
     : 0;
 
-  // ─── Handle Remove ────────────────────────────────────
+  
   const handleRemove = () => {
     removeFromWishlist({
       wishlistItemId: item.id,
@@ -44,7 +42,7 @@ const WishlistItem = ({ item }) => {
     });
   };
 
-  // ─── Handle Move to Cart ──────────────────────────────
+  
   const handleMoveToCart = async () => {
     try {
       setIsAddingToCart(true);
@@ -92,7 +90,7 @@ const WishlistItem = ({ item }) => {
         dispatch(addCartItem(response.data));
       }
 
-      // ✅ remove from wishlist after cart success
+      // remove from wishlist after cart success
       removeFromWishlist({
         wishlistItemId: item.id,
         userId: user?.id,
@@ -188,10 +186,10 @@ const WishlistItem = ({ item }) => {
             : "✗ Out of Stock"}
         </p>
 
-        {/* Action Buttons */}
+        
         <div className="flex gap-2 mt-1">
 
-          {/* Move to Cart */}
+          
           <button
             onClick={handleMoveToCart}
             disabled={item.stock === 0 || isAddingToCart || isRemoving}
@@ -208,7 +206,7 @@ const WishlistItem = ({ item }) => {
               : "🛒 Move to Cart"}
           </button>
 
-          {/* View Product */}
+          
           <button
             onClick={handleViewProduct}
             className="flex-1 text-xs font-semibold py-2 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-50 transition"

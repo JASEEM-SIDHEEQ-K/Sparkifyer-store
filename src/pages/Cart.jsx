@@ -1,5 +1,3 @@
-// src/pages/Cart.jsx
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -33,7 +31,7 @@ const Cart = () => {
     }
   }, [user?.id, dispatch]);
 
-  // ─── Loading State ─────────────────────────────────────
+  
   if (isLoading && items.length === 0) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -45,7 +43,7 @@ const Cart = () => {
     );
   }
 
-  // ─── Error State ───────────────────────────────────────
+  
   if (error) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -67,7 +65,7 @@ const Cart = () => {
       
       <div className="max-w-6xl mx-auto px-4 py-8">
 
-        {/* ── Page Header ───────────────────────────────── */}
+        
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-slate-800">
             🛒 My Cart
@@ -117,7 +115,7 @@ const Cart = () => {
                 <CartItem key={item.id} item={item} />
               ))}
 
-              {/* Continue Shopping */}
+              
               <Link
                 to="/products"
                 className="text-sm text-blue-600 hover:underline font-medium mt-2"
@@ -127,7 +125,7 @@ const Cart = () => {
 
             </div>
 
-            {/* ── Right → Order Summary ────────────────── */}
+            
             <div className="w-full lg:w-80 flex-shrink-0">
               <CartSummary />
             </div>

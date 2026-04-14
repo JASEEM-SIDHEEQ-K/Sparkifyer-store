@@ -1,5 +1,3 @@
-// src/features/auth/profileApi.js
-
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import api from "../../services/api";
@@ -40,10 +38,10 @@ export const useUpdateProfile = () => {
     },
 
     onSuccess: (updatedUser, variables) => {
-      // ✅ update profile in Redux
+      // update profile in Redux
       dispatch(updateProfileSuccess(updatedUser));
 
-      // ✅ update auth session in Redux + localStorage
+      // update auth session in Redux + localStorage
       const session = getSession();
       const updatedSession = {
         ...session,
@@ -57,7 +55,7 @@ export const useUpdateProfile = () => {
       saveSession(updatedSession);
       dispatch(loginSuccess(updatedSession));
 
-      // ✅ invalidate profile query
+      // invalidate profile query
       queryClient.invalidateQueries({
         queryKey: ["profile", variables.userId],
       });
@@ -75,7 +73,7 @@ export const useChangePassword = () => {
 
   return useMutation({
     mutationFn: async ({ userId, currentPassword, newPassword }) => {
-      // ✅ verify current password first
+      // verify current password first
       const response = await api.get(`/users/${userId}`);
       const user = response.data;
 
@@ -83,7 +81,7 @@ export const useChangePassword = () => {
         throw new Error("Current password is incorrect!");
       }
 
-      // ✅ update password
+      // update password
       const updated = await api.patch(`/users/${userId}`, {
         password: newPassword,
       });

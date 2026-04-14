@@ -1,5 +1,3 @@
-// src/features/checkout/orderApi.js
-
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -69,14 +67,14 @@ export const usePlaceOrder = () => {
     },
 
     onSuccess: (placedOrder, variables) => {
-      // ✅ save placed order
+      // save placed order
       dispatch(setCurrentOrder(placedOrder));
 
       if (variables.isBuyNow) {
-        // ✅ Buy Now → clear buyNow item only
+        // Buy Now → clear buyNow item only
         dispatch(clearBuyNowItem());
       } else {
-        // ✅ Normal checkout → clear cart
+        // Normal checkout → clear cart
         dispatch(clearCart());
         queryClient.invalidateQueries({
           queryKey: ["cart", variables.userId],
@@ -87,7 +85,7 @@ export const usePlaceOrder = () => {
         queryKey: ["orders", variables.userId],
       });
 
-      // ✅ navigate AFTER everything is done
+    
       navigate("/order-success");
     },
 

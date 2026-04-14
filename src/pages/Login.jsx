@@ -1,5 +1,3 @@
-// src/pages/Login.jsx
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -51,7 +49,7 @@ const Login = () => {
     }
   };
 
-  // ─── Handle Change ─────────────────────────────────────────
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -62,7 +60,7 @@ const Login = () => {
     dispatch(clearError());
   };
 
-  // ─── Handle Submit ─────────────────────────────────────────
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 

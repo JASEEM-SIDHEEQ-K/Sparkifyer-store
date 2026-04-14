@@ -1,6 +1,3 @@
-// src/components/home/PromoSection.jsx
-
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setSelectedCategory } from "../../features/products/productSlice";

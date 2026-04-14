@@ -1,5 +1,3 @@
-// src/features/wishlist/wishlistSlice.js
-
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -13,26 +11,26 @@ const wishlistSlice = createSlice({
   initialState,
   reducers: {
 
-    // ─── Loading ──────────────────────────────────────────
+    
     wishlistLoading: (state) => {
       state.isLoading = true;
       state.error = null;
     },
 
-    // ─── Fetch Wishlist ───────────────────────────────────
+  
     setWishlistItems: (state, action) => {
       state.items = action.payload;
       state.isLoading = false;
       state.error = null;
     },
 
-    // ─── Add Item ─────────────────────────────────────────
+    
     addWishlistItem: (state, action) => {
       state.items.push(action.payload);
       state.isLoading = false;
     },
 
-    // ─── Remove Item ──────────────────────────────────────
+    
     removeWishlistItem: (state, action) => {
       state.items = state.items.filter(
         (item) => item.id !== action.payload
@@ -40,14 +38,14 @@ const wishlistSlice = createSlice({
       state.isLoading = false;
     },
 
-    // ─── Clear Wishlist (on logout) ───────────────────────
+    
     clearWishlist: (state) => {
       state.items = [];
       state.isLoading = false;
       state.error = null;
     },
 
-    // ─── Error ────────────────────────────────────────────
+    
     wishlistError: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;

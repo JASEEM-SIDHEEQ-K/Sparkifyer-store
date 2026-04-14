@@ -1,5 +1,3 @@
-// src/pages/Profile.jsx
-
 import { useState } from "react";
 import { useGetProfile } from "../features/auth/profileApi";
 import { useSelector } from "react-redux";
@@ -39,7 +37,7 @@ const Profile = () => {
       .slice(0, 2);
   };
 
-  // ─── Loading State ─────────────────────────────────────
+  
   if (isLoading && !profile) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -88,7 +86,7 @@ const Profile = () => {
               </div>
             </div>
 
-            {/* ── Logout Button ───────────────────────────── */}
+            
             <button
               onClick={logout}
               className="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-semibold px-4 py-2 rounded-xl transition"

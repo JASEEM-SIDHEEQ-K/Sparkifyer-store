@@ -8,6 +8,9 @@ const productSlice=createSlice({
         searchQuery: "",              // search input value
         selectedCategory: "All",      // active category filter
         sortBy: "default",            // sort option
+        currentPage: 1,
+        totalItems: 0,
+        itemsPerPage: 6,
     },
     reducers:{
 
@@ -17,27 +20,49 @@ const productSlice=createSlice({
 
         setSearchQuery:(state,action)=>{
             state.searchQuery=action.payload
+            state.currentPage = 1;    // reset page on search
         },
 
         setSelectedCategory:(state,action)=>{
             state.selectedCategory=action.payload
+            state.currentPage = 1;
         },
 
         setSortBy:(state,action)=>{
             state.sortBy=action.payload
+            state.currentPage = 1;
         },
 
         resetFilters:(state)=>{
             state.searchQuery = "";
             state.selectedCategory = "All";
             state.sortBy = "default";
-        }
+            state.currentPage = 1;
+        },
+
+        setCurrentPage:(state,action)=>{
+          state.currentPage=action.payload
+        },
+
+        setTotalItems: (state, action) => {
+          state.totalItems = action.payload;
+        },
+
+
 
     }
 })
 
 
-export const {setProducts,setSearchQuery,setSelectedCategory,setSortBy,resetFilters} = productSlice.actions
+export const {
+  setProducts,
+  setSearchQuery,
+  setSelectedCategory,
+  setSortBy,
+  setCurrentPage,
+  setTotalItems,
+  resetFilters,
+} = productSlice.actions;
 
 
 
@@ -45,7 +70,9 @@ export const selectAllProducts= (state)=>state.products?.items ?? []
 export const selectSearchQuery= (state)=>state.products?.searchQuery ?? "";
 export const selectSelectedCategory= (state)=>state.products?.selectedCategory ?? "All"
 export const selectSortBy= (state)=>state.products?.sortBy ?? "default"
-
+export const selectCurrentPage = (state) =>state.products?.currentPage ?? 1;
+export const selectTotalItems = (state) =>state.products?.totalItems ?? 0;
+export const selectItemsPerPage = (state) =>state.products?.itemsPerPage ?? 6;
 
 
 //Filtering
@@ -104,6 +131,35 @@ export const selectFilteredProducts = createSelector(
     return filtered;
   }
 );
+
+
+// ─── Filtered count ───────────────────────────────────────────
+export const selectFilteredCount = createSelector(
+  [selectFilteredProducts],
+  (filtered) => filtered.length
+);
+
+
+export const selectTotalPages = createSelector(
+  [selectFilteredCount, selectItemsPerPage],
+  (filteredCount, itemsPerPage) => {
+    if (filteredCount === 0) return 0;
+    const pages = Math.ceil(filteredCount / itemsPerPage); //calculate total page need
+    return pages;
+  }
+);
+
+// paginate from filteredProducts
+export const selectPaginatedProducts = createSelector(
+  [selectFilteredProducts, selectCurrentPage, selectItemsPerPage],
+  (filteredProducts, currentPage, itemsPerPage) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredProducts.slice(startIndex, endIndex);
+  }
+);
+
+
 
 
 

@@ -102,7 +102,7 @@ const Register = () => {
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
 
-          {/* Name */}
+          
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">
               Full Name
@@ -124,7 +124,7 @@ const Register = () => {
             )}
           </div>
 
-          {/* Email */}
+          
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">
               Email Address
@@ -146,7 +146,7 @@ const Register = () => {
             )}
           </div>
 
-          {/* Password */}
+          
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">
               Password
@@ -168,7 +168,7 @@ const Register = () => {
             )}
           </div>
 
-          {/* Confirm Password */}
+          
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">
               Confirm Password
@@ -190,7 +190,7 @@ const Register = () => {
             )}
           </div>
 
-          {/* Submit Button */}
+          
           <button
             type="submit"
             disabled={isLoading}
@@ -201,7 +201,7 @@ const Register = () => {
 
         </form>
 
-        {/* Login Link */}
+        
         <p className="text-center text-sm text-slate-500 mt-6">
           Already have an account?{" "}
           <Link

@@ -21,6 +21,13 @@
       "password": "123456",
       "role": "user",
       "id": "N8RXyCHlr7U"
+    },
+    {
+      "name": "fadil",
+      "email": "123@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "re_tHF7bx1I"
     }
   ],
   "products": [
@@ -522,6 +529,17 @@
       "quantity": 1,
       "stock": 15,
       "id": "DLPxj1ZpuwU"
+    },
+    {
+      "userId": "re_tHF7bx1I",
+      "productId": "1",
+      "name": "iPhone 15 Pro",
+      "price": 999,
+      "originalPrice": 1099,
+      "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
+      "quantity": 1,
+      "stock": 15,
+      "id": "1hU13f2Ukm4"
     }
   ],
   "wishlist": [
@@ -602,6 +620,32 @@
       "brand": "Samsung",
       "rating": 4.4,
       "id": "3HDAh5u2V5I"
+    },
+    {
+      "userId": "re_tHF7bx1I",
+      "productId": "3",
+      "name": "MacBook Pro 14",
+      "price": 1999,
+      "originalPrice": 2199,
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400",
+      "stock": 10,
+      "category": "Laptops",
+      "brand": "Apple",
+      "rating": 4.9,
+      "id": "iMJY6_XIQB0"
+    },
+    {
+      "userId": "re_tHF7bx1I",
+      "productId": "4",
+      "name": "Dell XPS 15",
+      "price": 1599,
+      "originalPrice": 1799,
+      "image": "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400",
+      "stock": 8,
+      "category": "Laptops",
+      "brand": "Dell",
+      "rating": 4.5,
+      "id": "F-EETUHJmkc"
     }
   ],
   "orders": [
@@ -892,6 +936,32 @@
       },
       "createdAt": "2026-04-13T10:58:53.142Z",
       "id": "O7nfY4iOWeI"
+    },
+    {
+      "userId": "re_tHF7bx1I",
+      "items": [
+        {
+          "productId": "3",
+          "name": "MacBook Pro 14",
+          "price": 1999,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
+        }
+      ],
+      "subtotal": 1999,
+      "deliveryCharge": 0,
+      "total": 1999,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-13T11:09:12.105Z",
+      "id": "O-zdpwwBmfI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

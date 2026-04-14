@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+// src/pages/ProductList.jsx
+
+import { useEffect, useState } from "react";  // ✅ add useState
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   setProducts,
-  selectFilteredProducts,
+  selectPaginatedProducts,
+  selectFilteredCount,
   selectSearchQuery,
   selectSelectedCategory,
   resetFilters,
@@ -11,51 +14,35 @@ import {
 import { useGetProducts } from "../features/products/productApi";
 import ProductCard from "../components/product/ProductCard";
 import ProductFilter from "../components/product/ProductFilter";
-
-import { useLocation } from "react-router-dom";
-
-
+import Pagination from "../components/product/Pagination";
 
 
 const ProductList = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const navigate = useNavigate()
-  const filteredProducts = useSelector(selectFilteredProducts);  //when component renders, it will get the latest filtered products from the store. component will re-render when searchQuery or selectedCategory changes,
+
+  const paginatedProducts = useSelector(selectPaginatedProducts);
+  const filteredCount = useSelector(selectFilteredCount);
   const searchQuery = useSelector(selectSearchQuery);
   const selectedCategory = useSelector(selectSelectedCategory);
 
   const [showFilter, setShowFilter] = useState(false);
 
-  const location = useLocation();
-
-
-
-  
-  // ─── Fetch all Products via TanStack Query ────────────────
   const { data, isLoading, isError } = useGetProducts();
 
-
-  
-  // ─── Load into Redux when data arrives ────────────────
   useEffect(() => {
     if (data) {
       dispatch(setProducts(data));
     }
   }, [data, dispatch]);
 
-
-
-  // ─── Reset filters on page mount ──────────────────────
   useEffect(() => {
     if (!location.state?.fromCategory) {
       dispatch(resetFilters());
     }
   }, [dispatch,location]);
 
-
-
-
-  // ─── Loading State ────────────────────────────────────
   if (isLoading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -67,7 +54,6 @@ const ProductList = () => {
     );
   }
 
-  // ─── Error State ──────────────────────────────────────
   if (isError) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -85,16 +71,15 @@ const ProductList = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      
       <div className="max-w-7xl mx-auto px-4 py-8">
 
-        {/* ── Page Header ───────────────────────────────── */}
+        {/* Header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-slate-800">
             All Products
           </h1>
           <p className="text-slate-500 text-sm mt-1">
-            {filteredProducts.length} products found
+            {filteredCount} products found
             {selectedCategory !== "All" && (
               <span className="text-blue-600 font-medium">
                 {" "}in {selectedCategory}
@@ -106,7 +91,6 @@ const ProductList = () => {
               </span>
             )}
           </p>
-
           <button
               onClick={() => navigate('/')}
               className="flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition mb-6 font-medium"
@@ -118,14 +102,12 @@ const ProductList = () => {
 
         <div className="flex gap-6">
 
-          {/* ── Filter Sidebar (Desktop) ───────────────── */}
+          {/* Filter Sidebar Desktop */}
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <ProductFilter />
           </aside>
 
-
-
-          {/* ── Main Content ──────────────────────────── */}
+          {/* Main Content */}
           <div className="flex-1">
 
             {/* Mobile Filter Toggle */}
@@ -145,8 +127,8 @@ const ProductList = () => {
               </div>
             )}
 
-            {/* ── Empty State ───────────────────────── */}
-            {filteredProducts.length === 0 ? (
+            {/* Empty State */}
+            {paginatedProducts.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-20 text-center">
                 <p className="text-5xl mb-4">🔍</p>
                 <h3 className="text-lg font-semibold text-slate-700 mb-2">
@@ -163,16 +145,20 @@ const ProductList = () => {
                 </button>
               </div>
             ) : (
+              <>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                  {paginatedProducts.map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                    />
+                  ))}
+                </div>
 
-              /* ── Product Grid ──────────────────────── */
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-                {filteredProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                  />
-                ))}
-              </div>
+                
+                <Pagination />
+              </>
             )}
 
           </div>

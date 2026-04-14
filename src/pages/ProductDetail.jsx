@@ -25,7 +25,7 @@ const ProductDetail = () => {
     );
   }
 
-  // ─── Error State ───────────────────────────────────────
+  
   if (isError || !product) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center gap-4">
@@ -83,8 +83,6 @@ const ProductDetail = () => {
         </nav>
 
 
-
-        {/* ── Back Button ─────────────────────────────────── */}
         <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition mb-6 font-medium"

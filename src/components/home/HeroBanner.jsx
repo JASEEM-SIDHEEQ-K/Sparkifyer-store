@@ -1,5 +1,3 @@
-// src/components/home/HeroBanner.jsx
-
 import { Link } from "react-router-dom";
 
 const HeroBanner = () => {

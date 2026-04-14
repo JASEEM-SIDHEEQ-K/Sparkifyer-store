@@ -1,5 +1,3 @@
-// src/pages/Wishlist.jsx
-
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -22,7 +20,7 @@ const Wishlist = () => {
   // ─── Fetch wishlist on mount ───────────────────────────
   const { isLoading: isFetching } = useGetWishlist(user?.id);
 
-  // ─── Loading State ─────────────────────────────────────
+  
   if (isFetching && items.length === 0) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -39,7 +37,7 @@ const Wishlist = () => {
       
       <div className="max-w-4xl mx-auto px-4 py-8">
 
-        {/* ── Page Header ───────────────────────────────── */}
+        
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-slate-800">
             ❤️ My Wishlist
@@ -103,7 +101,7 @@ const Wishlist = () => {
               ))}
             </div>
 
-            {/* ── Continue Shopping ─────────────────────── */}
+            
             <Link
               to="/products"
               className="text-sm text-blue-600 hover:underline font-medium mt-2"

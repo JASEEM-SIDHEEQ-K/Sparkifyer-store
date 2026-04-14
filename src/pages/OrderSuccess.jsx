@@ -1,5 +1,3 @@
-// src/pages/OrderSuccess.jsx
-
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,7 +11,7 @@ const OrderSuccess = () => {
   const dispatch = useDispatch();
   const order = useSelector(selectCurrentOrder);
 
-  // ─── Redirect if no order ─────────────────────────────
+  
   useEffect(() => {
     if (!order) {
       navigate("/");
@@ -33,10 +31,10 @@ const OrderSuccess = () => {
     <div className="min-h-screen bg-slate-50 py-10 px-4">
       <div className="max-w-2xl mx-auto flex flex-col gap-6">
 
-        {/* ── Success Banner ────────────────────────────── */}
+        
         <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm text-center">
 
-          {/* Success Icon */}
+          
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <span className="text-3xl">✅</span>
           </div>
@@ -48,7 +46,7 @@ const OrderSuccess = () => {
             Thank you for your purchase. Your order has been confirmed.
           </p>
 
-          {/* Order ID */}
+          
           <div className="bg-slate-50 rounded-xl px-4 py-2 inline-block">
             <p className="text-xs text-slate-500">
               Order ID:{" "}
@@ -60,18 +58,18 @@ const OrderSuccess = () => {
 
         </div>
 
-        {/* ── Order Details ─────────────────────────────── */}
+        
         <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <h2 className="text-base font-bold text-slate-800 mb-4">
             📦 Order Details
           </h2>
 
-          {/* Items */}
+          
           <div className="flex flex-col gap-3 mb-4">
             {order.items.map((item, index) => (
               <div key={index} className="flex items-center gap-3">
 
-                {/* Image */}
+                
                 <div className="relative flex-shrink-0">
                   <img
                     src={item.image}
@@ -83,7 +81,7 @@ const OrderSuccess = () => {
                   </span>
                 </div>
 
-                {/* Name + Price */}
+                
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-slate-700 truncate">
                     {item.name}
@@ -93,7 +91,7 @@ const OrderSuccess = () => {
                   </p>
                 </div>
 
-                {/* Subtotal */}
+                
                 <span className="text-sm font-semibold text-slate-800">
                   ${(item.price * item.quantity).toFixed(2)}
                 </span>
@@ -132,7 +130,7 @@ const OrderSuccess = () => {
 
         </div>
 
-        {/* ── Shipping Address ──────────────────────────── */}
+        
         <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <h2 className="text-base font-bold text-slate-800 mb-3">
             🚚 Shipping Address
@@ -150,7 +148,7 @@ const OrderSuccess = () => {
           </div>
         </div>
 
-        {/* ── Payment Method ────────────────────────────── */}
+        
         <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <h2 className="text-base font-bold text-slate-800 mb-3">
             💳 Payment
@@ -177,14 +175,14 @@ const OrderSuccess = () => {
           </div>
         </div>
 
-        {/* ── Order Status ──────────────────────────────── */}
+        
         <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <h2 className="text-base font-bold text-slate-800 mb-4">
             📋 Order Status
           </h2>
           <div className="flex items-center justify-between">
 
-            {/* Confirmed */}
+            
             <div className="flex flex-col items-center gap-1">
               <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
                 <span className="text-sm">✓</span>
@@ -192,10 +190,10 @@ const OrderSuccess = () => {
               <p className="text-xs text-green-600 font-medium">Confirmed</p>
             </div>
 
-            {/* Line */}
+            
             <div className="flex-1 h-0.5 bg-slate-200 mx-2" />
 
-            {/* Processing */}
+            
             <div className="flex flex-col items-center gap-1">
               <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
                 <span className="text-sm text-slate-400">📦</span>
@@ -203,10 +201,10 @@ const OrderSuccess = () => {
               <p className="text-xs text-slate-400">Processing</p>
             </div>
 
-            {/* Line */}
+            
             <div className="flex-1 h-0.5 bg-slate-200 mx-2" />
 
-            {/* Shipped */}
+            
             <div className="flex flex-col items-center gap-1">
               <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
                 <span className="text-sm text-slate-400">🚚</span>
@@ -214,10 +212,10 @@ const OrderSuccess = () => {
               <p className="text-xs text-slate-400">Shipped</p>
             </div>
 
-            {/* Line */}
+            
             <div className="flex-1 h-0.5 bg-slate-200 mx-2" />
 
-            {/* Delivered */}
+            
             <div className="flex flex-col items-center gap-1">
               <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
                 <span className="text-sm text-slate-400">🎉</span>
@@ -228,7 +226,7 @@ const OrderSuccess = () => {
           </div>
         </div>
 
-        {/* ── Action Buttons ────────────────────────────── */}
+        
         <div className="flex gap-3">
           <Link
             to="/products"

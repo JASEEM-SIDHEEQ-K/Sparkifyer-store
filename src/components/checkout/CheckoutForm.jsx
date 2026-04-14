@@ -1,5 +1,3 @@
-// src/components/checkout/CheckoutForm.jsx
-
 import { useState } from "react";
 
 const CheckoutForm = ({ onSubmit, isPending }) => {

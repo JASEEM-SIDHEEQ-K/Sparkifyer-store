@@ -1,5 +1,3 @@
-// src/features/auth/profileSlice.js
-
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -55,7 +53,6 @@ const profileSlice = createSlice({
       state.updateSuccess = false;
     },
 
-    // ─── Error ────────────────────────────────────────────
     profileError: (state, action) => {
       state.isLoading = false;
       state.isUpdating = false;
