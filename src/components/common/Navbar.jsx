@@ -33,17 +33,22 @@ const Navbar = () => {
 
           
           <div className="hidden md:flex flex-1 max-w-md">
-            <SearchBar />
+            { !isAdmin && <SearchBar /> }
           </div>
 
           
           <div className="hidden md:flex items-center gap-4 text-sm font-medium flex-shrink-0">
+            { !isAdmin && (
+              <>
+              <Link to="/products" className="hover:text-blue-200 transition">
+                Products
+              </Link>
+              </>
+            )
+            }
+            
 
-            <Link to="/products" className="hover:text-blue-200 transition">
-              Products
-            </Link>
-
-            {isAuthenticated && (
+            {isAuthenticated && !isAdmin &&(
               <>
                 
                 <Link

@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { selectIsAuthenticated,selectRole } from "../../features/auth/authSlice";
 
 
-const ProtectedRoute = ({children, adminOnly = false}) => {
+const ProtectedRoute = ({children, adminOnly = false , userOnly = false }) => {
 
     const isAuthenticated = useSelector(selectIsAuthenticated);
     const role=useSelector(selectRole)
@@ -14,6 +14,10 @@ const ProtectedRoute = ({children, adminOnly = false}) => {
 
     if(adminOnly && role !== "admin"){
         return <Navigate to="/" replace />
+    }
+
+    if(userOnly && role === "admin"){
+        return <Navigate to="/admin" />
     }
 
     return children

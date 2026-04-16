@@ -7,6 +7,7 @@ import { loginUser } from "../features/auth/authApi";
 import { useQueryClient } from "@tanstack/react-query";
 import { setWishlistItems } from "../features/wishlist/wishlistSlice";
 import api from "../services/api";
+import useAuth from "../hooks/useAuth";
 
 
 import {
@@ -26,12 +27,20 @@ const Login = () => {
 
   const queryClient = useQueryClient();
 
+  const { isAuthenticated, role } = useAuth()
+
+ 
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
   const [errors, setErrors] = useState({});
+
+   if (isAuthenticated) {
+    return <navigate to={role === "admin" ? "/admin" : "/"} replace />;
+  }
 
   // ─── Real-time Validation ──────────────────────────────────
   const validateField = (name, value) => {
@@ -95,9 +104,9 @@ const Login = () => {
 
       // role-based redirect
       if (sessionData.role === "admin") {
-        navigate("/admin");
+        navigate("/admin" , { replace: true });
       } else {
-        navigate("/");
+        navigate("/" , { replace: true });
       }
 
     } catch (err) {

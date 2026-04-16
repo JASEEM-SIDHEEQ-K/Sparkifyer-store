@@ -26,33 +26,48 @@ import AdminUsers from '../pages/AdminUsers'
 function AppRoutes() {
   return (
       <Routes>
-        <Route path='/' element={<Home/>} />
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
-        <Route path='/products' element={<ProductList/>} />
-        <Route path='/products/:id/:slug' element={<ProductDetail/>} />
+
+        <Route path='/' element={
+          <ProtectedRoute userOnly={true}>
+            <Home/>
+          </ProtectedRoute>
+        } />
+
+        <Route path='/products' element={
+          <ProtectedRoute userOnly={true}>
+            <ProductList/>
+          </ProtectedRoute>
+        } />
+
+        <Route path='/products/:id/:slug' element={
+          <ProtectedRoute userOnly={true}>
+            <ProductDetail/>
+          </ProtectedRoute>
+        } />
 
 
         <Route path='/cart' element={
-          <ProtectedRoute>
+          <ProtectedRoute userOnly={true}>
             <Cart/>
           </ProtectedRoute>
         } />
 
         <Route path='/wishlist' element={
-          <ProtectedRoute>
+          <ProtectedRoute userOnly={true}>
             <Wishlist/>
           </ProtectedRoute>
         } />
 
         <Route path='/checkout' element={
-          <ProtectedRoute>
+          <ProtectedRoute userOnly={true}>
             <Checkout/>
           </ProtectedRoute>
         } />
 
         <Route path='/order-success' element={
-          <ProtectedRoute>
+          <ProtectedRoute userOnly={true}>
             <OrderSuccess/>
           </ProtectedRoute>
         } />

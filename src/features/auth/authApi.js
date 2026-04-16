@@ -36,8 +36,7 @@ export const loginUser = async (credentials)=>{
         const user = response.data.find(
         (u) =>
             u.email === credentials.email &&
-            u.password === credentials.password &&
-            u.role === "user"
+            u.password === credentials.password
         );
 
         if (!user) {
@@ -60,40 +59,5 @@ export const loginUser = async (credentials)=>{
 
     catch(error){
         throw error.message || "Login failed!";
-    }
-}
-
-
-
-
-export const adminLogin = async(credentials)=>{
-    try{
-        const response = await api.get("/users");
-
-        const admin = response.data.find(
-        (u) =>
-            u.email === credentials.email &&
-            u.password === credentials.password &&
-            u.role === "admin"
-        );
-
-        if (!admin) {
-        throw new Error("Invalid admin credentials!");
-        }
-
-        const sessionData = {
-            user:{
-                id: admin.id,
-                name: admin.name,
-                email: admin.email,
-            },
-            token:`admin_token_${admin.id}_${Date.now()}`,
-            role:admin.role,
-        }
-        toast('login successfull')
-        return sessionData
-
-    }catch(error){
-        throw error.message || "Admin login failed!";
     }
 }

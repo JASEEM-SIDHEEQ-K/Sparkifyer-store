@@ -8,6 +8,13 @@
       "role": "admin"
     },
     {
+      "id": "123456",
+      "name": "Admin User",
+      "email": "zxc@sparkifyer.com",
+      "password": "qwertyuiop",
+      "role": "admin"
+    },
+    {
       "name": "jaseem sidheeq k",
       "email": "jaseemsidheeqk@gmail.com",
       "password": "1234567",
