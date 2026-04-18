@@ -517,17 +517,6 @@
     },
     {
       "userId": "wZAPlUJ7bN0",
-      "productId": "2",
-      "name": "Samsung Galaxy S24",
-      "price": 849,
-      "originalPrice": 949,
-      "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
-      "quantity": 1,
-      "stock": 20,
-      "id": "F4CpDNypYvE"
-    },
-    {
-      "userId": "wZAPlUJ7bN0",
       "productId": "1",
       "name": "iPhone 15 Pro",
       "price": 999,
@@ -601,19 +590,6 @@
       "brand": "Anker",
       "rating": 4.5,
       "id": "qbhO8mBNR20"
-    },
-    {
-      "userId": "wZAPlUJ7bN0",
-      "productId": "1",
-      "name": "iPhone 15 Pro",
-      "price": 999,
-      "originalPrice": 1099,
-      "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
-      "stock": 15,
-      "category": "Smartphones",
-      "brand": "Apple",
-      "rating": 4.8,
-      "id": "q6ysOdkC-bY"
     },
     {
       "userId": "wZAPlUJ7bN0",

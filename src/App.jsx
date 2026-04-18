@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
 import Navbar from "./components/common/Navbar";
 import { getSession } from "./utils/localStorage";
@@ -11,32 +12,33 @@ import api from "./services/api";
 
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
 
-  //restore cart + wishlist on app startup / refresh
+  const isAdminPage = location.pathname.startsWith("/admin");
+
   useEffect(() => {
     const session = getSession();
+    if (!session?.user?.id) return;
 
-    if (session?.user?.id) {
-      const userId = session.user.id;
+    const userId = session.user.id;
+    const role = session.role;
 
-      // fetch cart
+    if (role === "user") {
+      // ✅ fetch cart + wishlist for users
       dispatch(fetchCart(userId));
-
-      // fetch wishlist
       api
         .get(`/wishlist?userId=${userId}`)
-        .then((response) => {
-          dispatch(setWishlistItems(response.data));
-        })
-        .catch((error) => {
-          console.error("Failed to fetch wishlist:", error);
-        });
+        .then((res) => dispatch(setWishlistItems(res.data)))
+        .catch((err) => console.error(err));
     }
+    // ✅ admin data fetched by useGetDashboardStats in AdminDashboard
+    // no need to fetch here
   }, [dispatch]);
 
   return (
     <div>
-      <Navbar />
+      {/* ✅ hide Navbar on admin pages */}
+      {!isAdminPage && <Navbar />}
       <main>
         <AppRoutes />
       </main>

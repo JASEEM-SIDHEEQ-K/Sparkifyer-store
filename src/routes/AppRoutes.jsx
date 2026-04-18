@@ -17,6 +17,7 @@ import OrderSuccess from '../pages/OrderSuccess'
 import Profile from "../pages/Profile";
 
 
+import AdminLayout from '../components/admin/AdminLayout';
 import AdminDashboard from '../pages/AdminDashboard'
 import AdminProducts from '../pages/AdminProducts'
 import AdminOrders from '../pages/AdminOrders'
@@ -30,19 +31,19 @@ function AppRoutes() {
         <Route path='/login' element={<Login/>} />
 
         <Route path='/' element={
-          <ProtectedRoute userOnly={true}>
+          <ProtectedRoute noAdminAccess={true}>
             <Home/>
           </ProtectedRoute>
         } />
 
         <Route path='/products' element={
-          <ProtectedRoute userOnly={true}>
+          <ProtectedRoute noAdminAccess={true}>
             <ProductList/>
           </ProtectedRoute>
         } />
 
         <Route path='/products/:id/:slug' element={
-          <ProtectedRoute userOnly={true}>
+          <ProtectedRoute noAdminAccess={true}>
             <ProductDetail/>
           </ProtectedRoute>
         } />
@@ -74,7 +75,7 @@ function AppRoutes() {
 
 
         <Route path="/profile" element={
-          <ProtectedRoute>
+          <ProtectedRoute >
             <Profile />
           </ProtectedRoute>
         } />
@@ -82,28 +83,19 @@ function AppRoutes() {
 
 
         <Route path='/admin' element={
-          <ProtectedRoute adminOnly={true}>
-            <AdminDashboard/>
-          </ProtectedRoute>
-        } />
+        <ProtectedRoute adminOnly={true}>
+          <AdminLayout />
+        </ProtectedRoute>
+      }>
 
-        <Route path='/admin/products' element={
-          <ProtectedRoute adminOnly={true}>
-            <AdminProducts />
-          </ProtectedRoute>
-        } />
+        {/* Default Dashboard */}
+        <Route index element={<AdminDashboard />} />
 
-        <Route path='/admin/orders' element={
-          <ProtectedRoute adminOnly={true}>
-            <AdminOrders/>
-          </ProtectedRoute>
-        } />
+        <Route path='products' element={<AdminProducts />} />
+        <Route path='orders' element={<AdminOrders />} />
+        <Route path='users' element={<AdminUsers />} />
 
-        <Route path='/admin/users' element={
-          <ProtectedRoute adminOnly={true}>
-            <AdminUsers/>
-          </ProtectedRoute>
-        } />
+      </Route>
 
 
 

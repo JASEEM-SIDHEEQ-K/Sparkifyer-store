@@ -6,6 +6,7 @@ import { clearCart } from "../features/cart/cartSlice";
 import { clearOrders } from "../features/checkout/orderSlice";
 import { clearProfile } from "../features/auth/profileSlice";
 import { clearWishlist } from '../features/wishlist/wishlistSlice'
+import { clearAdmin } from "../features/admin/adminSlice"; 
 
 
 
@@ -22,6 +23,7 @@ const useAuth = () => {
       dispatch(clearOrders())
       dispatch(clearProfile())
       dispatch(clearWishlist())
+      dispatch(clearAdmin());
       navigate("/login")
     }
 
