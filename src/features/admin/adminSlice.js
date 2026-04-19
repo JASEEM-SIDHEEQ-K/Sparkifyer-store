@@ -99,6 +99,19 @@ const adminSlice = createSlice({
       state.error = null;
     },
 
+    cancelOrder: (state, action) => {
+      const order = state.allOrders.find((o) => o.id === action.payload);
+      if (order) {
+        order.status = "cancelled";
+      }
+      const recentOrder = state.recentOrders.find(
+        (o) => o.id === action.payload
+      );
+      if (recentOrder) {
+        recentOrder.status = "cancelled";
+      }
+    },
+
     // ─── Error ────────────────────────────────────────────
     adminError: (state, action) => {
       state.isLoading = false;
@@ -118,6 +131,7 @@ export const {
   updateOrderStatus,
   deleteProduct,
   clearAdmin,
+  cancelOrder,
   adminError,
 } = adminSlice.actions;
 

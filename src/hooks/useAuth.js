@@ -6,7 +6,9 @@ import { clearCart } from "../features/cart/cartSlice";
 import { clearOrders } from "../features/checkout/orderSlice";
 import { clearProfile } from "../features/auth/profileSlice";
 import { clearWishlist } from '../features/wishlist/wishlistSlice'
-import { clearAdmin } from "../features/admin/adminSlice"; 
+import { clearAdmin } from "../features/admin/adminSlice";
+
+import { useQueryClient } from "@tanstack/react-query"; 
 
 
 
@@ -15,9 +17,14 @@ const useAuth = () => {
     const dispatch=useDispatch()
     const navigate=useNavigate()
 
+    const queryClient = useQueryClient();
+
     const { user,token,role,isLoading,error}=useSelector(state=>state.auth)
 
     const handleLogout = () =>{
+
+      queryClient.clear();
+
       dispatch(logout())
       dispatch(clearCart())
       dispatch(clearOrders())

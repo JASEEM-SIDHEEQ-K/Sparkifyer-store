@@ -12,8 +12,11 @@ import {
   setAllProducts,
   updateOrderStatus,
   deleteProduct,
+  cancelOrder,
   adminError,
 } from "./adminSlice";
+
+import { setOrders } from "../checkout/orderSlice";
 
 // ─── Fetch Dashboard Stats ────────────────────────────────────
 export const useGetDashboardStats = () => {
@@ -103,6 +106,37 @@ export const useUpdateOrderStatus = () => {
     },
     onError: (error) => {
       dispatch(adminError(error.message || "Failed to update order status!"));
+    },
+  });
+};
+
+
+export const useCancelOrder = () => {
+  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (orderId) => {
+      const response = await api.patch(`/orders/${orderId}`, {
+        status: "cancelled",
+      });
+      return response.data;
+    },
+    onSuccess: (_, orderId) => {
+      // ✅ update adminSlice
+      dispatch(cancelOrder(orderId));
+
+      // ✅ update orderSlice too → user side reflects change
+      dispatch(setOrders(
+        // we need to get current orders from store
+        // use queryClient to refetch instead
+      ));
+
+      queryClient.invalidateQueries({ queryKey: ["adminStats"] });
+      queryClient.invalidateQueries({ queryKey: ["orders"] }); // ✅ refetch user orders
+    },
+    onError: (error) => {
+      dispatch(adminError(error.message || "Failed to cancel order!"));
     },
   });
 };

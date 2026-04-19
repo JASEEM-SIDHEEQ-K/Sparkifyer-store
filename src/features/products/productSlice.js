@@ -77,20 +77,16 @@ export const selectItemsPerPage = (state) =>state.products?.itemsPerPage ?? 6;
 
 //Filtering
 
+// ✅ selectFilteredProducts — add isActive filter
 export const selectFilteredProducts = createSelector(
-  [
-    (state) => state.products?.items ?? [],
-    (state) => state.products?.selectedCategory ?? "All",
-    (state) => state.products?.searchQuery ?? "",
-    (state) => state.products?.sortBy ?? "default",
-  ],
+  [selectAllProducts, selectSelectedCategory, selectSearchQuery, selectSortBy],
   (items, selectedCategory, searchQuery, sortBy) => {
-    let filtered = [...items];
+
+    // ✅ filter out inactive products on user side
+    let filtered = [...items].filter((p) => p.isActive !== false);
 
     if (selectedCategory !== "All") {
-      filtered = filtered.filter(
-        (p) => p.category === selectedCategory
-      );
+      filtered = filtered.filter((p) => p.category === selectedCategory);
     }
 
     if (searchQuery.trim() !== "") {
@@ -115,14 +111,10 @@ export const selectFilteredProducts = createSelector(
         filtered = [...filtered].sort((a, b) => b.rating - a.rating);
         break;
       case "name-asc":
-        filtered = [...filtered].sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
+        filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
         break;
       case "name-desc":
-        filtered = [...filtered].sort((a, b) =>
-          b.name.localeCompare(a.name)
-        );
+        filtered = [...filtered].sort((a, b) => b.name.localeCompare(a.name));
         break;
       default:
         break;
@@ -165,9 +157,11 @@ export const selectPaginatedProducts = createSelector(
 
 
 export const selectCategories = createSelector(
-  [(state) => state.products?.items ?? []],
+  [selectAllProducts],
   (items) => {
-    const categories = items.map((p) => p.category);
+    const categories = items
+      .filter((p) => p.isActive !== false)
+      .map((p) => p.category);
     return ["All", ...new Set(categories)];
   }
 );

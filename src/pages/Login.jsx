@@ -1,15 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { fetchCart } from "../features/cart/cartApi";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { loginUser } from "../features/auth/authApi";
 
-import { useQueryClient } from "@tanstack/react-query";
-import { setWishlistItems } from "../features/wishlist/wishlistSlice";
-import api from "../services/api";
+
 import useAuth from "../hooks/useAuth";
-
-
 import {
   loginStart,
   loginSuccess,
@@ -24,12 +19,8 @@ const Login = () => {
   const navigate = useNavigate();
   const isLoading = useSelector(selectIsLoading);
   const serverError = useSelector(selectError);
-
-  const queryClient = useQueryClient();
-
-  const { isAuthenticated, role } = useAuth()
-
- 
+  
+  const { isAuthenticated, role } = useAuth();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -38,11 +29,11 @@ const Login = () => {
 
   const [errors, setErrors] = useState({});
 
-   if (isAuthenticated) {
-    return <navigate to={role === "admin" ? "/admin" : "/"} replace />;
+  
+  if (isAuthenticated) {
+    return <Navigate to={role === "admin" ? "/admin" : "/"} replace />;
   }
 
-  // ─── Real-time Validation ──────────────────────────────────
   const validateField = (name, value) => {
     switch (name) {
       case "email":
@@ -58,7 +49,6 @@ const Login = () => {
     }
   };
 
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -69,7 +59,6 @@ const Login = () => {
     dispatch(clearError());
   };
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -85,28 +74,15 @@ const Login = () => {
       dispatch(loginStart());
 
       const sessionData = await loginUser(formData);
-
       dispatch(loginSuccess(sessionData));
-      dispatch(fetchCart(sessionData.user.id));       //fetch cart on login
-      
 
-      //wishlist
-      queryClient.prefetchQuery({
-        queryKey: ["wishlist", sessionData.user.id],
-        queryFn: async () => {
-          const response = await api.get(
-            `/wishlist?userId=${sessionData.user.id}`
-          );
-          dispatch(setWishlistItems(response.data));
-          return response.data;
-        },
-      });
+
 
       // role-based redirect
       if (sessionData.role === "admin") {
-        navigate("/admin" , { replace: true });
+        navigate("/admin", { replace: true });
       } else {
-        navigate("/" , { replace: true });
+        navigate("/", { replace: true });
       }
 
     } catch (err) {
@@ -114,17 +90,14 @@ const Login = () => {
     }
   };
 
-  
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
       <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md border border-slate-200">
 
-       
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-blue-700">⚡ Sparkifyer</h1>
           <p className="text-slate-500 mt-1 text-sm">Login to your account</p>
         </div>
-
 
         {serverError && (
           <div className="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-lg mb-4">
@@ -132,10 +105,8 @@ const Login = () => {
           </div>
         )}
 
-        
         <form onSubmit={handleSubmit} className="space-y-4">
 
-          
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">
               Email Address
@@ -157,7 +128,6 @@ const Login = () => {
             )}
           </div>
 
-          
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">
               Password
@@ -179,7 +149,6 @@ const Login = () => {
             )}
           </div>
 
-          
           <button
             type="submit"
             disabled={isLoading}
@@ -190,7 +159,6 @@ const Login = () => {
 
         </form>
 
-        
         <p className="text-center text-sm text-slate-500 mt-6">
           Don't have an account?{" "}
           <Link

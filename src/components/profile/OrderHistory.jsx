@@ -29,6 +29,7 @@ const statusConfig = {
     text: "text-slate-600",
     icon: "🎉",
   },
+  cancelled: { label: "Cancelled", bg: "bg-red-100", text: "text-red-600", icon: "❌" },
 };
 
 const OrderHistory = ({ userId }) => {

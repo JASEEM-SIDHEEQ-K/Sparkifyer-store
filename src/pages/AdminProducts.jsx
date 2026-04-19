@@ -1,77 +1,273 @@
-import { useEffect, useState } from "react";
+// src/pages/admin/AdminProducts.jsx
+
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectAllProducts,
+  selectAdminLoading,
+} from "../features/admin/adminSlice";
+import {
+  useAddProduct,
+  useUpdateProduct,
+} from "../features/admin/adminApi";
+import { setAllProducts } from "../features/admin/adminSlice";
+import AdminProductCard from "../components/admin/AdminProductCard";
+import AdminProductForm from "../components/admin/AdminProductForm";
 import api from "../services/api";
 
+const categories = [
+  "All",
+  "Smartphones",
+  "Laptops",
+  "Audio",
+  "Cameras",
+  "Wearables",
+  "Accessories",
+  "Gaming",
+];
+
 const AdminProducts = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const allProducts = useSelector(selectAllProducts);
+  const isLoading = useSelector(selectAdminLoading);
 
-  // ✅ Fetch Products
-  const fetchProducts = async () => {
+  // ─── Local State ──────────────────────────────────────
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [showInactive, setShowInactive] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [editProduct, setEditProduct] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [duplicateError, setDuplicateError] = useState("");
+
+  // ─── Mutations ────────────────────────────────────────
+  const { mutate: addProduct, isPending: isAdding } = useAddProduct();
+  const { mutate: updateProduct, isPending: isUpdating } = useUpdateProduct();
+ 
+
+  // ─── Filter products ──────────────────────────────────
+  const filteredProducts = allProducts
+    .filter((p) => {
+      const matchCategory =
+        selectedCategory === "All" || p.category === selectedCategory;
+      const matchSearch =
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.brand.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchStatus = showInactive ? true : p.isActive !== false;
+      return matchCategory && matchSearch && matchStatus;
+    });
+
+  // ─── Handle Add Product ───────────────────────────────
+  const handleAddProduct = (productData) => {
+    setDuplicateError("");
+
+    // ✅ prevent duplicate by name
+    const isDuplicate = allProducts.some(
+      (p) => p.name.toLowerCase() === productData.name.toLowerCase()
+    );
+
+    if (isDuplicate) {
+      setDuplicateError(
+        `Product "${productData.name}" already exists!`
+      );
+      return;
+    }
+
+    addProduct(productData, {
+      onSuccess: () => {
+        setShowForm(false);
+        setDuplicateError("");
+      },
+    });
+  };
+
+  // ─── Handle Edit Product ──────────────────────────────
+  const handleEditProduct = (productData) => {
+    updateProduct(
+      {
+        productId: editProduct.id,
+        productData,
+      },
+      {
+        onSuccess: () => {
+          setEditProduct(null);
+          setShowForm(false);
+        },
+      }
+    );
+  };
+
+  // ─── Handle Toggle Status (Soft Delete) ───────────────
+  const handleToggleStatus = async (product) => {
     try {
-      setLoading(true);
-      const res = await api.get("/products");
-      setProducts(res.data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
+      await api.patch(`/products/${product.id}`, {
+        isActive: !product.isActive,
+      });
+
+      // ✅ update Redux directly
+      const updatedProducts = allProducts.map((p) =>
+        p.id === product.id ? { ...p, isActive: !product.isActive } : p
+      );
+      dispatch(setAllProducts(updatedProducts));
+
+    } catch (error) {
+      console.error("Failed to toggle status:", error);
     }
   };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  // ✅ Delete Product
-  const handleDelete = async (id) => {
-    const confirmDelete = window.confirm("Delete this product?");
-    if (!confirmDelete) return;
-
-    try {
-      await api.delete(`/products/${id}`);
-      setProducts(products.filter((p) => p.id !== id));
-    } catch (err) {
-      console.error(err);
-    }
+  // ─── Open Edit Form ───────────────────────────────────
+  const handleOpenEdit = (product) => {
+    setEditProduct(product);
+    setShowForm(true);
+    setDuplicateError("");
   };
 
-  if (loading) return <p>Loading...</p>;
+  // ─── Close Form ───────────────────────────────────────
+  const handleCloseForm = () => {
+    setShowForm(false);
+    setEditProduct(null);
+    setDuplicateError("");
+  };
+
+  // ─── Stats ────────────────────────────────────────────
+  const activeCount = allProducts.filter(
+    (p) => p.isActive !== false
+  ).length;
+  const inactiveCount = allProducts.filter(
+    (p) => p.isActive === false
+  ).length;
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Manage Products</h2>
+    <div className="flex flex-col gap-6">
 
-      {/* 🔥 Product List */}
-      <div className="bg-white shadow rounded-xl p-4">
-        {products.length === 0 ? (
-          <p>No products found</p>
-        ) : (
-          products.map((product) => (
-            <div
-              key={product.id}
-              className="flex justify-between items-center border-b py-3"
-            >
-              <div>
-                <p className="font-semibold">{product.name}</p>
-                <p className="text-gray-500">₹{product.price}</p>
-              </div>
+      {/* ── Page Header ───────────────────────────────── */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-xl font-bold text-slate-800">
+            Products
+          </h1>
+          <p className="text-slate-500 text-sm mt-1">
+            {activeCount} active
+            {inactiveCount > 0 && (
+              <span className="text-red-400 ml-1">
+                · {inactiveCount} inactive
+              </span>
+            )}
+          </p>
+        </div>
 
-              <div className="flex gap-2">
-                <button className="bg-blue-500 text-white px-3 py-1 rounded">
-                  Edit
-                </button>
-
-                <button
-                  onClick={() => handleDelete(product.id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))
-        )}
+        {/* Add Product Button */}
+        <button
+          onClick={() => {
+            setEditProduct(null);
+            setShowForm(true);
+            setDuplicateError("");
+          }}
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2.5 rounded-xl transition text-sm"
+        >
+          ➕ Add Product
+        </button>
       </div>
+
+      {/* ── Filters Row ───────────────────────────────── */}
+      <div className="flex flex-col sm:flex-row gap-3">
+
+        {/* Search */}
+        <div className="relative flex-1">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+            🔍
+          </span>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search products..."
+            className="w-full border border-slate-300 rounded-xl pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
+        {/* Show Inactive Toggle */}
+        <button
+          onClick={() => setShowInactive(!showInactive)}
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium border transition
+            ${showInactive
+              ? "bg-slate-800 text-white border-slate-800"
+              : "bg-white text-slate-600 border-slate-300 hover:border-slate-400"
+            }`}
+        >
+          {showInactive ? "👁 Showing All" : "👁 Show Inactive"}
+        </button>
+
+      </div>
+
+      {/* ── Category Tabs ─────────────────────────────── */}
+      <div className="flex gap-2 overflow-x-auto pb-1">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setSelectedCategory(cat)}
+            className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-medium transition
+              ${selectedCategory === cat
+                ? "bg-blue-600 text-white"
+                : "bg-white text-slate-600 border border-slate-300 hover:border-blue-400 hover:text-blue-600"
+              }`}
+          >
+            {cat}
+            {cat !== "All" && (
+              <span className="ml-1.5 text-xs opacity-70">
+                ({allProducts.filter(
+                  (p) => p.category === cat && p.isActive !== false
+                ).length})
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* ── Duplicate Error ───────────────────────────── */}
+      {duplicateError && (
+        <div className="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-xl">
+          ⚠️ {duplicateError}
+        </div>
+      )}
+
+      {/* ── Products List ─────────────────────────────── */}
+      {isLoading ? (
+        <div className="flex items-center justify-center h-40">
+          <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+        </div>
+      ) : filteredProducts.length === 0 ? (
+        <div className="text-center py-16">
+          <p className="text-4xl mb-3">📦</p>
+          <h3 className="text-base font-semibold text-slate-700 mb-1">
+            No products found
+          </h3>
+          <p className="text-slate-400 text-sm">
+            Try changing the category or search query
+          </p>
+        </div>
+      ) : (
+        <div className="flex flex-col gap-3">
+          {filteredProducts.map((product) => (
+            <AdminProductCard
+              key={product.id}
+              product={product}
+              onEdit={handleOpenEdit}
+              onToggleStatus={handleToggleStatus}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* ── Product Form Modal ────────────────────────── */}
+      {showForm && (
+        <AdminProductForm
+          product={editProduct}
+          onSubmit={editProduct ? handleEditProduct : handleAddProduct}
+          onClose={handleCloseForm}
+          isPending={isAdding || isUpdating}
+        />
+      )}
+
     </div>
   );
 };

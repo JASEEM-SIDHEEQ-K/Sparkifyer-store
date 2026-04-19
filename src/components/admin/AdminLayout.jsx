@@ -13,30 +13,28 @@ const AdminLayout = () => {
   useGetDashboardStats();
 
   const handleNavigate = (path) => {
-    setSidebarOpen(false); // close sidebar on click
+    setSidebarOpen(false);
     navigate(path);
   };
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
 
-      {/* Sidebar */}
+      {/* ✅ Sidebar */}
       <AdminSidebar
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         onNavigate={handleNavigate}
       />
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0">
+      {/* ✅ ml-0 mobile, ml-64 desktop */}
+      <div className="flex-1 flex flex-col min-h-screen lg:ml-0 min-w-0">
 
         {/* Header */}
-        <AdminHeader
-          onMenuClick={() => setSidebarOpen(true)}
-        />
+        <AdminHeader onMenuClick={() => setSidebarOpen(true)} />
 
         {/* Page Content */}
-        <main className="flex-1 p-4 lg:p-6 overflow-auto">
+        <main className="flex-1 p-4 lg:p-6 overflow-y-auto">
           <Outlet />
         </main>
 

@@ -51,21 +51,22 @@
       "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
       "images": [
         "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
-        "https://images.pexels.com/photos/29020349/pexels-photo-29020349.jpeg",
-        "https://images.unsplash.com/photo-1697565578769-9c9defbfa009?w=600",
-        "https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=600"
+        "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
       ],
       "description": "Latest Apple iPhone with A17 Pro chip, titanium design, and advanced camera system.",
       "tags": [
         "apple",
         "iphone",
         "smartphone",
-        "5g"
-      ]
+        "5g",
+        "gray"
+      ],
+      "isActive": true
     },
     {
       "id": "2",
       "name": "Samsung Galaxy S24",
+      "isActive": true,
       "category": "Smartphones",
       "price": 849,
       "originalPrice": 949,
@@ -91,6 +92,7 @@
     {
       "id": "3",
       "name": "MacBook Pro 14",
+      "isActive": true,
       "category": "Laptops",
       "price": 1999,
       "originalPrice": 2199,
@@ -116,6 +118,7 @@
     {
       "id": "4",
       "name": "Dell XPS 15",
+      "isActive": true,
       "category": "Laptops",
       "price": 1599,
       "originalPrice": 1799,
@@ -141,6 +144,7 @@
     {
       "id": "5",
       "name": "Sony WH-1000XM5",
+      "isActive": true,
       "category": "Audio",
       "price": 349,
       "originalPrice": 399,
@@ -166,6 +170,7 @@
     {
       "id": "6",
       "name": "AirPods Pro 2",
+      "isActive": true,
       "category": "Audio",
       "price": 249,
       "originalPrice": 279,
@@ -191,6 +196,7 @@
     {
       "id": "7",
       "name": "Sony Alpha A7 IV",
+      "isActive": true,
       "category": "Cameras",
       "price": 2499,
       "originalPrice": 2699,
@@ -216,6 +222,7 @@
     {
       "id": "8",
       "name": "GoPro Hero 12",
+      "isActive": true,
       "category": "Cameras",
       "price": 399,
       "originalPrice": 449,
@@ -241,6 +248,7 @@
     {
       "id": "9",
       "name": "Apple Watch Series 9",
+      "isActive": true,
       "category": "Wearables",
       "price": 399,
       "originalPrice": 429,
@@ -266,6 +274,7 @@
     {
       "id": "10",
       "name": "Samsung Galaxy Watch 6",
+      "isActive": true,
       "category": "Wearables",
       "price": 299,
       "originalPrice": 349,
@@ -291,6 +300,7 @@
     {
       "id": "11",
       "name": "Anker 65W Charger",
+      "isActive": true,
       "category": "Accessories",
       "price": 35,
       "originalPrice": 45,
@@ -316,6 +326,7 @@
     {
       "id": "12",
       "name": "Logitech MX Master 3",
+      "isActive": true,
       "category": "Accessories",
       "price": 99,
       "originalPrice": 119,
@@ -341,6 +352,7 @@
     {
       "id": "13",
       "name": "PlayStation 5",
+      "isActive": true,
       "category": "Gaming",
       "price": 499,
       "originalPrice": 549,
@@ -386,7 +398,8 @@
         "xbox",
         "gaming",
         "console"
-      ]
+      ],
+      "isActive": true
     },
     {
       "id": "15",
@@ -411,7 +424,49 @@
         "ipad",
         "tablet",
         "m2"
-      ]
+      ],
+      "isActive": true
+    },
+    {
+      "name": "usb",
+      "category": "Accessories",
+      "brand": "SanDisk",
+      "price": 49,
+      "originalPrice": 50,
+      "stock": 3,
+      "rating": 4.9,
+      "reviews": 25,
+      "description": "1tb usb",
+      "image": "https://www.sandisk.com/content/dam/store/en-us/assets/products/usb-flash-drives/cruzer-blade-usb-2-0/gallery/cruzer-blade-usb-2-0-angle.png",
+      "images": [
+        "https://www.sandisk.com/content/dam/store/en-us/assets/products/usb-flash-drives/cruzer-blade-usb-2-0/gallery/cruzer-blade-usb-2-0-angle.png"
+      ],
+      "tags": [
+        "usb",
+        "1tb"
+      ],
+      "isActive": true,
+      "id": "SIxIwxllK-c"
+    },
+    {
+      "name": "shihan",
+      "category": "Smartphones",
+      "brand": "dwfagsfbdgnh",
+      "price": 2345,
+      "originalPrice": 34,
+      "stock": 3,
+      "rating": 5,
+      "reviews": 314,
+      "description": "fwqewrtrw",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz_5VrWm1gYU7aUgsn09ul2oDsfkUz06OM3A&s",
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz_5VrWm1gYU7aUgsn09ul2oDsfkUz06OM3A&s"
+      ],
+      "tags": [
+        "rerged"
+      ],
+      "isActive": true,
+      "id": "i7tzjxLOIvE"
     }
   ],
   "cart": [
@@ -804,7 +859,7 @@
       "subtotal": 4497,
       "deliveryCharge": 0,
       "total": 4497,
-      "status": "confirmed",
+      "status": "cancelled",
       "paymentMethod": "card",
       "shippingAddress": {
         "name": "jaseem sidheeq k",
@@ -830,7 +885,7 @@
       "subtotal": 499,
       "deliveryCharge": 0,
       "total": 499,
-      "status": "confirmed",
+      "status": "delivered",
       "paymentMethod": "card",
       "shippingAddress": {
         "name": "online-shop",
@@ -856,7 +911,7 @@
       "subtotal": 999,
       "deliveryCharge": 0,
       "total": 999,
-      "status": "confirmed",
+      "status": "cancelled",
       "paymentMethod": "card",
       "shippingAddress": {
         "name": "fadil",
@@ -882,7 +937,7 @@
       "subtotal": 1599,
       "deliveryCharge": 0,
       "total": 1599,
-      "status": "confirmed",
+      "status": "cancelled",
       "paymentMethod": "card",
       "shippingAddress": {
         "name": "jaseem sidheeq k",
@@ -908,7 +963,7 @@
       "subtotal": 849,
       "deliveryCharge": 0,
       "total": 849,
-      "status": "confirmed",
+      "status": "delivered",
       "paymentMethod": "card",
       "shippingAddress": {
         "name": "ewqfc",
@@ -934,7 +989,7 @@
       "subtotal": 1999,
       "deliveryCharge": 0,
       "total": 1999,
-      "status": "confirmed",
+      "status": "delivered",
       "paymentMethod": "card",
       "shippingAddress": {
         "name": "jaseem sidheeq k",
@@ -945,6 +1000,32 @@
       },
       "createdAt": "2026-04-13T11:09:12.105Z",
       "id": "O-zdpwwBmfI"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "SIxIwxllK-c",
+          "name": "usb",
+          "price": 49,
+          "quantity": 1,
+          "image": "https://www.sandisk.com/content/dam/store/en-us/assets/products/usb-flash-drives/cruzer-blade-usb-2-0/gallery/cruzer-blade-usb-2-0-angle.png"
+        }
+      ],
+      "subtotal": 49,
+      "deliveryCharge": 5.99,
+      "total": 54.99,
+      "status": "processing",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-18T15:59:50.699Z",
+      "id": "89PyssR9HtI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

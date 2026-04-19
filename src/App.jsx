@@ -1,5 +1,3 @@
-// src/App.jsx
-
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -16,28 +14,27 @@ function App() {
 
   const isAdminPage = location.pathname.startsWith("/admin");
 
+  const session = getSession();
+
   useEffect(() => {
-    const session = getSession();
+    
     if (!session?.user?.id) return;
 
     const userId = session.user.id;
     const role = session.role;
 
     if (role === "user") {
-      // ✅ fetch cart + wishlist for users
       dispatch(fetchCart(userId));
       api
         .get(`/wishlist?userId=${userId}`)
         .then((res) => dispatch(setWishlistItems(res.data)))
         .catch((err) => console.error(err));
     }
-    // ✅ admin data fetched by useGetDashboardStats in AdminDashboard
-    // no need to fetch here
-  }, [dispatch]);
+    // admin data fetched by useGetDashboardStats in AdminDashboard
+  }, [dispatch, session]);
 
   return (
     <div>
-      {/* ✅ hide Navbar on admin pages */}
       {!isAdminPage && <Navbar />}
       <main>
         <AppRoutes />
