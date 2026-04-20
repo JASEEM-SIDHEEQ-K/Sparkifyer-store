@@ -1,5 +1,3 @@
-// src/components/admin/AdminSidebar.jsx
-
 import { Link, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
@@ -31,14 +29,14 @@ const AdminSidebar = ({ isOpen, onClose, }) => {
 
       {/* ✅ Sidebar */}
       <aside
-  className={`
+        className={`
     fixed top-0 left-0 h-screen w-64 z-30
     bg-white border-r border-slate-200
     flex flex-col transition-transform duration-300
     lg:translate-x-0 lg:sticky lg:top-0
     ${isOpen ? "translate-x-0" : "-translate-x-full"}
   `}
->
+      >
 
         {/* Logo */}
         <div className="px-6 py-5 border-b border-slate-200">

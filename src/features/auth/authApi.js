@@ -15,6 +15,7 @@ export const registerUser = async (userData)=>{
             email: userData.email,
             password: userData.password,
             role: 'user',
+            isActive: true,
         })
 
         toast('registration successfull')
@@ -41,6 +42,12 @@ export const loginUser = async (credentials)=>{
 
         if (!user) {
         throw new Error("Invalid email or password!");
+        }
+
+        if (user.isActive === false) {
+        throw new Error(
+            "Your account has been deactivated. Please contact support."
+        );
         }
 
         const sessionData ={

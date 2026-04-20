@@ -20,7 +20,8 @@
       "password": "1234567",
       "role": "user",
       "id": "wZAPlUJ7bN0",
-      "phone": "8848064544"
+      "phone": "8848064544",
+      "isActive": true
     },
     {
       "name": "online-shop",
@@ -35,6 +36,14 @@
       "password": "123456",
       "role": "user",
       "id": "re_tHF7bx1I"
+    },
+    {
+      "name": "sajitha",
+      "email": "saj@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "n37g-ktWEJ8",
+      "isActive": false
     }
   ],
   "products": [
@@ -571,17 +580,6 @@
       "id": "sH9Dx6q304E"
     },
     {
-      "userId": "wZAPlUJ7bN0",
-      "productId": "1",
-      "name": "iPhone 15 Pro",
-      "price": 999,
-      "originalPrice": 1099,
-      "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg",
-      "quantity": 1,
-      "stock": 15,
-      "id": "DLPxj1ZpuwU"
-    },
-    {
       "userId": "re_tHF7bx1I",
       "productId": "1",
       "name": "iPhone 15 Pro",
@@ -591,6 +589,17 @@
       "quantity": 1,
       "stock": 15,
       "id": "1hU13f2Ukm4"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "productId": "11",
+      "name": "Anker 65W Charger",
+      "price": 35,
+      "originalPrice": 45,
+      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
+      "quantity": 1,
+      "stock": 50,
+      "id": "jKNeQnaVSfs"
     }
   ],
   "wishlist": [
@@ -634,32 +643,6 @@
       "id": "50kvbq1zMi8"
     },
     {
-      "userId": "wZAPlUJ7bN0",
-      "productId": "11",
-      "name": "Anker 65W Charger",
-      "price": 35,
-      "originalPrice": 45,
-      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
-      "stock": 50,
-      "category": "Accessories",
-      "brand": "Anker",
-      "rating": 4.5,
-      "id": "qbhO8mBNR20"
-    },
-    {
-      "userId": "wZAPlUJ7bN0",
-      "productId": "10",
-      "name": "Samsung Galaxy Watch 6",
-      "price": 299,
-      "originalPrice": 349,
-      "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400",
-      "stock": 16,
-      "category": "Wearables",
-      "brand": "Samsung",
-      "rating": 4.4,
-      "id": "3HDAh5u2V5I"
-    },
-    {
       "userId": "re_tHF7bx1I",
       "productId": "3",
       "name": "MacBook Pro 14",
@@ -684,6 +667,19 @@
       "brand": "Dell",
       "rating": 4.5,
       "id": "F-EETUHJmkc"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "productId": "10",
+      "name": "Samsung Galaxy Watch 6",
+      "price": 299,
+      "originalPrice": 349,
+      "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400",
+      "stock": 16,
+      "category": "Wearables",
+      "brand": "Samsung",
+      "rating": 4.4,
+      "id": "Ncl5co5KoP4"
     }
   ],
   "orders": [
@@ -826,7 +822,7 @@
       "subtotal": 849,
       "deliveryCharge": 0,
       "total": 849,
-      "status": "confirmed",
+      "status": "processing",
       "paymentMethod": "card",
       "shippingAddress": {
         "name": "jaseem sidheeq k",
@@ -1026,6 +1022,39 @@
       },
       "createdAt": "2026-04-18T15:59:50.699Z",
       "id": "89PyssR9HtI"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "1",
+          "name": "iPhone 15 Pro",
+          "price": 999,
+          "quantity": 1,
+          "image": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg"
+        },
+        {
+          "productId": "13",
+          "name": "PlayStation 5",
+          "price": 499,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400"
+        }
+      ],
+      "subtotal": 1498,
+      "deliveryCharge": 0,
+      "total": 1498,
+      "status": "cancelled",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-20T04:21:49.571Z",
+      "id": "7XZO2bvD8Iw"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

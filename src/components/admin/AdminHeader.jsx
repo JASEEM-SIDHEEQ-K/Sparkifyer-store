@@ -1,5 +1,3 @@
-// src/components/admin/AdminHeader.jsx
-
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
@@ -43,7 +41,7 @@ const AdminHeader = ({ onMenuClick }) => {
             (e.currentTarget.style.background = "rgba(0,0,0,0.04)")
           }
         >
-          {/* Avatar */}
+          
           <div className="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">
             {user?.name?.charAt(0).toUpperCase()}
           </div>
@@ -58,7 +56,6 @@ const AdminHeader = ({ onMenuClick }) => {
         </Link>
 
 
-        {/* Logout button */}
         <button
           onClick={logout}
           className="bg-red-50 hover:bg-red-100 text-red-600 text-xs font-semibold px-3 py-1.5 rounded-xl transition border border-red-200"
