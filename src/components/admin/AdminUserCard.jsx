@@ -1,5 +1,3 @@
-// src/components/admin/AdminUserCard.jsx
-
 import { useState } from "react";
 import api from "../../services/api";
 
@@ -26,7 +24,7 @@ const AdminUserCard = ({ user, orderCount, onStatusToggle }) => {
       await api.patch(`/users/${user.id}`, {
         isActive: !isActive,
       });
-      onStatusToggle(user.id, !isActive);
+      onStatusToggle(user.id, !isActive);  //here call the parant inside function pass from parent 
       setShowConfirm(false);
     } catch (error) {
       console.error("Failed to toggle user status:", error);

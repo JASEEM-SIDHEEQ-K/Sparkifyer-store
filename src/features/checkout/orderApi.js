@@ -55,6 +55,26 @@ export const usePlaceOrder = () => {
         createdAt: new Date().toISOString(),
       });
 
+
+      //real time stock update
+      await Promise.all(
+        cartItems.map(async (item) => {
+          // get current product
+          const productRes = await api.get(
+            `/products/${item.productId}`
+          );
+          const currentStock = productRes.data.stock;
+          const newStock = Math.max(0, currentStock - item.quantity);
+
+          // update stock
+          await api.patch(`/products/${item.productId}`, {
+            stock: newStock,
+          });
+        })
+      );
+
+
+
       // ── Step 2 → only clear cart for normal checkout ──
       if (!isBuyNow && cartItems.length > 0) {
         const deletePromises = cartItems.map((item) =>
@@ -70,6 +90,27 @@ export const usePlaceOrder = () => {
       // save placed order
       dispatch(setCurrentOrder(placedOrder));
 
+      queryClient.setQueryData(["products"], (oldProducts) => {
+    if (!oldProducts) return oldProducts;
+
+    return oldProducts.map((product) => {
+      const item = variables.cartItems.find(
+        (i) => i.productId === product.id
+      );
+
+      if (item) {
+        return {
+          ...product,
+          stock: Math.max(0, product.stock - item.quantity),
+        };
+      }
+
+      return product;
+    });
+  });
+      
+
+
       if (variables.isBuyNow) {
         // Buy Now → clear buyNow item only
         dispatch(clearBuyNowItem());
@@ -80,6 +121,9 @@ export const usePlaceOrder = () => {
           queryKey: ["cart", variables.userId],
         });
       }
+      
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ["adminStats"] });
 
       queryClient.invalidateQueries({
         queryKey: ["orders", variables.userId],

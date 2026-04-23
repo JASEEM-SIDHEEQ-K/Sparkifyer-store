@@ -1,5 +1,3 @@
-// src/components/admin/AdminOrderCard.jsx
-
 import { useState } from "react";
 import { useUpdateOrderStatus, useCancelOrder } from "../../features/admin/adminApi";
 
@@ -51,6 +49,11 @@ const AdminOrderCard = ({ order }) => {
     setShowCancelConfirm(false);
   };
 
+
+
+
+
+
   return (
     <div className={`bg-white border rounded-2xl shadow-sm overflow-hidden
       ${isCancelled ? "border-red-200 opacity-75" : "border-slate-200"}`}
@@ -59,7 +62,7 @@ const AdminOrderCard = ({ order }) => {
       {/* ── Order Header ──────────────────────────────────── */}
       <div
         className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 cursor-pointer hover:bg-slate-50 transition"
-        onClick={() => setExpanded(!expanded)}
+        onClick={() => setExpanded(!expanded)}    // expand the card
       >
         <div className="flex items-center gap-3">
           <div>
@@ -95,6 +98,10 @@ const AdminOrderCard = ({ order }) => {
           </span>
         </div>
       </div>
+
+
+
+
 
       {/* ── Expanded Content ──────────────────────────────── */}
       {expanded && (
@@ -195,6 +202,8 @@ const AdminOrderCard = ({ order }) => {
             </div>
 
           </div>
+
+          
 
           {/* ── Status Timeline ──────────────────────────── */}
           {!isCancelled && (

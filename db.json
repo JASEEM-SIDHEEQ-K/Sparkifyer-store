@@ -35,7 +35,8 @@
       "email": "123@gmail.com",
       "password": "123456",
       "role": "user",
-      "id": "re_tHF7bx1I"
+      "id": "re_tHF7bx1I",
+      "isActive": false
     },
     {
       "name": "sajitha",
@@ -70,7 +71,7 @@
         "5g",
         "gray"
       ],
-      "isActive": true
+      "isActive": false
     },
     {
       "id": "2",
@@ -81,14 +82,11 @@
       "originalPrice": 949,
       "rating": 4.6,
       "reviews": 98,
-      "stock": 20,
+      "stock": 16,
       "brand": "Samsung",
       "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
       "images": [
-        "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600",
-        "https://images.unsplash.com/photo-1706439135749-4d8f96f3e136?w=600",
-        "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=600",
-        "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=600"
+        "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
       ],
       "description": "Samsung flagship with AI features, 200MP camera, and Snapdragon 8 Gen 3.",
       "tags": [
@@ -111,10 +109,7 @@
       "brand": "Apple",
       "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400",
       "images": [
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600",
-        "https://images.unsplash.com/photo-1611186871525-65c9a171de99?w=600",
-        "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"
       ],
       "description": "Powerful MacBook Pro with M3 Pro chip, Liquid Retina XDR display.",
       "tags": [
@@ -315,7 +310,7 @@
       "originalPrice": 45,
       "rating": 4.5,
       "reviews": 320,
-      "stock": 50,
+      "stock": 43,
       "brand": "Anker",
       "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400",
       "images": [
@@ -474,8 +469,31 @@
       "tags": [
         "rerged"
       ],
-      "isActive": true,
+      "isActive": false,
       "id": "i7tzjxLOIvE"
+    },
+    {
+      "name": "mobile",
+      "category": "Smartphones",
+      "brand": "Samsung",
+      "price": 233,
+      "originalPrice": 255,
+      "stock": 3,
+      "rating": 0,
+      "reviews": 0,
+      "description": "wertyu",
+      "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
+      "images": [
+        "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+      ],
+      "tags": [
+        "samsung",
+        "galaxy",
+        "smartphone",
+        "android"
+      ],
+      "isActive": true,
+      "id": "egouxmQs98s"
     }
   ],
   "cart": [
@@ -1055,6 +1073,318 @@
       },
       "createdAt": "2026-04-20T04:21:49.571Z",
       "id": "7XZO2bvD8Iw"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "2",
+          "name": "Samsung Galaxy S24",
+          "price": 849,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+        }
+      ],
+      "subtotal": 849,
+      "deliveryCharge": 0,
+      "total": 849,
+      "status": "delivered",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-21T09:39:28.187Z",
+      "id": "kxIBQeXdpUs"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "2",
+          "name": "Samsung Galaxy S24",
+          "price": 849,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+        }
+      ],
+      "subtotal": 849,
+      "deliveryCharge": 0,
+      "total": 849,
+      "status": "cancelled",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-21T10:33:30.105Z",
+      "id": "qMW3XABe7Cg"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "2",
+          "name": "Samsung Galaxy S24",
+          "price": 849,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+        }
+      ],
+      "subtotal": 849,
+      "deliveryCharge": 0,
+      "total": 849,
+      "status": "confirmed",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "online-shop",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-21T10:35:34.952Z",
+      "id": "rHP7ucA54iE"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "11",
+          "name": "Anker 65W Charger",
+          "price": 35,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400"
+        }
+      ],
+      "subtotal": 35,
+      "deliveryCharge": 5.99,
+      "total": 40.99,
+      "status": "confirmed",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-21T16:25:19.987Z",
+      "id": "ujWUv-K-Rf0"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "11",
+          "name": "Anker 65W Charger",
+          "price": 35,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400"
+        }
+      ],
+      "subtotal": 35,
+      "deliveryCharge": 5.99,
+      "total": 40.99,
+      "status": "confirmed",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-21T16:29:50.601Z",
+      "id": "sLUx8KTBYp4"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "11",
+          "name": "Anker 65W Charger",
+          "price": 35,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400"
+        }
+      ],
+      "subtotal": 35,
+      "deliveryCharge": 5.99,
+      "total": 40.99,
+      "status": "confirmed",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-21T16:29:51.900Z",
+      "id": "sbYVvhrbR00"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "11",
+          "name": "Anker 65W Charger",
+          "price": 35,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400"
+        }
+      ],
+      "subtotal": 35,
+      "deliveryCharge": 5.99,
+      "total": 40.99,
+      "status": "confirmed",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-21T16:29:52.518Z",
+      "id": "fPVO2qT496E"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "11",
+          "name": "Anker 65W Charger",
+          "price": 35,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400"
+        }
+      ],
+      "subtotal": 35,
+      "deliveryCharge": 5.99,
+      "total": 40.99,
+      "status": "confirmed",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-21T16:29:53.533Z",
+      "id": "HvAZqR9VYgU"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "11",
+          "name": "Anker 65W Charger",
+          "price": 35,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400"
+        }
+      ],
+      "subtotal": 35,
+      "deliveryCharge": 5.99,
+      "total": 40.99,
+      "status": "confirmed",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "fadil",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-21T16:29:53.684Z",
+      "id": "3K7WJ2D_XVg"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "11",
+          "name": "Anker 65W Charger",
+          "price": 35,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400"
+        }
+      ],
+      "subtotal": 35,
+      "deliveryCharge": 5.99,
+      "total": 40.99,
+      "status": "confirmed",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-21T16:30:24.833Z",
+      "id": "29vsxFIZiKk"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "2",
+          "name": "Samsung Galaxy S24",
+          "price": 849,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+        }
+      ],
+      "subtotal": 849,
+      "deliveryCharge": 0,
+      "total": 849,
+      "status": "confirmed",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-22T11:23:32.151Z",
+      "id": "UJuDi9A_nvk"
+    },
+    {
+      "userId": "wZAPlUJ7bN0",
+      "items": [
+        {
+          "productId": "2",
+          "name": "Samsung Galaxy S24",
+          "price": 849,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+        }
+      ],
+      "subtotal": 849,
+      "deliveryCharge": 0,
+      "total": 849,
+      "status": "confirmed",
+      "paymentMethod": "cod",
+      "shippingAddress": {
+        "name": "jaseem sidheeq k",
+        "phone": "8848064544",
+        "address": "othayi",
+        "city": "malappuram",
+        "zip": "676541"
+      },
+      "createdAt": "2026-04-22T11:32:25.388Z",
+      "id": "w1ASvHr4tdI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

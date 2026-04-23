@@ -10,7 +10,7 @@ const productSlice=createSlice({
         sortBy: "default",            // sort option
         currentPage: 1,
         totalItems: 0,
-        itemsPerPage: 6,
+        itemsPerPage: 9,
     },
     reducers:{
 
@@ -72,7 +72,7 @@ export const selectSelectedCategory= (state)=>state.products?.selectedCategory ?
 export const selectSortBy= (state)=>state.products?.sortBy ?? "default"
 export const selectCurrentPage = (state) =>state.products?.currentPage ?? 1;
 export const selectTotalItems = (state) =>state.products?.totalItems ?? 0;
-export const selectItemsPerPage = (state) =>state.products?.itemsPerPage ?? 6;
+export const selectItemsPerPage = (state) =>state.products?.itemsPerPage ?? 9;
 
 
 //Filtering

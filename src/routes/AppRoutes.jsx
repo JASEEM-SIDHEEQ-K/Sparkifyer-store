@@ -1,4 +1,4 @@
-import { Route,Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import ProtectedRoute from '../components/common/ProtectedRoute'
 
 
@@ -26,63 +26,63 @@ import AdminUsers from '../pages/AdminUsers'
 
 function AppRoutes() {
   return (
-      <Routes>
-        <Route path='/register' element={<Register/>} />
-        <Route path='/login' element={<Login/>} />
+    <Routes>
+      <Route path='/register' element={<Register />} />
+      <Route path='/login' element={<Login />} />
 
-        <Route path='/' element={
-          <ProtectedRoute noAdminAccess={true}>
-            <Home/>
-          </ProtectedRoute>
-        } />
+      <Route path='/' element={
+        <ProtectedRoute noAdminAccess={true}>
+          <Home />
+        </ProtectedRoute>
+      } />
 
-        <Route path='/products' element={
-          <ProtectedRoute noAdminAccess={true}>
-            <ProductList/>
-          </ProtectedRoute>
-        } />
+      <Route path='/products' element={
+        <ProtectedRoute noAdminAccess={true}>
+          <ProductList />
+        </ProtectedRoute>
+      } />
 
-        <Route path='/products/:id/:slug' element={
-          <ProtectedRoute noAdminAccess={true}>
-            <ProductDetail/>
-          </ProtectedRoute>
-        } />
-
-
-        <Route path='/cart' element={
-          <ProtectedRoute userOnly={true}>
-            <Cart/>
-          </ProtectedRoute>
-        } />
-
-        <Route path='/wishlist' element={
-          <ProtectedRoute userOnly={true}>
-            <Wishlist/>
-          </ProtectedRoute>
-        } />
-
-        <Route path='/checkout' element={
-          <ProtectedRoute userOnly={true}>
-            <Checkout/>
-          </ProtectedRoute>
-        } />
-
-        <Route path='/order-success' element={
-          <ProtectedRoute userOnly={true}>
-            <OrderSuccess/>
-          </ProtectedRoute>
-        } />
+      <Route path='/products/:id/:slug' element={
+        <ProtectedRoute noAdminAccess={true}>
+          <ProductDetail />
+        </ProtectedRoute>
+      } />
 
 
-        <Route path="/profile" element={
-          <ProtectedRoute >
-            <Profile />
-          </ProtectedRoute>
-        } />
+      <Route path='/cart' element={
+        <ProtectedRoute userOnly={true}>
+          <Cart />
+        </ProtectedRoute>
+      } />
+
+      <Route path='/wishlist' element={
+        <ProtectedRoute userOnly={true}>
+          <Wishlist />
+        </ProtectedRoute>
+      } />
+
+      <Route path='/checkout' element={
+        <ProtectedRoute userOnly={true}>
+          <Checkout />
+        </ProtectedRoute>
+      } />
+
+      <Route path='/order-success' element={
+        <ProtectedRoute userOnly={true}>
+          <OrderSuccess />
+        </ProtectedRoute>
+      } />
+
+
+      <Route path="/profile" element={
+        <ProtectedRoute >
+          <Profile />
+        </ProtectedRoute>
+      } />
 
 
 
-        <Route path='/admin' element={
+      <Route path='/admin' element={
         <ProtectedRoute adminOnly={true}>
           <AdminLayout />
         </ProtectedRoute>
@@ -99,10 +99,10 @@ function AppRoutes() {
 
 
 
-        <Route path='*' element={<NotFound/>} />
+      <Route path='*' element={<NotFound />} />
 
 
-      </Routes>
+    </Routes>
   )
 }
 

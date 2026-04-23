@@ -1,5 +1,3 @@
-// src/features/admin/adminApi.js
-
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import api from "../../services/api";
@@ -18,6 +16,7 @@ import {
 
 import { setOrders } from "../checkout/orderSlice";
 
+
 // ─── Fetch Dashboard Stats ────────────────────────────────────
 export const useGetDashboardStats = () => {
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ export const useGetDashboardStats = () => {
   return useQuery({
     queryKey: ["adminStats"],
     queryFn: async () => {
-      // fetch all data in parallel
+      
       const [productsRes, ordersRes, usersRes] = await Promise.all([
         api.get("/products"),
         api.get("/orders"),
@@ -36,7 +35,7 @@ export const useGetDashboardStats = () => {
       const orders = ordersRes.data;
       const users = usersRes.data;
 
-      // ─── Calculate stats ──────────────────────────────
+     
       const totalRevenue = orders.reduce(
         (sum, order) => sum + (order.total || 0),
         0
@@ -87,6 +86,9 @@ export const useGetDashboardStats = () => {
   });
 };
 
+
+
+
 // ─── Update Order Status ──────────────────────────────────────
 export const useUpdateOrderStatus = () => {
   const dispatch = useDispatch();
@@ -123,23 +125,27 @@ export const useCancelOrder = () => {
       return response.data;
     },
     onSuccess: (_, orderId) => {
-      // ✅ update adminSlice
+      // update adminSlice
       dispatch(cancelOrder(orderId));
 
-      // ✅ update orderSlice too → user side reflects change
+      // update orderSlice too → user side reflects change
       dispatch(setOrders(
         // we need to get current orders from store
         // use queryClient to refetch instead
       ));
 
       queryClient.invalidateQueries({ queryKey: ["adminStats"] });
-      queryClient.invalidateQueries({ queryKey: ["orders"] }); // ✅ refetch user orders
+      queryClient.invalidateQueries({ queryKey: ["orders"] }); // refetch user orders
     },
     onError: (error) => {
       dispatch(adminError(error.message || "Failed to cancel order!"));
     },
   });
 };
+
+
+
+
 
 // ─── Delete Product ───────────────────────────────────────────
 export const useDeleteProduct = () => {

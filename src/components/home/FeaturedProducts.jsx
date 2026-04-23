@@ -22,6 +22,7 @@ const FeaturedProducts = () => {
 
   // ─── Get top rated products ────────────────────────────
   const featuredProducts = [...allProducts]
+    .filter((p) => p.isActive !== false)
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 4);
 

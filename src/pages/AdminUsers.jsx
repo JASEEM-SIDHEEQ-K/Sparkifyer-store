@@ -84,6 +84,8 @@ const AdminUsers = () => {
     return result;
   }, [allUsers, roleFilter, statusFilter, searchQuery, sortBy, orderCountMap]);
 
+
+
   // ─── Pagination ───────────────────────────────────────
   const totalPages = Math.ceil(filteredUsers.length / ITEMS_PER_PAGE);
   const paginatedUsers = filteredUsers.slice(
@@ -91,6 +93,8 @@ const AdminUsers = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
+
+  
   // ─── Reset page on filter change ──────────────────────
   const handleFilterChange = (setter) => (value) => {
     setter(value);
@@ -259,6 +263,10 @@ const AdminUsers = () => {
           of {filteredUsers.length} users
         </p>
       )}
+
+
+
+
 
       {/* ── Users List ────────────────────────────────── */}
       {paginatedUsers.length === 0 ? (

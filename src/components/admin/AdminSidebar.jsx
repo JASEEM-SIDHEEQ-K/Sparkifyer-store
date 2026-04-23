@@ -19,7 +19,7 @@ const AdminSidebar = ({ isOpen, onClose, }) => {
 
   return (
     <>
-      {/* ✅ Mobile overlay */}
+      {/* Mobile overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/40 z-20 lg:hidden"
@@ -27,29 +27,29 @@ const AdminSidebar = ({ isOpen, onClose, }) => {
         />
       )}
 
-      {/* ✅ Sidebar */}
+      {/* Sidebar */}
       <aside
         className={`
-    fixed top-0 left-0 h-screen w-64 z-30
-    bg-white border-r border-slate-200
-    flex flex-col transition-transform duration-300
-    lg:translate-x-0 lg:sticky lg:top-0
-    ${isOpen ? "translate-x-0" : "-translate-x-full"}
-  `}
+        fixed top-0 left-0 h-screen w-64 z-30
+        bg-white border-r border-slate-200
+        flex flex-col transition-transform duration-300
+        lg:translate-x-0 lg:sticky lg:top-0
+        ${isOpen ? "translate-x-0" : "-translate-x-full"}
+      `}
       >
 
-        {/* Logo */}
+        
         <div className="px-6 py-5 border-b border-slate-200">
           <h1 className="text-lg font-extrabold text-slate-800">
             ⚡ Sparkifyer
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">Admin Panel</p>
           <p className="text-xs text-slate-400 mt-0.5">
-            Welcome back, {user?.name} 👋
+            Welcome back, {user?.name} 
           </p>
         </div>
 
-        {/* Nav */}
+        
         <nav className="flex-1 px-3 py-4 flex flex-col gap-1">
           {navLinks.map((link) => (
             <Link

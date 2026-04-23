@@ -1,5 +1,3 @@
-// src/features/admin/adminSlice.js
-
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -23,50 +21,50 @@ const adminSlice = createSlice({
   initialState,
   reducers: {
 
-    // ─── Loading ──────────────────────────────────────────
+    
     adminLoading: (state) => {
       state.isLoading = true;
       state.error = null;
     },
 
-    // ─── Set Stats ────────────────────────────────────────
+    
     setStats: (state, action) => {
       state.stats = action.payload;
       state.isLoading = false;
       state.error = null;
     },
 
-    // ─── Set Recent Orders ────────────────────────────────
+    
     setRecentOrders: (state, action) => {
       state.recentOrders = action.payload;
       state.isLoading = false;
     },
 
-    // ─── Set Top Products ─────────────────────────────────
+    
     setTopProducts: (state, action) => {
       state.topProducts = action.payload;
       state.isLoading = false;
     },
 
-    // ─── Set All Orders ───────────────────────────────────
+    
     setAllOrders: (state, action) => {
       state.allOrders = action.payload;
       state.isLoading = false;
     },
 
-    // ─── Set All Users ────────────────────────────────────
+    
     setAllUsers: (state, action) => {
       state.allUsers = action.payload;
       state.isLoading = false;
     },
 
-    // ─── Set All Products ─────────────────────────────────
+    
     setAllProducts: (state, action) => {
       state.allProducts = action.payload;
       state.isLoading = false;
     },
 
-    // ─── Update Order Status ──────────────────────────────
+    
     updateOrderStatus: (state, action) => {
       const { orderId, status } = action.payload;
       const order = state.allOrders.find((o) => o.id === orderId);
@@ -79,7 +77,7 @@ const adminSlice = createSlice({
       }
     },
 
-    // ─── Delete Product ───────────────────────────────────
+    
     deleteProduct: (state, action) => {
       state.allProducts = state.allProducts.filter(
         (p) => p.id !== action.payload

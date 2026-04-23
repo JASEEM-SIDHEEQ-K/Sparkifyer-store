@@ -1,14 +1,11 @@
-// src/pages/admin/AdminDashboard.jsx
-
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useGetDashboardStats } from "../features/admin/adminApi";
+
 import {
   selectAdminStats,
   selectRecentOrders,
   selectTopProducts,
   selectOrdersByStatus,
-  selectAdminLoading,
 } from "../features/admin/adminSlice";
 
 // ─── Status config ────────────────────────────────────────────
@@ -20,13 +17,13 @@ const statusConfig = {
 };
 
 const AdminDashboard = () => {
-  const { isLoading, isError } = useGetDashboardStats();
+  
 
   const stats = useSelector(selectAdminStats);
   const recentOrders = useSelector(selectRecentOrders);
   const topProducts = useSelector(selectTopProducts);
   const ordersByStatus = useSelector(selectOrdersByStatus);
-  const adminLoading = useSelector(selectAdminLoading);
+  
 
   // ─── Stat cards config ────────────────────────────────
   const statCards = [
@@ -83,32 +80,7 @@ const AdminDashboard = () => {
   };
 
   // ─── Loading State ────────────────────────────────────
-  if (isLoading && adminLoading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-center">
-          <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-slate-500 text-sm">Loading dashboard...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // ─── Error State ──────────────────────────────────────
-  if (isError) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-center">
-          <p className="text-red-500 font-semibold mb-2">
-            Failed to load dashboard!
-          </p>
-          <p className="text-slate-400 text-sm">
-            Make sure JSON Server is running
-          </p>
-        </div>
-      </div>
-    );
-  }
+  
 
   return (
     <div className="flex flex-col gap-6">
@@ -141,6 +113,8 @@ const AdminDashboard = () => {
         ))}
       </div>
 
+
+
       {/* ── Order Status Cards ────────────────────────── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {Object.entries(ordersByStatus).map(([status, count]) => {
@@ -160,13 +134,15 @@ const AdminDashboard = () => {
         })}
       </div>
 
+
+
       {/* ── Bottom Grid ───────────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {/* ── Recent Orders ───────────────────────────── */}
         <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
 
-          {/* Header */}
+          
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-bold text-slate-800">
               Recent Orders
@@ -229,7 +205,7 @@ const AdminDashboard = () => {
         {/* ── Top Products ────────────────────────────── */}
         <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
 
-          {/* Header */}
+          
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-bold text-slate-800">
               Top Products

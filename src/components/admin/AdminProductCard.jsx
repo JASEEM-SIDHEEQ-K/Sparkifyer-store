@@ -1,5 +1,3 @@
-// src/components/admin/AdminProductCard.jsx
-
 const AdminProductCard = ({ product, onEdit, onToggleStatus }) => {
 
   // ─── Discount ─────────────────────────────────────────
@@ -32,7 +30,7 @@ const AdminProductCard = ({ product, onEdit, onToggleStatus }) => {
       {/* ── Product Info ───────────────────────────────── */}
       <div className="flex-1 min-w-0">
 
-        {/* Name + Category */}
+        
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
             <h3 className="text-sm font-semibold text-slate-800 truncate">
@@ -102,7 +100,7 @@ const AdminProductCard = ({ product, onEdit, onToggleStatus }) => {
           </span>
         </div>
 
-        {/* Action Buttons */}
+        
         <div className="flex items-center gap-2 mt-3">
 
           {/* Edit */}

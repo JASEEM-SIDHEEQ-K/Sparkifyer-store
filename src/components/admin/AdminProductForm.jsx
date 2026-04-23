@@ -1,5 +1,3 @@
-// src/components/admin/AdminProductForm.jsx
-
 import { useState } from "react";
 
 const categories = [
@@ -106,7 +104,7 @@ const AdminProductForm = ({ product, onSubmit, onClose, isPending }) => {
     setErrors(submitErrors);
     if (Object.keys(submitErrors).length > 0) return;
 
-    // ✅ build product data
+    // build product data
     const productData = {
       name: formData.name.trim(),
       category: formData.category,
@@ -175,7 +173,7 @@ const AdminProductForm = ({ product, onSubmit, onClose, isPending }) => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="iPhone 15 Pro"
+                placeholder="Product Name"
                 className={inputClass("name")}
               />
               {errors.name && (
@@ -215,7 +213,7 @@ const AdminProductForm = ({ product, onSubmit, onClose, isPending }) => {
                 name="brand"
                 value={formData.brand}
                 onChange={handleChange}
-                placeholder="Apple"
+                placeholder="Brand"
                 className={inputClass("brand")}
               />
               {errors.brand && (
@@ -233,7 +231,7 @@ const AdminProductForm = ({ product, onSubmit, onClose, isPending }) => {
                 name="stock"
                 value={formData.stock}
                 onChange={handleChange}
-                placeholder="10"
+                placeholder="0"
                 min="0"
                 className={inputClass("stock")}
               />
@@ -257,7 +255,7 @@ const AdminProductForm = ({ product, onSubmit, onClose, isPending }) => {
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
-                placeholder="999"
+                placeholder="0"
                 min="0"
                 className={inputClass("price")}
               />
@@ -276,7 +274,7 @@ const AdminProductForm = ({ product, onSubmit, onClose, isPending }) => {
                 name="originalPrice"
                 value={formData.originalPrice}
                 onChange={handleChange}
-                placeholder="1099"
+                placeholder="0"
                 min="0"
                 className={inputClass("originalPrice")}
               />
@@ -320,7 +318,7 @@ const AdminProductForm = ({ product, onSubmit, onClose, isPending }) => {
                 name="reviews"
                 value={formData.reviews}
                 onChange={handleChange}
-                placeholder="120"
+                placeholder="0"
                 min="0"
                 className={inputClass("reviews")}
               />

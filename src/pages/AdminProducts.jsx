@@ -1,16 +1,15 @@
-// src/pages/admin/AdminProducts.jsx
-
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectAllProducts,
   selectAdminLoading,
+  setAllProducts,
 } from "../features/admin/adminSlice";
 import {
   useAddProduct,
   useUpdateProduct,
 } from "../features/admin/adminApi";
-import { setAllProducts } from "../features/admin/adminSlice";
+
 import AdminProductCard from "../components/admin/AdminProductCard";
 import AdminProductForm from "../components/admin/AdminProductForm";
 import api from "../services/api";
@@ -26,12 +25,16 @@ const categories = [
   "Gaming",
 ];
 
+const ITEMS_PER_PAGE = 8;
+
 const AdminProducts = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector(selectAllProducts);
   const isLoading = useSelector(selectAdminLoading);
 
-  // ─── Local State ──────────────────────────────────────
+  const [currentPage, setCurrentPage] = useState(1);
+
+
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showInactive, setShowInactive] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -39,28 +42,64 @@ const AdminProducts = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [duplicateError, setDuplicateError] = useState("");
 
-  // ─── Mutations ────────────────────────────────────────
+
+
+  // ─── Mutations ──────────────────────────────────────── api call
   const { mutate: addProduct, isPending: isAdding } = useAddProduct();
   const { mutate: updateProduct, isPending: isUpdating } = useUpdateProduct();
- 
+
+
+
 
   // ─── Filter products ──────────────────────────────────
-  const filteredProducts = allProducts
-    .filter((p) => {
-      const matchCategory =
-        selectedCategory === "All" || p.category === selectedCategory;
-      const matchSearch =
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.brand.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchStatus = showInactive ? true : p.isActive !== false;
-      return matchCategory && matchSearch && matchStatus;
-    });
+  const filteredProducts = useMemo(() => {
+  return allProducts.filter((p) => {
+    const matchCategory =
+      selectedCategory === "All" || p.category === selectedCategory;
+    const matchSearch =
+      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.brand.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchStatus = showInactive ? true : p.isActive !== false;
+
+    return matchCategory && matchSearch && matchStatus;
+  });
+}, [allProducts, selectedCategory, searchQuery, showInactive]);
+
+
+
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  // reset page on filter change
+  const handleCategoryChange = (cat) => {
+    setSelectedCategory(cat);
+    setCurrentPage(1);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleToggleInactive = () => {
+    setShowInactive(!showInactive);
+    setCurrentPage(1);
+  };
+
+
+
+
 
   // ─── Handle Add Product ───────────────────────────────
   const handleAddProduct = (productData) => {
     setDuplicateError("");
 
-    // ✅ prevent duplicate by name
+
+
+    // prevent duplicate by name
     const isDuplicate = allProducts.some(
       (p) => p.name.toLowerCase() === productData.name.toLowerCase()
     );
@@ -80,6 +119,8 @@ const AdminProducts = () => {
     });
   };
 
+
+
   // ─── Handle Edit Product ──────────────────────────────
   const handleEditProduct = (productData) => {
     updateProduct(
@@ -96,14 +137,18 @@ const AdminProducts = () => {
     );
   };
 
-  // ─── Handle Toggle Status (Soft Delete) ───────────────
+
+
+
+
+  // ─── (Soft Delete) ───────────────
   const handleToggleStatus = async (product) => {
     try {
       await api.patch(`/products/${product.id}`, {
         isActive: !product.isActive,
       });
 
-      // ✅ update Redux directly
+      // update Redux directly
       const updatedProducts = allProducts.map((p) =>
         p.id === product.id ? { ...p, isActive: !product.isActive } : p
       );
@@ -113,6 +158,8 @@ const AdminProducts = () => {
       console.error("Failed to toggle status:", error);
     }
   };
+
+
 
   // ─── Open Edit Form ───────────────────────────────────
   const handleOpenEdit = (product) => {
@@ -128,13 +175,17 @@ const AdminProducts = () => {
     setDuplicateError("");
   };
 
-  // ─── Stats ────────────────────────────────────────────
+
+
+ 
   const activeCount = allProducts.filter(
     (p) => p.isActive !== false
   ).length;
   const inactiveCount = allProducts.filter(
     (p) => p.isActive === false
   ).length;
+
+
 
   return (
     <div className="flex flex-col gap-6">
@@ -155,6 +206,8 @@ const AdminProducts = () => {
           </p>
         </div>
 
+
+
         {/* Add Product Button */}
         <button
           onClick={() => {
@@ -168,6 +221,8 @@ const AdminProducts = () => {
         </button>
       </div>
 
+
+
       {/* ── Filters Row ───────────────────────────────── */}
       <div className="flex flex-col sm:flex-row gap-3">
 
@@ -179,7 +234,7 @@ const AdminProducts = () => {
           <input
             type="text"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={handleSearchChange}
             placeholder="Search products..."
             className="w-full border border-slate-300 rounded-xl pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
@@ -187,7 +242,7 @@ const AdminProducts = () => {
 
         {/* Show Inactive Toggle */}
         <button
-          onClick={() => setShowInactive(!showInactive)}
+          onClick={handleToggleInactive}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium border transition
             ${showInactive
               ? "bg-slate-800 text-white border-slate-800"
@@ -204,7 +259,7 @@ const AdminProducts = () => {
         {categories.map((cat) => (
           <button
             key={cat}
-            onClick={() => setSelectedCategory(cat)}
+            onClick={() => handleCategoryChange(cat)}
             className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-medium transition
               ${selectedCategory === cat
                 ? "bg-blue-600 text-white"
@@ -247,7 +302,7 @@ const AdminProducts = () => {
         </div>
       ) : (
         <div className="flex flex-col gap-3">
-          {filteredProducts.map((product) => (
+          {paginatedProducts.map((product) => (
             <AdminProductCard
               key={product.id}
               product={product}
@@ -257,6 +312,59 @@ const AdminProducts = () => {
           ))}
         </div>
       )}
+
+      {/* ── Pagination ────────────────────────────── */}
+      {totalPages > 1 && (
+        <div className="flex flex-col items-center gap-3 mt-2">
+
+          <p className="text-xs text-slate-400">
+            Showing{" "}
+            {(currentPage - 1) * ITEMS_PER_PAGE + 1} to{" "}
+            {Math.min(currentPage * ITEMS_PER_PAGE, filteredProducts.length)}{" "}
+            of {filteredProducts.length} products
+          </p>
+
+          <div className="flex items-center gap-1">
+
+            {/* Previous */}
+            <button
+              onClick={() => setCurrentPage((p) => p - 1)}
+              disabled={currentPage === 1}
+              className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-300 text-slate-600 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-600 transition disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              ‹
+            </button>
+
+            {/* Page Numbers */}
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`w-9 h-9 flex items-center justify-center rounded-xl text-sm font-medium transition
+            ${currentPage === page
+                    ? "bg-blue-600 text-white border border-blue-600"
+                    : "border border-slate-300 text-slate-600 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-600"
+                  }`}
+              >
+                {page}
+              </button>
+            ))}
+
+            {/* Next */}
+            <button
+              onClick={() => setCurrentPage((p) => p + 1)}
+              disabled={currentPage === totalPages}
+              className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-300 text-slate-600 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-600 transition disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              ›
+            </button>
+          </div>
+        </div>
+      )}
+
+
+
+
 
       {/* ── Product Form Modal ────────────────────────── */}
       {showForm && (

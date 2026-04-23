@@ -69,14 +69,9 @@ const HeroBanner = () => {
               <span className="text-8xl">⚡</span>
             </div>
 
-            {/* Floating card 1 */}
-            <div className="absolute -top-4 -left-4 bg-white rounded-2xl px-4 py-2 shadow-lg">
-              <p className="text-xs font-bold text-slate-800">🔥 Hot Deal</p>
-              <p className="text-xs text-slate-500">iPhone 15 Pro</p>
-              <p className="text-sm font-extrabold text-blue-600">$999</p>
-            </div>
+            
 
-            {/* Floating card 2 */}
+            {/* Floating card 1 */}
             <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl px-4 py-2 shadow-lg">
               <p className="text-xs font-bold text-slate-800">⭐ Top Rated</p>
               <p className="text-xs text-slate-500">Sony WH-1000XM5</p>

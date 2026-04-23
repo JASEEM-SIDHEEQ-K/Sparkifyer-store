@@ -1,5 +1,3 @@
-// src/pages/admin/AdminOrders.jsx
-
 import { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { selectAllOrders } from "../features/admin/adminSlice";
@@ -14,7 +12,7 @@ const statusTabs = [
   { value: "cancelled", label: "Cancelled", icon: "❌" },
 ];
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 8;
 
 const AdminOrders = () => {
   const allOrders = useSelector(selectAllOrders);
@@ -25,6 +23,8 @@ const AdminOrders = () => {
   const [dateFilter, setDateFilter] = useState("all");
   const [sortBy, setSortBy] = useState("date-desc");
   const [currentPage, setCurrentPage] = useState(1);
+
+
 
   // ─── Filter + Sort ────────────────────────────────────
   const filteredOrders = useMemo(() => {
@@ -92,8 +92,9 @@ const AdminOrders = () => {
     return result;
   }, [allOrders, activeTab, paymentFilter, dateFilter, searchQuery, sortBy]);
 
-  // ─── Pagination ───────────────────────────────────────
+  // ─── Pagination for prevent next button ──────────────────────────
   const totalPages = Math.ceil(filteredOrders.length / ITEMS_PER_PAGE);
+
   const paginatedOrders = filteredOrders.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
@@ -135,6 +136,9 @@ const AdminOrders = () => {
     .filter((o) => o.status !== "cancelled")
     .reduce((sum, o) => sum + (o.total || 0), 0);
 
+
+
+
   return (
     <div className="flex flex-col gap-6">
 
@@ -151,24 +155,7 @@ const AdminOrders = () => {
         </div>
       </div>
 
-      {/* ── Stats Row ─────────────────────────────────── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        {statusTabs.slice(1, 5).map((tab) => (
-          <div
-            key={tab.value}
-            onClick={() => handleTabChange(tab.value)}
-            className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center cursor-pointer hover:border-blue-300 transition"
-          >
-            <p className="text-2xl mb-1">{tab.icon}</p>
-            <p className="text-xl font-bold text-slate-800">
-              {getCount(tab.value)}
-            </p>
-            <p className="text-xs text-slate-500 font-medium">
-              {tab.label}
-            </p>
-          </div>
-        ))}
-      </div>
+      
 
       {/* ── Search + Filters Row ──────────────────────── */}
       <div className="flex flex-col gap-3">
@@ -288,6 +275,10 @@ const AdminOrders = () => {
           {filteredOrders.length} orders
         </p>
       )}
+
+
+
+
 
       {/* ── Orders List ───────────────────────────────── */}
       {paginatedOrders.length === 0 ? (

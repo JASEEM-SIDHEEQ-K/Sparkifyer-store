@@ -1,6 +1,4 @@
-// src/pages/ProductList.jsx
-
-import { useEffect, useState } from "react";  // ✅ add useState
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import {

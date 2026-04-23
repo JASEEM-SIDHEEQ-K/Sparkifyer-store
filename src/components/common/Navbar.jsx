@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import useAuth from "../../hooks/useAuth";
 import { selectCartCount } from "../../features/cart/cartSlice";
@@ -9,11 +9,16 @@ import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const location = useLocation()
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const cartCount = useSelector(selectCartCount);
   const wishlistCount = useSelector(selectWishlistCount);
+
+  const isAuthPage =
+    location.pathname === "/login" ||
+    location.pathname === "/register";
 
   return (
     <nav className="bg-blue-700 text-white shadow-md sticky top-0 z-50">
@@ -33,7 +38,7 @@ const Navbar = () => {
 
           
           <div className="hidden md:flex flex-1 max-w-md">
-            { !isAdmin && <SearchBar /> }
+            { !isAdmin && !isAuthPage&& <SearchBar /> }
           </div>
 
           
@@ -119,12 +124,14 @@ const Navbar = () => {
           <div className="md:hidden flex items-center gap-3">
 
             {/* Mobile Search Toggle */}
+            {!isAdmin && !isAuthPage && ( 
             <button
               onClick={() => setSearchOpen(!searchOpen)}
               className="text-white text-lg"
             >
               {searchOpen ? "✕" : "🔍"}
             </button>
+            )}
 
             {/* Mobile Cart Badge */}
             {isAuthenticated && (
@@ -151,7 +158,7 @@ const Navbar = () => {
         </div>
 
         {/* ── Mobile Search Bar ─────────────────────────── */}
-        {searchOpen && (
+        {searchOpen && !isAuthPage && (
           <div className="md:hidden mt-3">
             <SearchBar onClose={() => setSearchOpen(false)} />
           </div>
