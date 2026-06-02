@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, "Product name is required"],
       trim: true,
-      unique: true,         // ✅ prevent duplicates
+      unique: true,         // prevent duplicates
     },
     category: {
       type: String,
@@ -71,7 +71,7 @@ const productSchema = new mongoose.Schema(
     },
     isActive: {
       type: Boolean,
-      default: true,        // ✅ soft delete
+      default: true,        // soft delete
     },
   },
   {
