@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 
 // ─── Routes ───────────────────────────────────────────────────
-// import authRoutes from "./routes/authRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 // import productRoutes from "./routes/productRoutes.js";
 // import cartRoutes from "./routes/cartRoutes.js";
 // import wishlistRoutes from "./routes/wishlistRoutes.js";
@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // // ─── Routes ───────────────────────────────────────────────────
-// app.use("/api/auth", authRoutes);
+app.use("/api/auth", authRoutes);
 // app.use("/api/products", productRoutes);
 // app.use("/api/cart", cartRoutes);
 // app.use("/api/wishlist", wishlistRoutes);
@@ -41,6 +41,7 @@ app.get("/", (req, res) => {
     status: "healthy",
   });
 });
+
 
 // // ─── 404 Handler ──────────────────────────────────────────────
 app.use((req, res) => {
