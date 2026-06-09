@@ -16,12 +16,12 @@ export const useGetProfile = (userId) => {
   return useQuery({
     queryKey: ["profile", userId],
     queryFn: async () => {
-      const response = await api.get(`/users/${userId}`);
-      dispatch(setProfile(response.data));
-      return response.data;
+      const response = await api.get("/auth/profile");
+      dispatch(setProfile(response.data.user));
+      return response.data.user;
     },
     enabled: !!userId,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 0,
     retry: 1,
   });
 };
@@ -32,69 +32,52 @@ export const useUpdateProfile = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ userId, updatedData }) => {
-      const response = await api.patch(`/users/${userId}`, updatedData);
+    mutationFn: async ({ updatedData }) => {
+      const response = await api.put("/auth/profile", updatedData);
       return response.data;
     },
 
-    onSuccess: (updatedUser, variables) => {
-      // update profile in Redux
-      dispatch(updateProfileSuccess(updatedUser));
+    onSuccess: (data) => {
+      dispatch(updateProfileSuccess(data.user));
 
-      // update auth session in Redux + localStorage
       const session = getSession();
       const updatedSession = {
         ...session,
         user: {
           ...session.user,
-          name: updatedUser.name,
-          email: updatedUser.email,
-          phone: updatedUser.phone,
+          name: data.user.name,
+          phone: data.user.phone,
         },
       };
       saveSession(updatedSession);
       dispatch(loginSuccess(updatedSession));
 
-      // invalidate profile query
-      queryClient.invalidateQueries({
-        queryKey: ["profile", variables.userId],
-      });
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
     },
 
     onError: (error) => {
-      dispatch(profileError(error.message || "Failed to update profile!"));
+      dispatch(profileError(
+        error.response?.data?.message || "Failed to update profile!"
+      ));
     },
   });
 };
 
 // ─── Change Password ──────────────────────────────────────────
 export const useChangePassword = () => {
-  const dispatch = useDispatch();
-
   return useMutation({
-    mutationFn: async ({ userId, currentPassword, newPassword }) => {
-      // verify current password first
-      const response = await api.get(`/users/${userId}`);
-      const user = response.data;
-
-      if (user.password !== currentPassword) {
-        throw new Error("Current password is incorrect!");
-      }
-
-      // update password
-      const updated = await api.patch(`/users/${userId}`, {
-        password: newPassword,
+    mutationFn: async ({ currentPassword, newPassword }) => {
+      const response = await api.put("/auth/change-password", {
+        currentPassword,
+        newPassword,
       });
-
-      return updated.data;
-    },
-
-    onSuccess: () => {
-      // password changed successfully
+      return response.data;
     },
 
     onError: (error) => {
-      dispatch(profileError(error.message || "Failed to change password!"));
+      throw new Error(
+        error.response?.data?.message || "Failed to change password!"
+      );
     },
   });
 };

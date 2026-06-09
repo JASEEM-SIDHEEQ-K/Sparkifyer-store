@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import api from "../../services/api";
 import {
   setWishlistItems,
-  addWishlistItem,
-  removeWishlistItem,
+  // addWishlistItem,
+  // removeWishlistItem,
   wishlistError,
 } from "./wishlistSlice";
 
@@ -15,9 +15,9 @@ export const useGetWishlist = (userId) => {
   return useQuery({
     queryKey: ["wishlist", userId],
     queryFn: async () => {
-      const response = await api.get(`/wishlist?userId=${userId}`);
-      dispatch(setWishlistItems(response.data));
-      return response.data;
+      const response = await api.get(`/wishlist`);
+      dispatch(setWishlistItems(response.data.wishlist.items));
+      return response.data.wishlist.items;
     },
     enabled: !!userId,
     staleTime: 0,
@@ -31,53 +31,25 @@ export const useToggleWishlist = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ product, userId, wishlistItems }) => {
-
-      // ✅ check if already in wishlist
-      const existingItem = wishlistItems.find(
-        (item) =>
-          item.productId === product.id ||
-          item.productId === String(product.id)
-      );
-
-      if (existingItem) {
-        // ── Already in wishlist → REMOVE ──────────────
-        await api.delete(`/wishlist/${existingItem.id}`);
-        return { type: "remove", id: existingItem.id };
-
-      } else {
-        // ── Not in wishlist → ADD ──────────────────────
-        const newItem = {
-          userId,
-          productId: product.id,
-          name: product.name,
-          price: product.price,
-          originalPrice: product.originalPrice,
-          image: product.image,
-          stock: product.stock,
-          category: product.category,
-          brand: product.brand,
-          rating: product.rating,
-        };
-
-        const response = await api.post("/wishlist", newItem);
-        return { type: "add", item: response.data };
-      }
+    mutationFn: async ({ product }) => {
+      const response = await api.post("/wishlist/toggle", {
+        productId: product.id,
+      });
+      return response.data;
     },
 
-    onSuccess: (result, variables) => {
-      if (result.type === "remove") {
-        dispatch(removeWishlistItem(result.id));
-      } else {
-        dispatch(addWishlistItem(result.item));
-      }
+    onSuccess: (data, variables) => {
+      // ✅ update Redux with latest wishlist
+      dispatch(setWishlistItems(data.wishlist.items));
       queryClient.invalidateQueries({
         queryKey: ["wishlist", variables.userId],
       });
     },
 
     onError: (error) => {
-      dispatch(wishlistError(error.message || "Wishlist action failed!"));
+      dispatch(wishlistError(
+        error.response?.data?.message || "Wishlist action failed!"
+      ));
     },
   });
 };
@@ -89,19 +61,19 @@ export const useRemoveFromWishlist = () => {
 
   return useMutation({
     mutationFn: async ({ wishlistItemId }) => {
-      await api.delete(`/wishlist/${wishlistItemId}`);
-      return { wishlistItemId };
+      const response = await api.delete(`/wishlist/${wishlistItemId}`);
+      return response.data;
     },
 
-    onSuccess: (result, variables) => {
-      dispatch(removeWishlistItem(result.wishlistItemId));
+    onSuccess: (data, variables) => {
+      dispatch(setWishlistItems(data.wishlist.items));
       queryClient.invalidateQueries({
         queryKey: ["wishlist", variables.userId],
       });
     },
 
     onError: (error) => {
-      dispatch(wishlistError(error.message || "Failed to remove from wishlist!"));
+      dispatch(wishlistError(error.response?.data?.message || "Failed to remove from wishlist!"));
     },
   });
 };

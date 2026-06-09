@@ -19,53 +19,43 @@ function App() {
 
   const isAdminPage = location.pathname.startsWith("/admin");
 
-  const session = getSession();
-
   useEffect(() => {
-  if (!session?.user?.id) return;
+    const session = getSession();
+    if (!session?.user?.id) return;
 
-  const userId = session.user.id;
-  
-  //Fetch latest user data from backend
-  api
-    .get(`/users/${userId}`)
-    .then((res) => {
-      const user = res.data;
+    // verify user still active via backend
+    api.get("/auth/profile")
+      .then((res) => {
+        const user = res.data.user;
 
-      //If admin deactivated the user → force logout
-      if (user.isActive === false) {
-        dispatch(logout());
-        dispatch(clearCart());
-        dispatch(clearOrders());
-        dispatch(clearProfile());
-        dispatch(clearWishlist());
-        clearSession();
-        return;
-      }
+        if (!user.isActive) {
+          dispatch(logout());
+          dispatch(clearCart());
+          dispatch(clearOrders());
+          dispatch(clearProfile());
+          dispatch(clearWishlist());
+          clearSession();
+          return;
+        }
 
-      dispatch(
-        loginSuccess({
+        dispatch(loginSuccess({
           user: session.user,
           token: session.token,
           role: session.role,
-        })
-      );
+        }));
 
-      if (session.role === "user") {
-        dispatch(fetchCart(userId));
+        if (session.role !== "admin") {
+          dispatch(fetchCart());
+          api.get("/wishlist")
+            .then((res) =>
+              dispatch(setWishlistItems(res.data.wishlist.items))
+            )
+            .catch(console.error);
+        }
+      })
+      .catch(console.error);
 
-        api
-          .get(`/wishlist?userId=${userId}`)
-          .then((res) => dispatch(setWishlistItems(res.data)))
-          .catch((err) => console.error(err));
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      dispatch(logout());
-      clearSession();
-    });
-}, [dispatch,session]);
+  }, [dispatch]);
 
   return (
     <div>

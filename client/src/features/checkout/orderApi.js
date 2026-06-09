@@ -17,9 +17,9 @@ export const useGetOrders = (userId) => {
   return useQuery({
     queryKey: ["orders", userId],
     queryFn: async () => {
-      const response = await api.get(`/orders?userId=${userId}`);
-      dispatch(setOrders(response.data));
-      return response.data;
+      const response = await api.get(`/orders`);
+      dispatch(setOrders(response.data.orders));
+      return response.data.orders;
     },
     enabled: !!userId,
     staleTime: 0,
@@ -34,11 +34,8 @@ export const usePlaceOrder = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ orderData, cartItems, userId, isBuyNow }) => {
-
-      // ── Step 1 → POST order ──────────────────────────
-      const orderResponse = await api.post("/orders", {
-        userId,
+    mutationFn: async ({ orderData, cartItems, isBuyNow }) => {
+      const response = await api.post("/orders", {
         items: cartItems.map((item) => ({
           productId: item.productId,
           name: item.name,
@@ -49,92 +46,38 @@ export const usePlaceOrder = () => {
         subtotal: orderData.subtotal,
         deliveryCharge: orderData.deliveryCharge,
         total: orderData.total,
-        status: "confirmed",
         paymentMethod: orderData.paymentMethod,
         shippingAddress: orderData.shippingAddress,
-        createdAt: new Date().toISOString(),
+        isBuyNow,
       });
-
-
-      //real time stock update
-      await Promise.all(
-        cartItems.map(async (item) => {
-          // get current product
-          const productRes = await api.get(
-            `/products/${item.productId}`
-          );
-          const currentStock = productRes.data.stock;
-          const newStock = Math.max(0, currentStock - item.quantity);
-
-          // update stock
-          await api.patch(`/products/${item.productId}`, {
-            stock: newStock,
-          });
-        })
-      );
-
-
-
-      // ── Step 2 → only clear cart for normal checkout ──
-      if (!isBuyNow && cartItems.length > 0) {
-        const deletePromises = cartItems.map((item) =>
-          api.delete(`/cart/${item.id}`)
-        );
-        await Promise.all(deletePromises);
-      }
-
-      return orderResponse.data;
+      return response.data.order;
     },
 
-    onSuccess: (placedOrder, variables) => {
-      // save placed order
-      dispatch(setCurrentOrder(placedOrder));
-
-      queryClient.setQueryData(["products"], (oldProducts) => {
-    if (!oldProducts) return oldProducts;
-
-    return oldProducts.map((product) => {
-      const item = variables.cartItems.find(
-        (i) => i.productId === product.id
-      );
-
-      if (item) {
-        return {
-          ...product,
-          stock: Math.max(0, product.stock - item.quantity),
-        };
-      }
-
-      return product;
-    });
-  });
-      
-
+    onSuccess: (order, variables) => {
+      dispatch(setCurrentOrder(order));
 
       if (variables.isBuyNow) {
-        // Buy Now → clear buyNow item only
         dispatch(clearBuyNowItem());
       } else {
-        // Normal checkout → clear cart
         dispatch(clearCart());
         queryClient.invalidateQueries({
           queryKey: ["cart", variables.userId],
         });
       }
-      
+
       queryClient.invalidateQueries({ queryKey: ["products"] });
       queryClient.invalidateQueries({ queryKey: ["adminStats"] });
-
       queryClient.invalidateQueries({
         queryKey: ["orders", variables.userId],
       });
 
-    
       navigate("/order-success");
     },
 
     onError: (error) => {
-      dispatch(orderError(error.message || "Failed to place order!"));
+      dispatch(orderError(
+        error.response?.data?.message || "Failed to place order!"
+      ));
     },
   });
 };
